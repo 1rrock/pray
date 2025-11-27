@@ -1,6 +1,21 @@
 {
-  "name": "pray",
-  "version": "0.1.0",
+  "name": "gido",
+  "version": "1.0.0",
+  "description": "Gido - 기도 AI, 성경 말씀 응답 서비스",
+  "author": "Gido",
+  "homepage": "https://gidoai.vercel.app",
+  "keywords": [
+    "기도",
+    "기도AI",
+    "AI기도",
+    "gido",
+    "성경",
+    "성경말씀",
+    "기독교",
+    "prayer",
+    "bible",
+    "AI"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev",

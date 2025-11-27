@@ -1,4 +1,4 @@
-# robots.txt for 기도 AI
+# robots.txt for Gido
 # https://gidoai.vercel.app
 
 User-agent: *

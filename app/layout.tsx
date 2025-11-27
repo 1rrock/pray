@@ -37,6 +37,26 @@ export const metadata: Metadata = {
     creator: 'Gido',
     publisher: 'Gido',
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://gidoai.vercel.app'),
+    alternates: {
+        canonical: 'https://gidoai.vercel.app',
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
+    verification: {
+        google: 'google-site-verification-code', // Google Search Console에서 받은 코드로 교체
+        // other: {
+        //     'naver-site-verification': 'naver-code', // 네이버 서치어드바이저 코드
+        // },
+    },
     openGraph: {
         title: "Gido - 기도 AI, 성경 말씀 응답 서비스",
         description: "Gido는 기도 내용을 분석해 성경 말씀으로 응답하는 AI 기도 서비스입니다. 당신의 기도에 가장 적합한 성경 구절과 영적 지도를 제공합니다.",

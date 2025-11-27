@@ -4,10 +4,10 @@ import {useRouter, useSearchParams} from 'next/navigation';
 import {motion} from 'framer-motion';
 import {ResponseDisplay} from '@/domain/prayer/components/ResponseDisplay';
 import {usePrayerStore} from '@/domain/prayer/store/prayerStore';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, Suspense} from 'react';
 import type {AIResponse} from '@/domain/prayer/api/type';
 
-export default function ScripturePage() {
+function ScriptureContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const {response, reset} = usePrayerStore();
@@ -33,6 +33,7 @@ export default function ScripturePage() {
                     text,
                 },
                 guidance,
+                timestamp: new Date(),
             };
             setSharedResponse(sharedData);
 
@@ -41,7 +42,8 @@ export default function ScripturePage() {
                 usePrayerStore.setState({
                     currentPrayer: {
                         text: prayer,
-                        timestamp: new Date().toISOString(),
+                        method: 'text',
+                        timestamp: new Date(),
                     },
                 });
             }
@@ -97,3 +99,14 @@ export default function ScripturePage() {
     );
 }
 
+export default function ScripturePage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 dark:bg-gradient-to-br dark:from-amber-950 dark:via-yellow-950 dark:to-amber-900 flex items-center justify-center">
+                <div className="text-amber-600 text-xl">로딩 중...</div>
+            </div>
+        }>
+            <ScriptureContent />
+        </Suspense>
+    );
+}

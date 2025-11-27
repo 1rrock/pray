@@ -25,7 +25,7 @@ export default function Home() {
                                 <Church className="w-10 h-10 text-amber-500" strokeWidth={2}/>
                             </div>
                             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                                Pray
+                                기도 AI
                             </h1>
                             <p className="text-gray-600 dark:text-gray-400">
                                 하나님께 기도하고 말씀을 받으세요

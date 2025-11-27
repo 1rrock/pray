@@ -29,29 +29,29 @@ const nanumMyeongjo = Nanum_Myeongjo({
 });
 
 export const metadata: Metadata = {
-    title: "Pray - 기도와 함께하는 하나님의 말씀",
+    title: "기도 AI - 기도와 함께하는 하나님의 말씀",
     description: "당신의 기도에 성경 구절과 영적 지도로 응답합니다",
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://pray-six.vercel.app'),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://pray-ai.vercel.app'),
     openGraph: {
-        title: "Pray - 기도와 함께하는 하나님의 말씀",
+        title: "기도 AI - 기도와 함께하는 하나님의 말씀",
         description: "당신의 기도에 성경 구절과 영적 지도로 응답합니다",
         images: [
             {
-                url: 'https://pray-six.vercel.app/og-image.png',
+                url: 'https://pray-ai.vercel.app/og-image.png',
                 width: 1200,
                 height: 630,
-                alt: 'Pray - 기도와 함께하는 하나님의 말씀',
+                alt: '기도 AI - 기도와 함께하는 하나님의 말씀',
             }
         ],
         type: "website",
         locale: "ko_KR",
-        siteName: "Pray",
+        siteName: "기도 AI",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Pray - 기도와 함께하는 하나님의 말씀",
+        title: "기도 AI - 기도와 함께하는 하나님의 말씀",
         description: "당신의 기도에 성경 구절과 영적 지도로 응답합니다",
-        images: ['https://pray-six.vercel.app/og-image.png'],
+        images: ['https://pray-ai.vercel.app/og-image.png'],
     },
     other: {
         'google-adsense-account': 'ca-pub-9970402588626346',

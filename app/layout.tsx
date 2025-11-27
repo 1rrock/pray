@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import {Geist, Geist_Mono, Noto_Serif_KR, Nanum_Myeongjo} from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "@/shared/providers/ReactQueryProvider";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -52,6 +53,11 @@ export default function RootLayout({
         <ReactQueryProvider>
             {children}
         </ReactQueryProvider>
+        <Toaster
+            position="top-center"
+            richColors
+            closeButton
+        />
         </body>
         </html>
     );

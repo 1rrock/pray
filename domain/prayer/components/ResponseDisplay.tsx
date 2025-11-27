@@ -8,6 +8,7 @@ import {CRISIS_RESOURCES} from '../api/constant';
 import {useRouter} from "next/navigation";
 import {usePrayerStore} from '../store/prayerStore';
 import {GoogleAd} from "@/shared/components/GoogleAd";
+import { toast } from 'sonner';
 
 interface ResponseDisplayProps {
     response: AIResponse;
@@ -82,11 +83,17 @@ export function ResponseDisplay({
         try {
             if (typeof window !== 'undefined' && window.navigator.clipboard) {
                 await window.navigator.clipboard.writeText(text);
-                alert('✅ 링크가 클립보드에 복사되었습니다!\n\n원하는 곳에 붙여넣기(Ctrl+V)하여 공유하세요.');
+                toast.success('링크가 클립보드에 복사되었습니다!', {
+                    description: '원하는 곳에 붙여넣기(Ctrl+V)하여 공유하세요.',
+                    duration: 3000,
+                });
             }
         } catch (err) {
             console.error('Clipboard error:', err);
-            alert('❌ 복사에 실패했습니다.');
+            toast.error('복사에 실패했습니다.', {
+                description: '다시 시도해주세요.',
+                duration: 3000,
+            });
         }
     };
 

@@ -41,11 +41,11 @@ export default function Home() {
                         </p>
 
                         {/* 하단 광고 */}
-                        <div className="bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/40 dark:to-yellow-900/40 rounded-2xl border-2 border-amber-300 dark:border-amber-700 shadow-md overflow-hidden min-h-[100px]">
-                            <GoogleAd
-                                slot="5375626932"
-                            />
-                        </div>
+                        {/*<div className="bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/40 dark:to-yellow-900/40 rounded-2xl border-2 border-amber-300 dark:border-amber-700 shadow-md overflow-hidden min-h-[100px]">*/}
+                        {/*    <GoogleAd*/}
+                        {/*        slot="5375626932"*/}
+                        {/*    />*/}
+                        {/*</div>*/}
                     </motion.div>
                 </AnimatePresence>
             </main>

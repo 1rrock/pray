@@ -2,20 +2,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import { SpeechClient } from '@google-cloud/speech';
 
 // Google Cloud Speech-to-Text 클라이언트 초기화
-// Vercel 환경에서는 GOOGLE_CLOUD_KEY_JSON 환경 변수 사용
+// Vercel: GOOGLE_CLOUD_KEY_JSON (JSON 문자열)
+// Local: GOOGLE_APPLICATION_CREDENTIALS (파일 경로)
 let speechClient: SpeechClient;
 
 if (process.env.GOOGLE_CLOUD_KEY_JSON) {
-  // JSON 문자열을 파싱하여 인증 정보로 사용
+  // Vercel 환경: JSON 문자열을 파싱하여 사용
   const credentials = JSON.parse(process.env.GOOGLE_CLOUD_KEY_JSON);
-  speechClient = new SpeechClient({
-    credentials,
-  });
-} else if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
-  // 로컬 개발 환경에서는 파일 경로 사용
-  speechClient = new SpeechClient();
+  speechClient = new SpeechClient({ credentials });
 } else {
-  throw new Error('Google Cloud 인증 정보가 설정되지 않았습니다.');
+  // 로컬 환경: GOOGLE_APPLICATION_CREDENTIALS 환경 변수 사용
+  // .env의 GOOGLE_APPLICATION_CREDENTIALS="./파일경로.json"를 자동으로 읽음
+  speechClient = new SpeechClient();
 }
 
 export async function POST(request: NextRequest) {

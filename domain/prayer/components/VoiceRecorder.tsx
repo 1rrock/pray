@@ -145,12 +145,16 @@ export function VoiceRecorder({onTranscriptionComplete, onClose}: VoiceRecorderP
 
     return (
         <Card
-            className="border-2 border-amber-200 dark:border-amber-800 bg-gradient-to-b from-white to-amber-50 dark:from-amber-950 dark:to-amber-900 shadow-2xl relative">
+            className="border-2 border-amber-200 dark:border-amber-800 bg-gradient-to-b from-white to-amber-50 dark:from-amber-950 dark:to-amber-900 shadow-2xl relative"
+            role="region"
+            aria-label="음성 기도 녹음">
             <CardHeader className="text-center space-y-2 pb-4">
                 <div className="flex justify-center mb-2">
                     <div
-                        className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-300 via-amber-300 to-yellow-400 dark:from-yellow-600 dark:via-amber-600 dark:to-yellow-700 flex items-center justify-center border-2 border-amber-400 dark:border-amber-500">
-                        <Sparkles className="w-8 h-8 text-amber-900 dark:text-amber-100"/>
+                        className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-300 via-amber-300 to-yellow-400 dark:from-yellow-600 dark:via-amber-600 dark:to-yellow-700 flex items-center justify-center border-2 border-amber-400 dark:border-amber-500"
+                        role="img"
+                        aria-label="반짝이는 별 아이콘">
+                        <Sparkles className="w-8 h-8 text-amber-900 dark:text-amber-100" aria-hidden="true"/>
                     </div>
                 </div>
                 <CardTitle className="text-2xl text-amber-900 dark:text-amber-100">
@@ -163,13 +167,14 @@ export function VoiceRecorder({onTranscriptionComplete, onClose}: VoiceRecorderP
 
             <CardContent className="space-y-6">
                 {/* 마이크 아이콘 */}
-                <div className="flex justify-center">
+                <div className="flex justify-center" role="status" aria-live="polite" aria-label={isRecording ? "녹음 중" : "녹음 대기"}>
                     <motion.div
                         animate={isRecording ? {scale: [1, 1.1, 1]} : {}}
                         transition={{repeat: Infinity, duration: 1.5}}
                         className="w-40 h-40 rounded-full bg-gradient-to-br from-amber-200 to-yellow-300 dark:from-amber-800/40 dark:to-yellow-800/40 flex items-center justify-center border-4 border-amber-300 dark:border-amber-700 shadow-lg"
-                    >
-                        <Mic className="w-20 h-20 text-amber-900 dark:text-amber-200"/>
+                        role="img"
+                        aria-label="마이크 아이콘">
+                        <Mic className="w-20 h-20 text-amber-900 dark:text-amber-200" aria-hidden="true"/>
                     </motion.div>
                 </div>
 
@@ -202,8 +207,11 @@ export function VoiceRecorder({onTranscriptionComplete, onClose}: VoiceRecorderP
                 {/* 녹음 시간 */}
                 {isRecording && !isProcessing && (
                     <div
-                        className="text-center space-y-2 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-xl p-4 border border-amber-200 dark:border-amber-800">
-                        <p className="text-4xl font-bold text-amber-700 dark:text-amber-300 tabular-nums">
+                        className="text-center space-y-2 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-xl p-4 border border-amber-200 dark:border-amber-800"
+                        role="timer"
+                        aria-live="polite"
+                        aria-atomic="true">
+                        <p className="text-4xl font-bold text-amber-700 dark:text-amber-300 tabular-nums" aria-label={`녹음 시간 ${formatTime(recordingTime)}`}>
                             {formatTime(recordingTime)}
                         </p>
                         <p className="text-sm text-amber-600 dark:text-amber-400">
@@ -221,8 +229,8 @@ export function VoiceRecorder({onTranscriptionComplete, onClose}: VoiceRecorderP
                         size="lg"
                         className="w-full h-14 bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-600 hover:via-amber-600 hover:to-yellow-700 text-amber-900 font-semibold shadow-lg text-base"
                         type="button"
-                    >
-                        <Send className="mr-2 h-5 w-5"/>
+                        aria-label="녹음 완료하고 기도 올리기">
+                        <Send className="mr-2 h-5 w-5" aria-hidden="true"/>
                         기도 올리기
                     </Button>
                 )}
@@ -230,8 +238,8 @@ export function VoiceRecorder({onTranscriptionComplete, onClose}: VoiceRecorderP
                     type="button"
                     onClick={handleClose}
                     className="text-sm text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-200 py-2 flex items-center gap-2 font-medium transition-colors"
-                >
-                    <ArrowLeft className="w-4 h-4"/>
+                    aria-label="음성 녹음 취소하고 처음으로 돌아가기">
+                    <ArrowLeft className="w-4 h-4" aria-hidden="true"/>
                     처음으로
                 </button>
             </CardFooter>

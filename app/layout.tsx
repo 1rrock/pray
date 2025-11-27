@@ -35,7 +35,14 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Pray - 기도와 함께하는 하나님의 말씀",
         description: "당신의 기도에 성경 구절과 영적 지도로 응답합니다",
-        images: '/opengraph-image',
+        images: [
+            {
+                url: 'https://pray-rouge.vercel.app/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'Pray - 기도와 함께하는 하나님의 말씀',
+            }
+        ],
         type: "website",
         locale: "ko_KR",
         siteName: "Pray",
@@ -44,7 +51,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Pray - 기도와 함께하는 하나님의 말씀",
         description: "당신의 기도에 성경 구절과 영적 지도로 응답합니다",
-        images: '/twitter-image',
+        images: ['https://pray-rouge.vercel.app/og-image.png'],
     },
     other: {
         'google-adsense-account': 'ca-pub-9970402588626346',

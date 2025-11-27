@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "텍스트 기도 - Gido | AI 기도 서비스",
-    description: "Gido 텍스트 기도 서비스. 글로 기도하면 성경 말씀과 영적 지도를 받을 수 있습니다.",
+    title: "텍스트 기도 - Gido AI | 하나님의 계시",
+    description: "Gido AI 텍스트 기도 서비스. 글로 기도하면 하나님의 계시로 성경 말씀과 영적 지도를 받을 수 있습니다.",
     openGraph: {
-        title: "텍스트 기도 - Gido",
-        description: "글로 기도하고 하나님의 말씀을 받으세요",
+        title: "텍스트 기도 - Gido AI",
+        description: "글로 기도하고 하나님의 계시를 받으세요",
         type: "website",
         locale: "ko_KR",
     },
     twitter: {
         card: "summary_large_image",
-        title: "텍스트 기도 - Gido",
-        description: "글로 기도하고 하나님의 말씀을 받으세요",
+        title: "텍스트 기도 - Gido AI",
+        description: "글로 기도하고 하나님의 계시를 받으세요",
     },
     other: {
         'google-adsense-account': 'ca-pub-9970402588626346',

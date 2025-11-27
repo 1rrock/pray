@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-        const {prayerText} = await request.json();
+        const {prayerText, recipientName} = await request.json();
 
         if (!prayerText || typeof prayerText !== 'string') {
             return NextResponse.json(
@@ -31,6 +31,14 @@ export async function POST(request: NextRequest) {
             throw new Error('OPENAI_SYSTEM_PROMPT 환경변수가 설정되지 않았습니다.');
         }
 
+        // 사용자 메시지 구성
+        let userMessage = `저의 기도를 들어주세요:\n\n${prayerText}`;
+
+        // 이름이 있으면 프롬프트에 추가
+        if (recipientName && recipientName.trim()) {
+            userMessage = `"${recipientName}"에게 전하는 계시를 부탁드립니다.\n\n기도 내용:\n${prayerText}`;
+        }
+
         // OpenAI API 호출
         const completion = await openai.chat.completions.create({
             model: 'gpt-4o-mini',
@@ -41,7 +49,7 @@ export async function POST(request: NextRequest) {
                 },
                 {
                     role: 'user',
-                    content: `저의 기도를 들어주세요:\n\n${prayerText}`,
+                    content: userMessage,
                 },
             ],
             temperature: 0.7,

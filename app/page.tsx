@@ -26,11 +26,11 @@ export default function Home() {
                                 <Church className="w-10 h-10 text-amber-500" strokeWidth={2} aria-hidden="true"/>
                             </div>
                             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                                Gido
+                                Gido AI
                             </h1>
                             <p className="text-gray-600 dark:text-gray-400 text-base">
-                                <strong>Gido</strong>는 사용자의 <strong>기도</strong>를 분석해<br/>
-                                가장 적합한 <strong>성경 구절</strong>과 영적 메시지를 제공합니다
+                                당신의 <strong>기도</strong>에<br/>
+                                <strong className="text-amber-600 dark:text-amber-400">하나님의 계시</strong>로 응답합니다
                             </p>
                         </header>
 

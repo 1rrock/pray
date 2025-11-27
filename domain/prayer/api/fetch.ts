@@ -42,10 +42,14 @@ export async function speechToText(audioBlob: Blob): Promise<string> {
  * 기도 텍스트를 OpenAI로 전송하여 성경 구절 + 말씀 응답 생성
  */
 export async function generateResponse(
-  prayerText: string
+  prayerText: string,
+  recipientName?: string
 ): Promise<GenerateResponseResponse> {
   try {
-    const requestBody: GenerateResponseRequest = { prayerText };
+    const requestBody: GenerateResponseRequest = {
+      prayerText,
+      recipientName
+    };
 
     const response = await fetch(API_ROUTES.GENERATE_RESPONSE, {
       method: 'POST',

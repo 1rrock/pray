@@ -20,9 +20,9 @@ export function useSpeechToTextMutation() {
  * 기도 텍스트로 AI 응답 생성하는 mutation
  */
 export function useGenerateResponseMutation() {
-  return useMutation<GenerateResponseResponse, Error, string>({
-    mutationFn: async (prayerText: string) => {
-      return await generateResponse(prayerText);
+  return useMutation<GenerateResponseResponse, Error, { prayerText: string; recipientName?: string }>({
+    mutationFn: async ({ prayerText, recipientName }) => {
+      return await generateResponse(prayerText, recipientName);
     },
     onError: (error) => {
       console.error('Generate response mutation error:', error);

@@ -9,6 +9,7 @@ export function usePrayer() {
     currentPrayer,
     response,
     error,
+    recipientName,
     setPrayer,
     setResponse,
     setError,
@@ -43,7 +44,10 @@ export function usePrayer() {
         setPrayer(prayer);
 
         // AI 응답 생성 (useMutation 사용)
-        const { response: aiResponse } = await generateResponseMutation.mutateAsync(prayerText);
+        const { response: aiResponse } = await generateResponseMutation.mutateAsync({
+          prayerText,
+          recipientName
+        });
         setResponse(aiResponse);
 
         return { response: aiResponse, hasCrisis: detectCrisis(prayerText) };
@@ -54,7 +58,7 @@ export function usePrayer() {
         throw err;
       }
     },
-    [setPrayer, setResponse, setError, detectCrisis, generateResponseMutation]
+    [setPrayer, setResponse, setError, detectCrisis, generateResponseMutation, recipientName]
   );
 
   /**

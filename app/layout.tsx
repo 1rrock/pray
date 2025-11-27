@@ -30,9 +30,9 @@ const nanumMyeongjo = Nanum_Myeongjo({
 });
 
 export const metadata: Metadata = {
-    title: "Gido - 기도 AI, 성경 말씀 응답 서비스",
-    description: "Gido는 기도 내용을 분석해 성경 말씀으로 응답하는 AI 기도 서비스입니다. 당신의 기도에 가장 적합한 성경 구절과 영적 지도를 제공합니다.",
-    keywords: ['기도', '기도AI', 'AI기도', 'gido', '성경', '성경말씀', 'AI', '인공지능', '기독교', '말씀', '성경구절', '영적상담', '하나님', '예수님', '성령', '신앙', '믿음', '온라인기도'],
+    title: "Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스",
+    description: "Gido AI는 당신의 기도를 분석해 성경 구절로 하나님의 계시를 전달하는 AI 기도 서비스입니다. 기도하면 '000에게 전하는 계시록' 형식으로 성경 말씀과 영적 지도를 받을 수 있습니다.",
+    keywords: ['기도', '기도AI', 'AI기도', 'gido', '성경', '성경말씀', '하나님의 계시', '계시록', 'AI', '인공지능', '기독교', '말씀', '성경구절', '영적상담', '하나님', '예수님', '성령', '신앙', '믿음', '온라인기도'],
     authors: [{ name: 'Gido' }],
     creator: 'Gido',
     publisher: 'Gido',
@@ -58,8 +58,8 @@ export const metadata: Metadata = {
         // },
     },
     openGraph: {
-        title: "Gido - 기도 AI, 성경 말씀 응답 서비스",
-        description: "Gido는 기도 내용을 분석해 성경 말씀으로 응답하는 AI 기도 서비스입니다. 당신의 기도에 가장 적합한 성경 구절과 영적 지도를 제공합니다.",
+        title: "Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스",
+        description: "Gido AI는 당신의 기도를 분석해 성경 구절로 하나님의 계시를 전달하는 AI 기도 서비스입니다.",
         images: [
             {
                 url: 'https://gidoai.vercel.app/og-image.png',
@@ -74,8 +74,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Gido - 기도 AI, 성경 말씀 응답 서비스",
-        description: "Gido는 기도 내용을 분석해 성경 말씀으로 응답하는 AI 기도 서비스입니다.",
+        title: "Gido AI - 기도하면 하나님의 계시로 응답",
+        description: "Gido AI는 당신의 기도를 분석해 성경 구절로 하나님의 계시를 전달합니다.",
         images: ['https://gidoai.vercel.app/og-image.png'],
     },
     other: {

@@ -10,17 +10,23 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} f
 import {GoogleAd} from '@/shared/components/GoogleAd';
 import {usePrayer} from '@/domain/prayer/hooks/usePrayer';
 import {LIMITS, ERROR_MESSAGES} from '@/domain/prayer/api/constant';
+import {usePrayerStore} from '@/domain/prayer/store/prayerStore';
 
 export default function TextPrayerPage() {
     const router = useRouter();
     const [prayerText, setPrayerText] = useState('');
     const {submitPrayer, isLoading} = usePrayer();
+    const {recipientName, setRecipientName} = usePrayerStore();
 
     const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const text = e.target.value;
         if (text.length <= LIMITS.MAX_TEXT_LENGTH) {
             setPrayerText(text);
         }
+    };
+
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setRecipientName(e.target.value);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -36,10 +42,13 @@ export default function TextPrayerPage() {
         }
 
         try {
+            // submitPrayer가 완전히 완료될 때까지 기다립니다
             await submitPrayer(prayerText, 'text');
+            // 응답이 완료된 후에만 페이지 이동
             router.push('/pray/scripture');
         } catch (error) {
             console.error('Submit error:', error);
+            // 에러 발생 시에는 페이지 이동하지 않음
         }
     };
 
@@ -67,10 +76,10 @@ export default function TextPrayerPage() {
                         {/* 메시지 */}
                         <div className="space-y-3">
                             <h2 className="text-2xl font-bold text-amber-900 dark:text-amber-100">
-                                기도를 올리는 중...
+                                하나님의 계시를 받는 중...
                             </h2>
                             <p className="text-amber-700 dark:text-amber-300">
-                                하나님께서 응답하고 계십니다
+                                성경 말씀으로 응답하고 계십니다
                             </p>
                         </div>
                     </div>
@@ -92,20 +101,39 @@ export default function TextPrayerPage() {
                                     </div>
                                 </div>
                                 <CardTitle className="text-2xl text-amber-900 dark:text-amber-100">
-                                    기도를 올려주세요
+                                    하나님께 기도를 올려주세요
                                 </CardTitle>
                                 <CardDescription className="text-amber-700 dark:text-amber-300">
-                                    하나님께서 응답하실 것입니다
+                                    하나님의 계시로 응답하실 것입니다
                                 </CardDescription>
                             </CardHeader>
 
                             <CardContent className="space-y-4">
+                                {/* 이름 입력 */}
+                                <div className="space-y-2">
+                                    <label htmlFor="recipient-name" className="text-sm font-medium text-amber-800 dark:text-amber-200">
+                                        계시를 받으실 분의 이름 (선택)
+                                    </label>
+                                    <input
+                                        id="recipient-name"
+                                        type="text"
+                                        value={recipientName}
+                                        onChange={handleNameChange}
+                                        placeholder="예: 김철수, 베드로, 마리아"
+                                        className="w-full px-4 py-3 border-2 border-amber-300 dark:border-amber-700 focus:border-amber-500 dark:focus:border-amber-500 bg-white/80 dark:bg-amber-950/80 text-amber-900 dark:text-amber-100 placeholder:text-amber-500/60 dark:placeholder:text-amber-500/60 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                                    />
+                                    <p className="text-xs text-amber-600 dark:text-amber-400">
+                                        입력하시면 "{recipientName || '000'}에게 전하는 계시록"으로 응답받습니다
+                                    </p>
+                                </div>
+
+                                {/* 기도 입력 */}
                                 <div className="relative">
                                     <Textarea
                                         value={prayerText}
                                         onChange={handleTextChange}
                                         placeholder="하나님께 드릴 기도를 입력해주세요...&#x0a;&#x0a;예시:&#x0a;하나님, 요즘 힘든 일들이 많아서 지쳐있습니다.&#x0a;힘과 용기를 주시고 올바른 길로 인도해주세요."
-                                        className="min-h-[280px] resize-none border-2 border-amber-300 dark:border-amber-700 focus:border-amber-500 dark:focus:border-amber-500 bg-white/80 dark:bg-amber-950/80 text-amber-900 dark:text-amber-100 placeholder:text-amber-500/60 dark:placeholder:text-amber-500/60 rounded-xl text-base leading-relaxed"
+                                        className="min-h-[240px] resize-none border-2 border-amber-300 dark:border-amber-700 focus:border-amber-500 dark:focus:border-amber-500 bg-white/80 dark:bg-amber-950/80 text-amber-900 dark:text-amber-100 placeholder:text-amber-500/60 dark:placeholder:text-amber-500/60 rounded-xl text-base leading-relaxed"
                                         autoFocus
                                     />
                                     <div
@@ -125,7 +153,7 @@ export default function TextPrayerPage() {
                                     disabled={!prayerText.trim()}
                                 >
                                     <Send className="mr-2 h-5 w-5"/>
-                                    기도 올리기
+                                    하나님의 계시 받기
                                 </Button>
 
                                 <button

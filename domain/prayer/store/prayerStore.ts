@@ -8,6 +8,9 @@ interface PrayerState {
   // AI 응답
   response: AIResponse | null;
 
+  // 받는 사람 이름
+  recipientName: string;
+
   // 로딩 상태
   isLoading: boolean;
   isRecording: boolean;
@@ -18,6 +21,7 @@ interface PrayerState {
   // 액션
   setPrayer: (prayer: Prayer) => void;
   setResponse: (response: AIResponse) => void;
+  setRecipientName: (name: string) => void;
   setLoading: (isLoading: boolean) => void;
   setRecording: (isRecording: boolean) => void;
   setError: (error: string | null) => void;
@@ -27,18 +31,21 @@ interface PrayerState {
 export const usePrayerStore = create<PrayerState>((set) => ({
   currentPrayer: null,
   response: null,
+  recipientName: '',
   isLoading: false,
   isRecording: false,
   error: null,
 
   setPrayer: (prayer) => set({ currentPrayer: prayer }),
   setResponse: (response) => set({ response }),
+  setRecipientName: (name) => set({ recipientName: name }),
   setLoading: (isLoading) => set({ isLoading }),
   setRecording: (isRecording) => set({ isRecording }),
   setError: (error) => set({ error }),
   reset: () => set({
     currentPrayer: null,
     response: null,
+    recipientName: '',
     isLoading: false,
     isRecording: false,
     error: null,

@@ -27,6 +27,7 @@ export interface SpeechToTextResponse {
 
 export interface GenerateResponseRequest {
   prayerText: string;
+  recipientName?: string;
 }
 
 export interface GenerateResponseResponse {

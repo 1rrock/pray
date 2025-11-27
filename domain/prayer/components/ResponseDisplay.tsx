@@ -21,7 +21,7 @@ export function ResponseDisplay({
                                     hasCrisis,
                                 }: ResponseDisplayProps) {
     const navigator = useRouter();
-    const {currentPrayer} = usePrayerStore();
+    const {currentPrayer, recipientName} = usePrayerStore();
     const {bibleVerse, guidance} = response;
     const today = new Date().toLocaleDateString('ko-KR', {
         year: 'numeric',
@@ -48,7 +48,9 @@ export function ResponseDisplay({
     // 공유하기 버튼 핸들러
     const handleShare = async () => {
         const shareUrl = generateShareUrl();
-        const shareTitle = '🙏 하나님의 말씀';
+        const shareTitle = recipientName
+            ? `🙏 ${recipientName}에게 전하는 계시록`
+            : '🙏 하나님의 계시';
         const shareText = `📖 ${bibleVerse.book} ${bibleVerse.chapter}:${bibleVerse.verse}\n\n"${bibleVerse.text}"`;
 
         // Web Share API 지원 확인
@@ -151,6 +153,11 @@ export function ResponseDisplay({
                             </div>
                         </div>
 
+                        {/* 계시록 타이틀 */}
+                        <CardTitle className="text-3xl font-bold text-amber-900 dark:text-amber-950 mb-3">
+                            {recipientName ? `${recipientName}에게 전하는 계시록` : '하나님의 계시록'}
+                        </CardTitle>
+
                         <CardDescription
                             className="flex items-center justify-center gap-2 text-amber-800 dark:text-amber-900 font-semibold text-base mt-3">
                             <Calendar className="w-4 h-4"/>
@@ -217,7 +224,7 @@ export function ResponseDisplay({
                                     className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-300 to-amber-400 dark:from-yellow-600 dark:to-amber-700 flex items-center justify-center">
                                     <Sparkles className="w-5 h-5 text-amber-900 dark:text-amber-100"/>
                                 </div>
-                                하나님의 말씀
+                                하나님의 계시
                             </CardTitle>
                         </CardHeader>
                         <CardContent>

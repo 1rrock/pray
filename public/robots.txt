@@ -1,11 +1,11 @@
 # robots.txt for 기도 AI
-# https://pray-ai.vercel.app
+# https://gidoai.vercel.app
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://pray-ai.vercel.app/sitemap.xml
+Sitemap: https://gidoai.vercel.app/sitemap.xml
 
 # Disallow admin or API routes if needed
 # Disallow: /api/

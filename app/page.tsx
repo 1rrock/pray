@@ -39,13 +39,6 @@ export default function Home() {
                             &quot;구하라, 그리하면 너희에게 주실 것이요, 찾으라, 그리하면 찾아낼 것이요, 문을 두드리라, 그리하면 너희에게 열릴 것이니&quot; <br/>-
                             마태복음 7:7
                         </p>
-
-                        {/* 하단 광고 */}
-                        {/*<div className="bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/40 dark:to-yellow-900/40 rounded-2xl border-2 border-amber-300 dark:border-amber-700 shadow-md overflow-hidden min-h-[100px]">*/}
-                        {/*    <GoogleAd*/}
-                        {/*        slot="5375626932"*/}
-                        {/*    />*/}
-                        {/*</div>*/}
                     </motion.div>
                 </AnimatePresence>
             </main>

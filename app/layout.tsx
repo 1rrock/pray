@@ -31,6 +31,9 @@ const nanumMyeongjo = Nanum_Myeongjo({
 export const metadata: Metadata = {
     title: "Pray - 기도와 함께하는 하나님의 말씀",
     description: "당신의 기도에 성경 구절과 영적 지도로 응답합니다",
+    other: {
+        'google-adsense-account': 'ca-pub-9970402588626346',
+    },
 };
 
 export default function RootLayout({

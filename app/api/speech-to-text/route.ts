@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SpeechClient } from '@google-cloud/speech';
+import { speechRateLimit } from '@/shared/lib/rateLimit';
 
 // Google Cloud Speech-to-Text 클라이언트 초기화
 // Vercel: GOOGLE_CLOUD_KEY_JSON (JSON 문자열)
@@ -17,6 +18,12 @@ if (process.env.GOOGLE_CLOUD_KEY_JSON) {
 }
 
 export async function POST(request: NextRequest) {
+  // Rate limiting 체크 - 1분당 5회로 제한
+  const rateLimitResponse = await speechRateLimit(request);
+  if (rateLimitResponse) {
+    return rateLimitResponse;
+  }
+
   try {
     const formData = await request.formData();
     const audioFile = formData.get('audio') as File;

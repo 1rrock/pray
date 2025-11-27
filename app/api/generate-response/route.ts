@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from 'next/server';
 import OpenAI from 'openai';
+import { aiRateLimit } from '@/shared/lib/rateLimit';
 
 // OpenAI 클라이언트 초기화
 const openai = new OpenAI({
@@ -7,6 +8,12 @@ const openai = new OpenAI({
 });
 
 export async function POST(request: NextRequest) {
+    // Rate limiting 체크 - 1분당 3회로 제한
+    const rateLimitResponse = await aiRateLimit(request);
+    if (rateLimitResponse) {
+        return rateLimitResponse;
+    }
+
     try {
         const {prayerText} = await request.json();
 

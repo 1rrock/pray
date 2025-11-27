@@ -18,6 +18,11 @@ export async function speechToText(audioBlob: Blob): Promise<string> {
       body: formData,
     });
 
+    if (response.status === 429) {
+      const errorData = await response.json();
+      throw new Error(errorData.retryAfter || ERROR_MESSAGES.RATE_LIMIT_ERROR);
+    }
+
     if (!response.ok) {
       throw new Error(ERROR_MESSAGES.STT_ERROR);
     }
@@ -26,6 +31,9 @@ export async function speechToText(audioBlob: Blob): Promise<string> {
     return data.text;
   } catch (error) {
     console.error('Speech to text error:', error);
+    if (error instanceof Error) {
+      throw error;
+    }
     throw new Error(ERROR_MESSAGES.STT_ERROR);
   }
 }
@@ -47,6 +55,11 @@ export async function generateResponse(
       body: JSON.stringify(requestBody),
     });
 
+    if (response.status === 429) {
+      const errorData = await response.json();
+      throw new Error(errorData.retryAfter || ERROR_MESSAGES.RATE_LIMIT_ERROR);
+    }
+
     if (!response.ok) {
       throw new Error(ERROR_MESSAGES.AI_ERROR);
     }
@@ -55,6 +68,9 @@ export async function generateResponse(
     return data;
   } catch (error) {
     console.error('Generate response error:', error);
+    if (error instanceof Error) {
+      throw error;
+    }
     throw new Error(ERROR_MESSAGES.AI_ERROR);
   }
 }

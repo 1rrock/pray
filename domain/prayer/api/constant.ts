@@ -9,6 +9,7 @@ export const ERROR_MESSAGES = {
   NETWORK_ERROR: '네트워크 연결을 확인해주세요.',
   STT_ERROR: '음성 인식에 실패했습니다. 다시 시도해주세요.',
   AI_ERROR: 'AI 응답 생성에 실패했습니다. 잠시 후 다시 시도해주세요.',
+  RATE_LIMIT_ERROR: '요청이 너무 많습니다. 잠시 후 다시 시도해주세요.',
   MICROPHONE_ERROR: '마이크 권한이 필요합니다.',
   RECORDING_ERROR: '녹음 중 오류가 발생했습니다.',
   TEXT_TOO_LONG: '기도문은 최대 500자까지 입력 가능합니다.',

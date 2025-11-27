@@ -21,6 +21,16 @@
 - **AI**: OpenAI GPT-4
 - **STT**: Google Cloud Speech-to-Text API
 - **광고**: Google AdSense (예정)
+- **보안**: IP 기반 Rate Limiting (API 비용 절감)
+
+## 🔒 API Rate Limiting
+
+API 비용을 절감하고 남용을 방지하기 위해 rate limiting이 구현되어 있습니다:
+
+- **AI 응답 생성**: 1분당 3회
+- **음성 인식**: 1분당 5회
+
+자세한 내용은 [RATE_LIMITING.md](./RATE_LIMITING.md)를 참고하세요.
 
 ## 📦 설치 및 실행
 
@@ -115,6 +125,7 @@ pray/
 
 - 텍스트 기도: 최대 500자
 - 음성 기도: 최대 2분
+- API 요청: 1분당 3-5회 (비용 절감)
 - 한국어만 지원 (초기 버전)
 
 ## 🚀 향후 계획

@@ -5,7 +5,7 @@ export default function JsonLd() {
     name: 'Gido',
     alternateName: '기도 AI',
     description: 'Gido는 기도 내용을 분석해 성경 말씀으로 응답하는 AI 기도 서비스입니다. 당신의 기도에 가장 적합한 성경 구절과 영적 지도를 제공합니다.',
-    url: 'https://pray-ai.vercel.app',
+    url: 'https://gidoai.vercel.app',
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'Web',
     offers: {

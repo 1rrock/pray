@@ -1,0 +1,84 @@
+'use client';
+
+import {useState, useEffect, useCallback} from 'react';
+import {useSearchParams, useRouter} from 'next/navigation';
+import {motion, AnimatePresence} from 'framer-motion';
+import {PrayerInput} from '@/domain/prayer/components/PrayerInput';
+import {AdInterstitial} from '@/domain/prayer/components/AdInterstitial';
+import {GoogleAd} from '@/shared/components/GoogleAd';
+import {Church} from 'lucide-react';
+
+export default function Home() {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const [showAd, setShowAd] = useState(false);
+
+    useEffect(() => {
+        const showAdParam = searchParams.get('showAd');
+        if (showAdParam === 'true') {
+            // URL 파라미터를 기반으로 광고 표시
+            const timer = setTimeout(() => {
+                setShowAd(true);
+            }, 0);
+            return () => clearTimeout(timer);
+        }
+    }, [searchParams]);
+
+    const handleAdComplete = useCallback(() => {
+        setShowAd(false);
+        router.push('/pray/scripture');
+    }, [router]);
+
+    return (
+        <div className=" dark:bg-gray-900 p-4 h-dvh flex items-center flex-col justify-center ">
+            <main className="w-full max-w-lg">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key="input"
+                        initial={{opacity: 0, scale: 0.95}}
+                        animate={{opacity: 1, scale: 1}}
+                        exit={{opacity: 0, scale: 0.95}}
+                        transition={{duration: 0.2}}
+                        className="space-y-6 "
+                    >
+                        {/* 로고 및 타이틀 */}
+                        <div className="text-center space-y-4">
+                            <div
+                                className="inline-flex items-center justify-center w-20 h-20 bg-white dark:bg-gray-800 rounded-full shadow-lg">
+                                <Church className="w-10 h-10 text-amber-500" strokeWidth={2}/>
+                            </div>
+                            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                                Pray
+                            </h1>
+                            <p className="text-gray-600 dark:text-gray-400">
+                                하나님께 기도하고 말씀을 받으세요
+                            </p>
+                        </div>
+
+                        <PrayerInput/>
+
+                        {/* 하단 성경 구절 */}
+                        <p className="text-center text-sm text-amber-700 dark:text-amber-400 px-4">
+                            &quot;구하라, 그리하면 너희에게 주실 것이요, 찾으라, 그리하면 찾아낼 것이요, 문을 두드리라, 그리하면 너희에게 열릴 것이니&quot; <br/>-
+                            마태복음 7:7
+                        </p>
+                    </motion.div>
+                </AnimatePresence>
+
+
+                {/* 하단 광고 */}
+                <div className="absolute bottom-0 left-0 w-full flex justify-center pb-2">
+                    <GoogleAd
+                        slot="5375626932"
+                    />
+                </div>
+
+                {/* 전면 광고 */}
+                <AnimatePresence>
+                    {showAd && <AdInterstitial onComplete={handleAdComplete} duration={3}/>}
+                </AnimatePresence>
+            </main>
+        </div>
+    );
+}
+

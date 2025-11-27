@@ -7,16 +7,20 @@ import { GoogleAd } from '@/shared/components/GoogleAd';
 import { usePrayer } from '@/domain/prayer/hooks/usePrayer';
 import { usePrayerStore } from '@/domain/prayer/store/prayerStore';
 import { Card, CardContent } from '@/shared/components/ui/card';
+import { useState } from 'react';
 
 export default function VoicePrayerPage() {
     const router = useRouter();
     const {submitPrayer} = usePrayer();
     const {recipientName, setRecipientName} = usePrayerStore();
+    const [isNavigating, setIsNavigating] = useState(false);
 
     const handleVoiceTranscription = async (text: string) => {
         try {
             // submitPrayer가 완전히 완료될 때까지 기다립니다
             await submitPrayer(text, 'voice');
+            // 라우터 이동 시작 시 로딩 상태 유지
+            setIsNavigating(true);
             // 응답이 완료된 후에만 페이지 이동
             router.push('/pray/scripture');
         } catch (error) {
@@ -64,6 +68,7 @@ export default function VoicePrayerPage() {
                 <VoiceRecorder
                     onTranscriptionComplete={handleVoiceTranscription}
                     onClose={handleClose}
+                    isNavigating={isNavigating}
                 />
 
                 {/* 하단 광고 */}

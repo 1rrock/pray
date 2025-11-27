@@ -15,6 +15,7 @@ import {usePrayerStore} from '@/domain/prayer/store/prayerStore';
 export default function TextPrayerPage() {
     const router = useRouter();
     const [prayerText, setPrayerText] = useState('');
+    const [isNavigating, setIsNavigating] = useState(false);
     const {submitPrayer, isLoading} = usePrayer();
     const {recipientName, setRecipientName} = usePrayerStore();
 
@@ -44,7 +45,8 @@ export default function TextPrayerPage() {
         try {
             // submitPrayer가 완전히 완료될 때까지 기다립니다
             await submitPrayer(prayerText, 'text');
-            // 응답이 완료된 후에만 페이지 이동
+            // 라우터 이동 시작 시 로딩 상태 유지
+            setIsNavigating(true);
             router.push('/pray/scripture');
         } catch (error) {
             console.error('Submit error:', error);
@@ -55,7 +57,7 @@ export default function TextPrayerPage() {
     return (
         <div
             className="h-dvh bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 dark:bg-gradient-to-br dark:from-amber-950 dark:via-yellow-950 dark:to-amber-900 flex items-center justify-center p-4">
-            {isLoading ? (
+            {(isLoading || isNavigating) ? (
                 <motion.div
                     initial={{opacity: 0, scale: 0.9}}
                     animate={{opacity: 1, scale: 1}}

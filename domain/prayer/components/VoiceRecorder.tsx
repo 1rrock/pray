@@ -12,9 +12,10 @@ import {ERROR_MESSAGES, LIMITS} from '../api/constant';
 interface VoiceRecorderProps {
     onTranscriptionComplete: (text: string) => void;
     onClose?: () => void;
+    isNavigating?: boolean;
 }
 
-export function VoiceRecorder({onTranscriptionComplete, onClose}: VoiceRecorderProps) {
+export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = false}: VoiceRecorderProps) {
     const {isRecording, setRecording, setError} = usePrayerStore();
     const [recordingTime, setRecordingTime] = useState(0);
     const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -180,7 +181,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose}: VoiceRecorderP
 
                 {/* 안내 메시지 */}
                 <div className="text-center space-y-3">
-                    {isProcessing ? (
+                    {(isProcessing || isNavigating) ? (
                         <div className="space-y-2">
                             <motion.div
                                 animate={{rotate: 360}}
@@ -205,7 +206,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose}: VoiceRecorderP
                 </div>
 
                 {/* 녹음 시간 */}
-                {isRecording && !isProcessing && (
+                {isRecording && !isProcessing && !isNavigating && (
                     <div
                         className="text-center space-y-2 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-xl p-4 border border-amber-200 dark:border-amber-800"
                         role="timer"
@@ -223,7 +224,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose}: VoiceRecorderP
 
             <CardFooter className="flex-col gap-3">
                 {/* 올리기 버튼 */}
-                {isRecording && !isProcessing && (
+                {isRecording && !isProcessing && !isNavigating && (
                     <Button
                         onClick={stopRecording}
                         size="lg"

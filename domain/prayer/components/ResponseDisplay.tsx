@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import {Book, Heart, Share2, Download, Home, Sparkles, Calendar, Church} from 'lucide-react';
 import {Button} from '@/shared/components/ui/button';
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/shared/components/ui/card';
@@ -23,6 +24,7 @@ export function ResponseDisplay({
     const navigator = useRouter();
     const {currentPrayer, recipientName} = usePrayerStore();
     const {bibleVerse, guidance} = response;
+    const [shortUrl, setShortUrl] = React.useState<string | null>(null);
     const today = new Date().toLocaleDateString('ko-KR', {
         year: 'numeric',
         month: 'long',
@@ -30,8 +32,12 @@ export function ResponseDisplay({
         weekday: 'long',
     });
 
-    // 공유 URL 생성
-    const generateShareUrl = () => {
+    // 공유 URL 가져오기 (짧은 URL이 있으면 짧은 URL, 없으면 긴 URL)
+    const getShareUrl = () => {
+        if (shortUrl) {
+            return shortUrl;
+        }
+        // Fallback: 긴 URL
         const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
         const params = new URLSearchParams({
             today: today,
@@ -45,39 +51,88 @@ export function ResponseDisplay({
         return `${baseUrl}/pray/scripture?${params.toString()}`;
     };
 
+    const createShortUrl = async () => {
+        // 이미 짧은 URL이 있으면 재사용
+        if (shortUrl) {
+            return shortUrl;
+        }
+
+        try {
+            const response = await fetch('/api/share-prayer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    today,
+                    book: bibleVerse.book,
+                    chapter: bibleVerse.chapter,
+                    verse: bibleVerse.verse,
+                    text: bibleVerse.text,
+                    guidance: guidance,
+                    prayer: currentPrayer?.text || '',
+                    recipientName: recipientName || undefined,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                // 생성된 URL을 상태에 저장
+                setShortUrl(data.shortUrl);
+                return data.shortUrl;
+            }
+        } catch (error) {
+            console.error('Short URL generation error:', error);
+        }
+    };
+
     // 공유하기 버튼 핸들러
     const handleShare = async () => {
-        const shareUrl = generateShareUrl();
+        // 짧은 URL 생성 (없으면 생성, 있으면 기존 것 사용)
+        const shareUrl = await createShortUrl();
+
+
+        if (!shareUrl) {
+            toast.error('URL 생성에 실패했습니다.');
+            return;
+        }
+
         const shareTitle = recipientName
             ? `🙏 ${recipientName}에게 전하는 계시록`
             : '🙏 하나님의 계시';
-        const shareText = `📖 ${bibleVerse.book} ${bibleVerse.chapter}:${bibleVerse.verse}\n\n"${bibleVerse.text}"`;
 
         // Web Share API 지원 확인
         if (typeof window !== 'undefined' && window.navigator.share) {
             try {
+                // URL만 공유 (복사 시 URL만 복사되도록)
                 await window.navigator.share({
                     title: shareTitle,
-                    text: shareText,
                     url: shareUrl,
                 });
             } catch (err) {
                 if (err instanceof Error && err.name !== 'AbortError') {
                     console.error('Share error:', err);
-                    // 공유 실패 시 클립보드에 복사
-                    handleCopyToClipboard(shareUrl);
+                    // 공유 실패 시 클립보드에 URL만 복사
+                    await handleCopyToClipboard(shareUrl);
                 }
             }
         } else {
-            // Web Share API 미지원 시 클립보드에 복사
-            handleCopyToClipboard(shareUrl);
+            // Web Share API 미지원 시 클립보드에 URL만 복사
+            await handleCopyToClipboard(shareUrl);
         }
     };
 
     // 저장하기(URL 복사) 버튼 핸들러
-    const handleSave = () => {
-        const shareUrl = generateShareUrl();
-        handleCopyToClipboard(shareUrl);
+    const handleSave = async () => {
+        // 짧은 URL 생성 (없으면 생성, 있으면 기존 것 사용)
+        const shareUrl = await createShortUrl();
+
+        if (!shareUrl) {
+            toast.error('URL 생성에 실패했습니다.');
+            return;
+        }
+
+        await handleCopyToClipboard(shareUrl);
     };
 
     // 클립보드 복사
@@ -297,4 +352,3 @@ export function ResponseDisplay({
         </div>
     );
 }
-

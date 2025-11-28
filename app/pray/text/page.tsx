@@ -7,7 +7,6 @@ import {ArrowLeft, Send, Sparkles} from 'lucide-react';
 import {Button} from '@/shared/components/ui/button';
 import {Textarea} from '@/shared/components/ui/textarea';
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/shared/components/ui/card';
-import {GoogleAd} from '@/shared/components/GoogleAd';
 import {usePrayer} from '@/domain/prayer/hooks/usePrayer';
 import {LIMITS, ERROR_MESSAGES} from '@/domain/prayer/api/constant';
 import {usePrayerStore} from '@/domain/prayer/store/prayerStore';
@@ -168,11 +167,6 @@ export default function TextPrayerPage() {
                                 </button>
                             </CardFooter>
                         </Card>
-
-                        {/* 하단 광고 */}
-                        <GoogleAd
-                            slot="5375626932"
-                        />
                     </form>
                 </motion.div>
             )}

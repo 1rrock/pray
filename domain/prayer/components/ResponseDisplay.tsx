@@ -8,7 +8,6 @@ import type {AIResponse} from '../api/type';
 import {CRISIS_RESOURCES} from '../api/constant';
 import {useRouter} from "next/navigation";
 import {usePrayerStore} from '../store/prayerStore';
-import {GoogleAd} from "@/shared/components/GoogleAd";
 import { toast } from 'sonner';
 
 interface ResponseDisplayProps {
@@ -344,11 +343,6 @@ export function ResponseDisplay({
                     </Button>
                 </CardFooter>
             </Card>
-
-            {/* 광고 배너 영역 */}
-            <GoogleAd
-                slot="5375626932"
-            />
         </div>
     );
 }

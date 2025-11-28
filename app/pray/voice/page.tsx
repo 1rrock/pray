@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { VoiceRecorder } from '@/domain/prayer/components/VoiceRecorder';
-import { GoogleAd } from '@/shared/components/GoogleAd';
 import { usePrayer } from '@/domain/prayer/hooks/usePrayer';
 import { usePrayerStore } from '@/domain/prayer/store/prayerStore';
 import { Card, CardContent } from '@/shared/components/ui/card';
@@ -69,11 +68,6 @@ export default function VoicePrayerPage() {
                     onTranscriptionComplete={handleVoiceTranscription}
                     onClose={handleClose}
                     isNavigating={isNavigating}
-                />
-
-                {/* 하단 광고 */}
-                <GoogleAd
-                    slot="5375626932"
                 />
             </motion.div>
         </div>

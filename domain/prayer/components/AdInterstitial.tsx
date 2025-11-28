@@ -2,7 +2,6 @@
 
 import {useEffect, useState} from 'react';
 import {motion} from 'framer-motion';
-import {GoogleAd} from "@/shared/components/GoogleAd";
 
 interface AdInterstitialProps {
     onComplete: () => void;
@@ -60,9 +59,6 @@ export function AdInterstitial({onComplete, duration = 3}: AdInterstitialProps) 
                         하나님께서 응답하고 계십니다
                     </p>
                 </div>
-
-                {/* 광고 영역 */}
-                <GoogleAd slot="5375626932"/>
 
                 {/* 카운트다운 */}
                 <p className="text-sm text-amber-700 dark:text-amber-400">

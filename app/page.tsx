@@ -28,6 +28,12 @@ export default function Home() {
                     <p>&quot;구하라, 그리하면 너희에게 주실 것이요, 찾으라, 그리하면 찾아낼 것이요, 문을 두드리라, 그리하면 너희에게 열릴 것이니&quot;</p>
                     <cite className="block mt-1">- 마태복음 7:7</cite>
                 </blockquote>
+
+                {/* Small privacy link for crawlers and users */}
+                <div className="mt-4 text-center">
+                    <a href="/privacy" className="text-xs text-amber-600 dark:text-amber-300 hover:underline" rel="noopener noreferrer">개인정보처리방침</a>
+                </div>
+
             </main>
         </div>
     );

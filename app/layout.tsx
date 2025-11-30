@@ -1,8 +1,8 @@
 import type {Metadata} from "next";
 import {Geist, Geist_Mono, Noto_Serif_KR, Nanum_Myeongjo} from "next/font/google";
 import "./globals.css";
-import { ReactQueryProvider } from "@/shared/providers/ReactQueryProvider";
-import { Toaster } from "sonner";
+import {ReactQueryProvider} from "@/shared/providers/ReactQueryProvider";
+import {Toaster} from "sonner";
 import JsonLd from "./JsonLd";
 
 const geistSans = Geist({
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스",
     description: "Gido AI는 당신의 기도를 분석해 성경 구절로 하나님의 계시를 전달하는 AI 기도 서비스입니다. 기도하면 '000에게 전하는 계시록' 형식으로 성경 말씀과 영적 지도를 받을 수 있습니다.",
     keywords: ['기도', '기도AI', 'AI기도', 'gido', '성경', '성경말씀', '하나님의 계시', '계시록', 'AI', '인공지능', '기독교', '말씀', '성경구절', '영적상담', '하나님', '예수님', '성령', '신앙', '믿음', '온라인기도'],
-    authors: [{ name: 'Gido' }],
+    authors: [{name: 'Gido'}],
     creator: 'Gido',
     publisher: 'Gido',
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://gidoai.vercel.app'),
@@ -52,10 +52,7 @@ export const metadata: Metadata = {
         },
     },
     verification: {
-        google: 'google-site-verification-code', // Google Search Console에서 받은 코드로 교체
-        // other: {
-        //     'naver-site-verification': 'naver-code', // 네이버 서치어드바이저 코드
-        // },
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
     },
     openGraph: {
         title: "Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스",
@@ -78,25 +75,19 @@ export const metadata: Metadata = {
         description: "Gido AI는 당신의 기도를 분석해 성경 구절로 하나님의 계시를 전달합니다.",
         images: ['https://gidoai.vercel.app/og-image.png'],
     },
-    other: {
-        'google-adsense-account': 'ca-pub-9970402588626346',
-    },
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function RootLayout(
+    {
+        children,
+    }: Readonly<{
+        children: React.ReactNode;
+    }>) {
     return (
         <html lang="ko">
         <head>
-            <JsonLd />
-            <script
-                async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9970402588626346"
-                crossOrigin="anonymous"
-            />
+            <JsonLd/>
+            <title>{String(metadata.title ?? 'Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스')}</title>
         </head>
         <body
             className={`${geistSans.variable} ${geistMono.variable} ${notoSerifKR.variable} ${nanumMyeongjo.variable} antialiased bg-gradient-to-br from-amber-100 via-orange-50 to-amber-50`}
@@ -108,6 +99,8 @@ export default function RootLayout({
         >
             메인 콘텐츠로 건너뛰기
         </a>
+        {/* Anchor target for skip link - ensures the link resolves in layout */}
+        <div id="main-content"/>
         <ReactQueryProvider>
             {children}
         </ReactQueryProvider>

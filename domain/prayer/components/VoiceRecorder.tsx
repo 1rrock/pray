@@ -1,6 +1,6 @@
 'use client';
 
-import {useState, useRef, useCallback, useEffect} from 'react';
+import React, {useState, useRef, useCallback, useEffect} from 'react';
 import {Mic, Send, Sparkles, ArrowLeft} from 'lucide-react';
 import {motion} from 'framer-motion';
 import {Button} from '@/shared/components/ui/button';
@@ -134,6 +134,9 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
         }
     }, [setRecording, setError, onTranscriptionComplete, onClose, speechToTextMutation]);
 
+    // removed auto-start useEffect to avoid starting recording on mount
+    // NOTE: Recording now starts only when the user presses the Start button.
+
     const formatTime = (seconds: number): string => {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
@@ -149,17 +152,12 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
         }
     };
 
-    useEffect(() => {
-        startRecording();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     return (
         <Card
             className="border-2 border-amber-200 dark:border-amber-800 bg-gradient-to-b from-white to-amber-50 dark:from-amber-950 dark:to-amber-900 shadow-2xl relative"
             role="region"
             aria-label="음성 기도 녹음">
-            <CardHeader className="text-center space-y-2 pb-4">
+            <CardHeader className="text-center space-y-2">
                 <div className="flex justify-center mb-2">
                     <div
                         className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-300 via-amber-300 to-yellow-400 dark:from-yellow-600 dark:via-amber-600 dark:to-yellow-700 flex items-center justify-center border-2 border-amber-400 dark:border-amber-500"
@@ -169,7 +167,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                     </div>
                 </div>
                 <CardTitle className="text-2xl text-amber-900 dark:text-amber-100">
-                    음성으로 기도하기
+                    하나님께 기도를 올려주세요
                 </CardTitle>
                 <CardDescription className="text-amber-700 dark:text-amber-300">
                     하나님의 계시로 응답하실 것입니다
@@ -233,23 +231,40 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
             </CardContent>
 
             <CardFooter className="flex-col gap-3">
-                {/* 올리기 버튼 */}
+                {/* Start recording button when idle */}
+                {!isRecording && !isProcessing && !isNavigating && !submissionStarted && (
+                    <Button
+                        onClick={startRecording}
+                        size="lg"
+                        className="w-full h-14 bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-600 hover:via-amber-600 hover:to-yellow-700 text-amber-900 font-semibold shadow-lg text-base"
+                        type="button"
+                        aria-label="녹음 시작"
+                    >
+                        <Mic className="mr-2 h-5 w-5" aria-hidden="true"/>
+                        녹음 시작
+                    </Button>
+                )}
+
+                {/* 올리기(녹음 중지 및 제출) 버튼 */}
                 {isRecording && !isProcessing && !isNavigating && !submissionStarted && (
                     <Button
                         onClick={stopRecording}
                         size="lg"
                         className="w-full h-14 bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-600 hover:via-amber-600 hover:to-yellow-700 text-amber-900 font-semibold shadow-lg text-base"
                         type="button"
-                        aria-label="녹음 완료하고 기도 올리기">
+                        aria-label="녹음 완료하고 기도 올리기"
+                    >
                         <Send className="mr-2 h-5 w-5" aria-hidden="true"/>
                         하나님의 계시 받기
                     </Button>
                 )}
+
                 <button
                     type="button"
                     onClick={handleClose}
                     className="text-sm text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-200 py-2 flex items-center gap-2 font-medium transition-colors"
-                    aria-label="음성 녹음 취소하고 처음으로 돌아가기">
+                    aria-label="음성 녹음 취소하고 처음으로 돌아가기"
+                >
                     <ArrowLeft className="w-4 h-4" aria-hidden="true"/>
                     처음으로
                 </button>

@@ -18,6 +18,7 @@ interface VoiceRecorderProps {
 export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = false}: VoiceRecorderProps) {
     const {isRecording, setRecording, setError} = usePrayerStore();
     const [recordingTime, setRecordingTime] = useState(0);
+    const [submissionStarted, setSubmissionStarted] = useState(false); // <-- new
     const mediaRecorderRef = useRef<MediaRecorder | null>(null);
     const audioChunksRef = useRef<Blob[]>([]);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -28,6 +29,8 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
 
     const stopRecording = useCallback(() => {
         if (mediaRecorderRef.current && isRecording) {
+            // set submission flag immediately to prevent UI flash while onstop runs
+            setSubmissionStarted(true);
             mediaRecorderRef.current.stop();
             setRecording(false);
         }
@@ -44,6 +47,8 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                     return prev + 1;
                 });
             }, 1000);
+            // Reset submission flag when new recording starts
+            setSubmissionStarted(false);
         } else {
             if (timerRef.current) {
                 clearInterval(timerRef.current);
@@ -94,12 +99,17 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                 });
 
                 try {
+                    // indicate submission has started to keep UI in processing state
+                    setSubmissionStarted(true);
+
                     // useMutation 사용
                     const transcription = await speechToTextMutation.mutateAsync(audioBlob);
                     onTranscriptionComplete(transcription);
                 } catch (error) {
                     console.error('Transcription error:', error);
                     setError(ERROR_MESSAGES.STT_ERROR);
+                    // reset submission flag on error so UI returns to recording state
+                    setSubmissionStarted(false);
                 }
 
                 stream.getTracks().forEach((track) => track.stop());
@@ -181,7 +191,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
 
                 {/* 안내 메시지 */}
                 <div className="text-center space-y-3">
-                    {(isProcessing || isNavigating) ? (
+                    {(isProcessing || isNavigating || submissionStarted) ? (
                         <div className="space-y-2">
                             <motion.div
                                 animate={{rotate: 360}}
@@ -206,7 +216,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                 </div>
 
                 {/* 녹음 시간 */}
-                {isRecording && !isProcessing && !isNavigating && (
+                {isRecording && !isProcessing && !isNavigating && !submissionStarted && (
                     <div
                         className="text-center space-y-2 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/30 dark:to-yellow-900/30 rounded-xl p-4 border border-amber-200 dark:border-amber-800"
                         role="timer"
@@ -224,7 +234,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
 
             <CardFooter className="flex-col gap-3">
                 {/* 올리기 버튼 */}
-                {isRecording && !isProcessing && !isNavigating && (
+                {isRecording && !isProcessing && !isNavigating && !submissionStarted && (
                     <Button
                         onClick={stopRecording}
                         size="lg"
@@ -247,4 +257,3 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
         </Card>
     );
 }
-

@@ -14,7 +14,7 @@ export default function Home() {
                     </div>
                     <div className="space-y-3">
                         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white tracking-tight">
-                            Gido AI
+                            기도 AI
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
                             당신의 기도에

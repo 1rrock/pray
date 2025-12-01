@@ -62,6 +62,7 @@ export default function PrivacyPage() {
                         </div>
                         <ul>
                             <li><strong>기도 내용:</strong> 응답 생성 후 즉시 삭제 (서버에 저장하지 않음)</li>
+                            <li><strong>계시 수신자 이름:</strong> 응답 생성 후 즉시 삭제 (서버에 저장하지 않음)</li>
                             <li><strong>접속 로그:</strong> 수집일로부터 3개월</li>
                             <li><strong>문의 내역:</strong> 문의 처리 완료 후 1년</li>
                         </ul>

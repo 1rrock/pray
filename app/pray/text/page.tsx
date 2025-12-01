@@ -1,44 +1,43 @@
 import React from 'react';
 import TextPrayerClient from '@/domain/prayer/components/TextPrayerClient';
+import {PageHeader} from '@/shared/components/PageHeader';
+import Image from "next/image";
+import logo from "@/app/logo.png";
 
 export default function TextPrayerPage() {
     return (
-        <div className="h-dvh flex justify-center p-4 overflow-y-auto">
-            <div className="w-full max-w-2xl">
-                {/* SEO-friendly static content for crawlers */}
-                <header className="text-center mb-6">
-                    <h1 className="text-3xl font-bold text-amber-900 dark:text-amber-100">글로 기도하기</h1>
-                    <p className="mt-2 text-amber-700 dark:text-amber-300">
-                        하나님께 드릴 기도를 글로 작성하면, 성경 말씀으로 하나님의 계시를 전달해드립니다.
-                    </p>
+        <div className="min-h-screen py-8 px-4">
+            <div className="w-full max-w-3xl mx-auto space-y-6">
+                <header className="text-center space-y-6 mb-12">
+                    <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
+                        <Image src={logo} alt="Gido AI 로고" className="w-full h-full" />
+                    </div>
                 </header>
 
-                {/* Interactive section description */}
-                <section className="mb-6 text-amber-800 dark:text-amber-200">
-                    <h2 className="text-xl font-semibold mb-2">기도 작성 가이드</h2>
-                    <ul className="list-disc list-inside space-y-1 text-sm">
-                        <li>기도할 내용을 자유롭게 작성해주세요</li>
-                        <li>고민이나 감사한 일, 간구하는 내용 등 모두 가능합니다</li>
-                        <li>최대 1,000자까지 입력 가능합니다</li>
-                        <li>AI가 기도 내용을 분석하여 적합한 성경 구절로 응답합니다</li>
-                    </ul>
-                </section>
-
                 {/* Client interactive form */}
-                <TextPrayerClient />
+                <div className="flex justify-center w-full">
+                    <TextPrayerClient />
+                </div>
 
-                {/* Additional informative content */}
-                <section className="mt-8 space-y-4 text-sm text-amber-700 dark:text-amber-300">
-                    <h3 className="font-semibold text-base">기도 응답 받기</h3>
-                    <p>
-                        Gido AI는 당신의 기도를 신중히 분석하여 성경 말씀 중 가장 적합한 구절을 선택합니다.
-                        기도가 제출되면 하나님의 계시를 담은 성경 구절과 해석을 받으실 수 있습니다.
-                    </p>
-                    <blockquote className="italic border-l-4 border-amber-400 pl-4">
-                        &quot;구하라, 그리하면 너희에게 주실 것이요, 찾으라, 그리하면 찾아낼 것이요,
-                        문을 두드리라, 그리하면 너희에게 열릴 것이니&quot; - 마태복음 7:7
+                {/* Simple info card at bottom - same style as voice page */}
+                <div className="mt-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl p-6 border border-amber-100 dark:border-amber-900/30 space-y-4">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-xl border border-amber-200 dark:border-amber-800/30">
+                        <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">
+                            💡 기도 내용과 입력하신 이름은 암호화되어 처리되며, 응답 생성 후 즉시 삭제됩니다.
+                            자세한 내용은 <a href="/privacy" className="underline hover:text-amber-900 dark:hover:text-amber-100 font-semibold">개인정보처리방침</a>을 참고해주세요.
+                        </p>
+                    </div>
+                    <blockquote className="relative pl-6 py-2">
+                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full"></div>
+                        <p className="text-sm italic text-amber-800 dark:text-amber-200 leading-relaxed">
+                            &quot;구하라, 그리하면 너희에게 주실 것이요, 찾으라, 그리하면 찾아낼 것이요,
+                            문을 두드리라, 그리하면 너희에게 열릴 것이니&quot;
+                        </p>
+                        <cite className="block text-xs text-amber-600 dark:text-amber-400 mt-2 not-italic font-semibold">
+                            — 마태복음 7:7
+                        </cite>
                     </blockquote>
-                </section>
+                </div>
             </div>
         </div>
     );

@@ -70,10 +70,10 @@ export default function TextPrayerClient() {
                         </div>
                         <div className="space-y-3">
                             <h2 className="text-2xl font-bold text-amber-900 dark:text-amber-100">
-                                하나님의 계시를 받는 중...
+                                말씀을 받는 중...
                             </h2>
                             <p className="text-amber-700 dark:text-amber-300">
-                                성경 말씀으로 응답하고 계십니다
+                                성경 말씀으로 응답하고 있습니다
                             </p>
                         </div>
                     </div>
@@ -96,17 +96,17 @@ export default function TextPrayerClient() {
                                     </div>
                                 </div>
                                 <CardTitle className="text-2xl text-amber-900 dark:text-amber-100">
-                                    하나님께 기도를 올려주세요
+                                    기도를 올려주세요
                                 </CardTitle>
                                 <CardDescription className="text-amber-700 dark:text-amber-300">
-                                    하나님의 계시로 응답하실 것입니다
+                                    성경 말씀으로 응답합니다
                                 </CardDescription>
                             </CardHeader>
 
                             <CardContent className="space-y-4">
                                 <div className="space-y-2">
                                     <label htmlFor="recipient-name" className="text-sm font-medium text-amber-800 dark:text-amber-200">
-                                        계시를 받으실 분의 이름 (선택)
+                                        응답을 받으실 분의 이름 (선택)
                                     </label>
                                     <input
                                         id="recipient-name"
@@ -117,7 +117,7 @@ export default function TextPrayerClient() {
                                         className="w-full px-4 py-3 border-2 border-amber-300 dark:border-amber-700 focus:border-amber-500 dark:focus:border-amber-500 bg-white/80 dark:bg-amber-950/80 text-amber-900 dark:text-amber-100 placeholder:text-amber-500/60 dark:placeholder:text-amber-500/60 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-amber-500/20"
                                     />
                                     <p className="text-xs text-amber-600 dark:text-amber-400">
-                                        입력하시면 &quot;{recipientName || '000'}에게 전하는 계시록&quot;으로 응답받습니다
+                                        입력하시면 &quot;{recipientName || '000'}에게 전하는 말씀&quot;으로 응답받습니다
                                     </p>
                                 </div>
 
@@ -125,7 +125,7 @@ export default function TextPrayerClient() {
                                     <Textarea
                                         value={prayerText}
                                         onChange={handleTextChange}
-                                        placeholder={"하나님께 드릴 기도를 입력해주세요...\n\n예시:\n하나님, 요즘 힘든 일들이 많아서 지쳐있습니다.\n힘과 용기를 주시고 올바른 길로 인도해주세요."}
+                                        placeholder={"기도를 입력해주세요...\n\n예시:\n요즘 힘든 일들이 많아서 지쳐있습니다.\n힘과 용기를 주시고 올바른 길로 인도해주세요."}
                                         className="min-h-[240px] resize-none border-2 border-amber-300 dark:border-amber-700 focus:border-amber-500 dark:focus:border-amber-500 bg-white/80 dark:bg-amber-950/80 text-amber-900 dark:text-amber-100 placeholder:text-amber-500/60 dark:placeholder:text-amber-500/60 rounded-xl text-base leading-relaxed"
                                         autoFocus
                                     />
@@ -145,7 +145,7 @@ export default function TextPrayerClient() {
                                     disabled={!prayerText.trim()}
                                 >
                                     <Send className="mr-2 h-5 w-5"/>
-                                    하나님의 계시 받기
+                                    말씀 응답 받기
                                 </Button>
 
                                 <button
@@ -164,4 +164,3 @@ export default function TextPrayerClient() {
         </>
     );
 }
-

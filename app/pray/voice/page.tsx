@@ -9,7 +9,7 @@ export default function VoicePrayerPage() {
                 {/* Simple logo header - matching main page */}
                 <div className="flex justify-center">
                     <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900 dark:to-amber-800 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
-                        <Image src={logo} alt="Gido AI 로고" className="w-full h-full" />
+                        <Image src={logo} alt="Selah 로고" className="w-full h-full" />
                     </div>
                 </div>
 

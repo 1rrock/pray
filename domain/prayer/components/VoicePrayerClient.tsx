@@ -37,7 +37,7 @@ export default function VoicePrayerClient() {
             {/*<Card className="border-2 border-amber-200 dark:border-amber-800 bg-white/90 dark:bg-amber-950/90">*/}
             {/*    <CardContent className="pt-6 space-y-2">*/}
             {/*        <label htmlFor="voice-recipient-name" className="text-sm font-medium text-amber-800 dark:text-amber-200">*/}
-            {/*            계시를 받으실 분의 이름 (선택)*/}
+            {/*            응답을 받으실 분의 이름 (선택)*/}
             {/*        </label>*/}
             {/*        <input*/}
             {/*            id="voice-recipient-name"*/}
@@ -48,7 +48,7 @@ export default function VoicePrayerClient() {
             {/*            className="w-full px-4 py-3 border-2 border-amber-300 dark:border-amber-700 focus:border-amber-500 dark:focus:border-amber-500 bg-white/80 dark:bg-amber-950/80 text-amber-900 dark:text-amber-100 placeholder:text-amber-500/60 dark:placeholder:text-amber-500/60 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-amber-500/20"*/}
             {/*        />*/}
             {/*        <p className="text-xs text-amber-600 dark:text-amber-400">*/}
-            {/*            입력하시면 &quot;{recipientName || '000'}에게 전하는 계시록&quot;으로 응답받습니다*/}
+            {/*            입력하시면 &quot;{recipientName || '000'}에게 전하는 말씀&quot;으로 응답받습니다*/}
             {/*        </p>*/}
             {/*    </CardContent>*/}
             {/*</Card>*/}

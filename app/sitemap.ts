@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://gidoai.vercel.app';
+  const baseUrl = 'https://selahai.vercel.app';
   const currentDate = new Date();
 
   return [

@@ -1,20 +1,20 @@
 {
-  "name": "gido",
+  "name": "selah",
   "version": "1.0.0",
-  "description": "Gido - 기도 AI, 성경 말씀 응답 서비스",
-  "author": "Gido",
-  "homepage": "https://gidoai.vercel.app",
+  "description": "Selah - 기도와 말씀으로 응답하는 서비스",
+  "author": "Selah",
+  "homepage": "https://selahai.vercel.app",
   "keywords": [
     "기도",
-    "기도AI",
-    "AI기도",
-    "gido",
+    "셀라",
+    "selah",
     "성경",
     "성경말씀",
     "기독교",
     "prayer",
     "bible",
-    "AI"
+    "AI",
+    "묵상"
   ],
   "private": true,
   "scripts": {

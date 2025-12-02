@@ -97,8 +97,8 @@ export function ResponseDisplay({
         }
 
         const shareTitle = recipientName
-            ? `🙏 ${recipientName}에게 전하는 계시록`
-            : '🙏 하나님의 계시';
+            ? `🙏 ${recipientName}에게 전하는 말씀`
+            : '🙏 성경 말씀 응답';
 
         // Web Share API 지원 확인
         if (typeof window !== 'undefined' && window.navigator.share) {
@@ -207,9 +207,9 @@ export function ResponseDisplay({
                             </div>
                         </div>
 
-                        {/* 계시록 타이틀 */}
+                        {/* 타이틀 */}
                         <CardTitle className="text-3xl font-bold text-amber-900 dark:text-amber-950 mb-3">
-                            {recipientName ? `${recipientName}에게 전하는 계시록` : '하나님의 계시록'}
+                            {recipientName ? `${recipientName}에게 전하는 말씀` : '성경 말씀 응답'}
                         </CardTitle>
 
                         <CardDescription
@@ -278,7 +278,7 @@ export function ResponseDisplay({
                                     className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-300 to-amber-400 dark:from-yellow-600 dark:to-amber-700 flex items-center justify-center">
                                     <Sparkles className="w-5 h-5 text-amber-900 dark:text-amber-100"/>
                                 </div>
-                                하나님의 계시
+                                말씀 해석
                             </CardTitle>
                         </CardHeader>
                         <CardContent>

@@ -1,18 +1,18 @@
 import React from 'react';
 import TextPrayerClient from '@/domain/prayer/components/TextPrayerClient';
-import {PageHeader} from '@/shared/components/PageHeader';
 import Image from "next/image";
 import logo from "@/app/logo.png";
 
 export default function TextPrayerPage() {
     return (
         <div className="min-h-screen py-8 px-4">
-            <div className="w-full max-w-3xl mx-auto space-y-6">
-                <header className="text-center space-y-6 mb-12">
-                    <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
-                        <Image src={logo} alt="Gido AI 로고" className="w-full h-full" />
+            <div className="w-full max-w-3xl mx-auto space-y-8">
+                {/* Simple logo header - matching main page */}
+                <div className="flex justify-center">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900 dark:to-amber-800 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
+                        <Image src={logo} alt="Selah 로고" className="w-full h-full" />
                     </div>
-                </header>
+                </div>
 
                 {/* Client interactive form */}
                 <div className="flex justify-center w-full">
@@ -20,7 +20,7 @@ export default function TextPrayerPage() {
                 </div>
 
                 {/* Simple info card at bottom - same style as voice page */}
-                <div className="mt-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl p-6 border border-amber-100 dark:border-amber-900/30 space-y-4">
+                <div className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl p-6 border border-amber-100 dark:border-amber-900/30 space-y-4">
                     <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-xl border border-amber-200 dark:border-amber-800/30">
                         <p className="text-xs text-amber-700 dark:text-amber-300 leading-relaxed">
                             💡 기도 내용과 입력하신 이름은 암호화되어 처리되며, 응답 생성 후 즉시 삭제됩니다.

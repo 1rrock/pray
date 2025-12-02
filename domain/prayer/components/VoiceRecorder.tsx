@@ -167,10 +167,10 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                     </div>
                 </div>
                 <CardTitle className="text-2xl text-amber-900 dark:text-amber-100">
-                    하나님께 기도를 올려주세요
+                    기도를 올려주세요
                 </CardTitle>
                 <CardDescription className="text-amber-700 dark:text-amber-300">
-                    하나님의 계시로 응답하실 것입니다
+                    성경 말씀으로 응답합니다
                 </CardDescription>
             </CardHeader>
 
@@ -197,7 +197,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                                 className="w-8 h-8 border-3 border-amber-700 dark:border-amber-300 border-t-transparent rounded-full mx-auto"
                             />
                             <p className="text-amber-800 dark:text-amber-200 font-medium text-lg">
-                                하나님의 계시를 받는 중...
+                                말씀을 받는 중...
                             </p>
                         </div>
                     ) : (
@@ -255,7 +255,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                         aria-label="녹음 완료하고 기도 올리기"
                     >
                         <Send className="mr-2 h-5 w-5" aria-hidden="true"/>
-                        하나님의 계시 받기
+                        말씀 응답 받기
                     </Button>
                 )}
 

@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 
         // 이름이 있으면 프롬프트에 추가
         if (recipientName && recipientName.trim()) {
-            userMessage = `"${recipientName}"에게 전하는 계시를 부탁드립니다.\n\n기도 내용:\n${prayerText}`;
+            userMessage = `"${recipientName}"에게 전하는 말씀을 부탁드립니다.\n\n기도 내용:\n${prayerText}`;
         }
 
         // OpenAI API 호출

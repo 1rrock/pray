@@ -1,15 +1,15 @@
-# 🙏 Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스
+# 🙏 Selah - 기도와 말씀으로 응답하는 서비스
 
-**Gido AI**는 사용자의 **기도**를 분석해 **성경 구절**로 **하나님의 계시**를 전달하는 AI 기도 서비스입니다.
+**Selah**는 사용자의 **기도**를 분석해 **성경 구절**로 **응답**하는 AI 기도 서비스입니다.
 
-"**000에게 전하는 계시록**" 형식으로 개인화된 성경 말씀과 영적 지도를 제공합니다.
+"Selah"는 시편에 자주 등장하는 히브리어로 **"멈추고 묵상하다"**라는 뜻입니다.
 
 ## ✨ 주요 기능
 
-- 📝 **텍스트 기도 입력**: 최대 500자까지 기도문 작성
+- 📝 **텍스트 기도 입력**: 최대 1,000자까지 기도문 작성
 - 🎤 **음성 기도 입력**: 최대 2분까지 음성 녹음 및 자동 변환 (Google Speech-to-Text)
-- 📖 **성경 구절 응답**: OpenAI GPT-4가 기도에 맞는 성경 구절 제시
-- 💬 **영적 지도**: 따뜻하고 위로가 되는 메시지 제공
+- 📖 **성경 구절 응답**: AI가 기도에 맞는 성경 구절 제시
+- 💬 **말씀 해석**: 따뜻하고 위로가 되는 메시지 제공
 - 🔗 **공유 기능**: 카카오톡, 링크 복사 등으로 응답 공유
 - ⚠️ **위기 감지**: 위기 키워드 감지 시 상담 전화번호 안내
 - 💰 **Google AdSense**: 광고 수익화 지원
@@ -20,7 +20,7 @@
 - **UI**: shadcn/ui, Tailwind CSS 4
 - **상태 관리**: Zustand
 - **애니메이션**: Framer Motion
-- **AI**: OpenAI GPT-4
+- **AI**: Anthropic Claude API
 - **STT**: Google Cloud Speech-to-Text API
 - **광고**: Google AdSense (예정)
 - **보안**: IP 기반 Rate Limiting (API 비용 절감)
@@ -47,8 +47,8 @@ npm install
 `.env.example`을 참고하여 `.env` 파일을 생성하고 필요한 API 키를 설정합니다:
 
 ```env
-# OpenAI API Key (필수)
-OPENAI_API_KEY="your-openai-api-key"
+# Anthropic API Key (필수)
+ANTHROPIC_API_KEY="your-anthropic-api-key"
 
 # OpenAI System Prompt (필수)
 OPENAI_SYSTEM_PROMPT="당신은 따뜻하고 지혜로운 영적 상담자입니다..."

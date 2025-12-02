@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스';
+export const alt = 'Selah - 기도와 말씀으로 응답하는 서비스';
 export const size = {
   width: 1200,
   height: 630,
@@ -68,7 +68,7 @@ export default async function Image() {
             display: 'flex',
           }}
         >
-          Gido AI
+          Selah
         </div>
 
         {/* Subtitle */}
@@ -80,7 +80,7 @@ export default async function Image() {
             display: 'flex',
           }}
         >
-          하나님의 계시로 응답하는 AI 기도
+          성경 말씀으로 응답하는 기도 서비스
         </div>
 
         {/* Bible Verse */}

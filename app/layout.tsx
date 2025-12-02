@@ -30,15 +30,15 @@ const nanumMyeongjo = Nanum_Myeongjo({
 });
 
 export const metadata: Metadata = {
-    title: "Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스",
-    description: "Gido AI는 당신의 기도를 분석해 성경 구절로 하나님의 계시를 전달하는 AI 기도 서비스입니다. 기도하면 '000에게 전하는 계시록' 형식으로 성경 말씀과 영적 지도를 받을 수 있습니다.",
-    keywords: ['기도', '기도AI', 'AI기도', 'gido', '성경', '성경말씀', '하나님의 계시', '계시록', 'AI', '인공지능', '기독교', '말씀', '성경구절', '영적상담', '하나님', '예수님', '성령', '신앙', '믿음', '온라인기도'],
-    authors: [{name: 'Gido'}],
-    creator: 'Gido',
-    publisher: 'Gido',
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://gidoai.vercel.app'),
+    title: "Selah - 기도와 말씀으로 응답하는 서비스",
+    description: "Selah는 당신의 기도를 분석해 성경 구절로 응답하는 AI 기도 서비스입니다. 성경 말씀을 통한 영적 인도와 위로를 받을 수 있습니다.",
+    keywords: ['기도', '셀라', 'selah', '성경', '성경말씀', '말씀', 'AI', '인공지능', '기독교', '성경구절', '영적상담', '하나님', '예수님', '성령', '신앙', '믿음', '온라인기도', '묵상'],
+    authors: [{name: 'Selah'}],
+    creator: 'Selah',
+    publisher: 'Selah',
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://selahai.vercel.app'),
     alternates: {
-        canonical: 'https://gidoai.vercel.app',
+        canonical: 'https://selahai.vercel.app',
     },
     robots: {
         index: true,
@@ -55,25 +55,25 @@ export const metadata: Metadata = {
         google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
     },
     openGraph: {
-        title: "Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스",
-        description: "Gido AI는 당신의 기도를 분석해 성경 구절로 하나님의 계시를 전달하는 AI 기도 서비스입니다.",
+        title: "Selah - 기도와 말씀으로 응답하는 서비스",
+        description: "Selah는 당신의 기도를 분석해 성경 구절로 응답하는 AI 기도 서비스입니다.",
         images: [
             {
-                url: 'https://gidoai.vercel.app/og-image.png',
+                url: 'https://selahai.vercel.app/og-image.png',
                 width: 1200,
                 height: 630,
-                alt: 'Gido - 기도 AI, 성경 말씀 응답 서비스',
+                alt: 'Selah - 기도와 말씀 응답 서비스',
             }
         ],
         type: "website",
         locale: "ko_KR",
-        siteName: "Gido",
+        siteName: "Selah",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Gido AI - 기도하면 하나님의 계시로 응답",
-        description: "Gido AI는 당신의 기도를 분석해 성경 구절로 하나님의 계시를 전달합니다.",
-        images: ['https://gidoai.vercel.app/og-image.png'],
+        title: "Selah - 기도와 말씀으로 응답",
+        description: "Selah는 당신의 기도를 분석해 성경 구절로 응답합니다.",
+        images: ['https://selahai.vercel.app/og-image.png'],
     },
 };
 
@@ -87,7 +87,7 @@ export default function RootLayout(
         <html lang="ko">
         <head>
             <JsonLd/>
-            <title>{String(metadata.title ?? 'Gido AI - 기도하면 하나님의 계시로 응답하는 AI 서비스')}</title>
+            <title>{String(metadata.title ?? 'Selah - 기도와 말씀으로 응답하는 서비스')}</title>
         </head>
         <body
             className={`${geistSans.variable} ${geistMono.variable} ${notoSerifKR.variable} ${nanumMyeongjo.variable} antialiased bg-gradient-to-br from-amber-100 via-orange-50 to-amber-50`}

@@ -90,7 +90,7 @@ export default function SharedPrayerPage({ params }: { params: Promise<{ id: str
           {/* 메시지 */}
           <div className="space-y-3">
             <h2 className="text-2xl font-bold text-amber-900 dark:text-amber-100">
-              하나님의 계시를 불러오는 중...
+              말씀을 불러오는 중...
             </h2>
           </div>
         </div>

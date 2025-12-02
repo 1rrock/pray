@@ -6,20 +6,20 @@ import {Book, Shield, Sparkles, ChevronDown} from 'lucide-react';
 export default function Home() {
     return (
         <div className="dark:bg-gray-900 min-h-screen flex items-center flex-col justify-center py-12 px-4">
-            <main id="main-content" className="w-full max-w-4xl" role="main" aria-label="Gido 기도 AI 메인 페이지">
+            <main id="main-content" className="w-full max-w-4xl" role="main" aria-label="Selah 기도와 말씀 메인 페이지">
                 {/* Hero Section - Simplified */}
                 <header className="text-center space-y-6 mb-12">
-                    <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
-                        <Image src={logo} alt="Gido AI 로고" className="w-full h-full" />
+                    <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900 dark:to-amber-800 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
+                        <Image src={logo} alt="Selah 로고" className="w-full h-full" />
                     </div>
                     <div className="space-y-3">
                         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white tracking-tight">
-                            기도 AI
+                            Selah
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
                             당신의 기도에
                             <span className="block mt-1 text-amber-600 dark:text-amber-400 font-semibold">
-                                하나님의 계시로 응답합니다
+                                성경 말씀으로 응답합니다
                             </span>
                         </p>
                     </div>
@@ -117,7 +117,7 @@ export default function Home() {
                                     3
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">계시 받기</h3>
+                                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">응답 받기</h3>
                                     <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
                                         AI가 선택한 성경 구절과 해석 확인
                                     </p>
@@ -150,10 +150,10 @@ export default function Home() {
                     </summary>
                     <div className="mt-4 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl p-6 border border-amber-100 dark:border-amber-900/30 space-y-5">
                         <article>
-                            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Gido AI란?</h3>
+                            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Selah란?</h3>
                             <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                                Selah는 시편에 자주 등장하는 히브리어로 "멈추고 묵상하다"라는 뜻입니다.
                                 AI 기술을 활용하여 기도를 분석하고 성경 말씀으로 응답하는 서비스입니다.
-                                언제 어디서나 하나님의 말씀을 통한 영적 인도를 받을 수 있습니다.
                             </p>
                         </article>
 
@@ -161,7 +161,7 @@ export default function Home() {
                             <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">누구를 위한 서비스인가요?</h3>
                             <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
                                 기독교 신앙을 가진 모든 분들을 위한 서비스입니다.
-                                하나님의 뜻을 구하고, 성경 말씀을 통해 위로와 인도를 받고 싶은 분께 유용합니다.
+                                성경 말씀을 통해 위로와 인도를 받고 싶은 분께 유용합니다.
                             </p>
                         </article>
 
@@ -192,7 +192,7 @@ export default function Home() {
                         </a>
                     </nav>
                     <p className="text-center text-xs text-gray-500 dark:text-gray-500">
-                        © 2025 Gido AI. All rights reserved.
+                        © 2025 Selah. All rights reserved.
                     </p>
                 </footer>
 

@@ -28,12 +28,12 @@ export default function PrivacyPage() {
                     <div className="prose dark:prose-invert max-w-none text-amber-800 dark:text-amber-200">
                         <div
                             className="rounded-lg bg-amber-50 dark:bg-amber-900/20 p-6 border-l-4 border-amber-300 mb-6">
-                            <strong>Gido AI</strong>는 사용자의 기도와 신앙 생활을 소중히 여기며, 개인정보 보호를 최우선으로 생각합니다. 본 개인정보처리방침은 관련 법령을
+                            <strong>Selah AI</strong>는 사용자의 기도와 신앙 생활을 소중히 여기며, 개인정보 보호를 최우선으로 생각합니다. 본 개인정보처리방침은 관련 법령을
                             준수합니다.
                         </div>
 
                         <h2>1. 개인정보의 수집 및 이용 목적</h2>
-                        <p>Gido AI는 다음의 목적을 위해 개인정보를 처리합니다:</p>
+                        <p>Selah AI는 다음의 목적을 위해 개인정보를 처리합니다:</p>
                         <ul>
                             <li><strong>서비스 제공:</strong> 기도 요청에 대한 AI 응답 생성 및 제공</li>
                             <li><strong>서비스 개선:</strong> AI 모델 개선 및 서비스 품질 향상</li>
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
                         </div>
                         <ul>
                             <li><strong>기도 내용:</strong> 응답 생성 후 즉시 삭제 (서버에 저장하지 않음)</li>
-                            <li><strong>계시 수신자 이름:</strong> 응답 생성 후 즉시 삭제 (서버에 저장하지 않음)</li>
+                            <li><strong>응답 수신자 이름:</strong> 응답 생성 후 즉시 삭제 (서버에 저장하지 않음)</li>
                             <li><strong>접속 로그:</strong> 수집일로부터 3개월</li>
                             <li><strong>문의 내역:</strong> 문의 처리 완료 후 1년</li>
                         </ul>
@@ -74,14 +74,14 @@ export default function PrivacyPage() {
                         </ul>
 
                         <h2>4. 개인정보의 제3자 제공</h2>
-                        <p>Gido AI는 원칙적으로 사용자의 개인정보를 제3자에게 제공하지 않습니다. 다만, 다음의 경우 예외로 합니다:</p>
+                        <p>Selah AI는 원칙적으로 사용자의 개인정보를 제3자에게 제공하지 않습니다. 다만, 다음의 경우 예외로 합니다:</p>
                         <ul>
                             <li>사용자의 사전 동의를 받은 경우</li>
                             <li>법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우</li>
                         </ul>
 
                         <h2>5. 개인정보 처리의 위탁</h2>
-                        <p>Gido AI는 서비스 제공을 위해 다음과 같이 개인정보 처리를 위탁하고 있습니다:</p>
+                        <p>Selah AI는 서비스 제공을 위해 다음과 같이 개인정보 처리를 위탁하고 있습니다:</p>
 
                         <div className="overflow-x-auto my-6">
                             <table className="w-full text-left border-collapse">
@@ -122,11 +122,11 @@ export default function PrivacyPage() {
                         <p>권리 행사는 아래 연락처를 통해 요청하실 수 있습니다.</p>
 
                         <h2>8. 쿠키의 운영 및 거부</h2>
-                        <p>Gido AI는 사용자 경험 개선을 위해 쿠키를 사용할 수 있습니다. 쿠키 사용을 거부하시려면 브라우저 설정에서 쿠키 차단을 선택할 수 있으나, 이 경우 서비스 이용에
+                        <p>Selah AI는 사용자 경험 개선을 위해 쿠키를 사용할 수 있습니다. 쿠키 사용을 거부하시려면 브라우저 설정에서 쿠키 차단을 선택할 수 있으나, 이 경우 서비스 이용에
                             제한이 있을 수 있습니다.</p>
 
                         <h2>9. 개인정보 보호책임자</h2>
-                        <p>Gido AI는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제를 위하여 아래와 같이 개인정보 보호책임자를
+                        <p>Selah AI는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제를 위하여 아래와 같이 개인정보 보호책임자를
                             지정하고 있습니다.</p>
 
                         <div className="mt-6 rounded-lg bg-amber-600 text-white p-6">

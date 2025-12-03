@@ -4,6 +4,7 @@ import "./globals.css";
 import {ReactQueryProvider} from "@/shared/providers/ReactQueryProvider";
 import {Toaster} from "sonner";
 import JsonLd from "./JsonLd";
+import BuyMeCoffeeButton from "@/shared/components/BuyMeCoffeeButton";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -109,6 +110,7 @@ export default function RootLayout(
             richColors
             closeButton
         />
+        <BuyMeCoffeeButton />
         </body>
         </html>
     );

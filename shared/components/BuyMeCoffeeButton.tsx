@@ -2,9 +2,21 @@
 
 import { Coffee } from 'lucide-react';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { type Locale } from '@/i18n/config';
+
+const texts = {
+  ko: '후원하기',
+  en: 'Support',
+};
 
 export default function BuyMeCoffeeButton() {
   const [isHovered, setIsHovered] = useState(false);
+  const pathname = usePathname();
+
+  // Extract language from pathname
+  const lang: Locale = pathname.startsWith('/en') ? 'en' : 'ko';
+  const text = texts[lang];
 
   return (
     <a
@@ -14,7 +26,7 @@ export default function BuyMeCoffeeButton() {
       className="fixed bottom-6 right-6 z-50 group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      aria-label="Buy Me a Coffee로 후원하기"
+      aria-label={`Buy Me a Coffee - ${text}`}
     >
       <div className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 dark:from-amber-600 dark:to-amber-700 text-white px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-amber-400/50 dark:border-amber-500/50">
         {/* Coffee Icon */}
@@ -30,7 +42,7 @@ export default function BuyMeCoffeeButton() {
 
         {/* Text */}
         <span className="font-semibold text-sm whitespace-nowrap">
-          후원하기
+          {text}
         </span>
       </div>
     </a>

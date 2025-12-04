@@ -31,7 +31,7 @@ export function usePrayer() {
    * 기도 제출 및 AI 응답 생성
    */
   const submitPrayer = useCallback(
-    async (prayerText: string, method: InputMethod) => {
+    async (prayerText: string, method: InputMethod, locale: 'ko' | 'en' = 'ko') => {
       try {
         setError(null);
 
@@ -46,7 +46,8 @@ export function usePrayer() {
         // AI 응답 생성 (useMutation 사용)
         const { response: aiResponse } = await generateResponseMutation.mutateAsync({
           prayerText,
-          recipientName
+          recipientName,
+          locale
         });
         setResponse(aiResponse);
 

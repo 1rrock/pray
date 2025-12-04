@@ -15,28 +15,38 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-        const {prayerText, recipientName} = await request.json();
+        const {prayerText, recipientName, locale = 'ko'} = await request.json();
 
         if (!prayerText || typeof prayerText !== 'string') {
             return NextResponse.json(
-                {error: '기도 텍스트가 필요합니다.'},
+                {error: locale === 'ko' ? '기도 텍스트가 필요합니다.' : 'Prayer text is required.'},
                 {status: 400}
             );
         }
 
-        // 환경변수에서 시스템 프롬프트 가져오기
-        const systemPrompt = process.env.OPENAI_SYSTEM_PROMPT;
+        // 언어별 시스템 프롬프트 선택
+        const systemPromptKey = locale === 'en'
+            ? 'OPENAI_SYSTEM_PROMPT_EN'
+            : 'OPENAI_SYSTEM_PROMPT';
+        const systemPrompt = process.env[systemPromptKey];
 
         if (!systemPrompt) {
-            throw new Error('OPENAI_SYSTEM_PROMPT 환경변수가 설정되지 않았습니다.');
+            throw new Error(`${systemPromptKey} 환경변수가 설정되지 않았습니다.`);
         }
 
-        // 사용자 메시지 구성
-        let userMessage = `저의 기도를 들어주세요:\n\n${prayerText}`;
+        // 사용자 메시지 구성 (언어별)
+        let userMessage: string;
 
-        // 이름이 있으면 프롬프트에 추가
-        if (recipientName && recipientName.trim()) {
-            userMessage = `"${recipientName}"에게 전하는 말씀을 부탁드립니다.\n\n기도 내용:\n${prayerText}`;
+        if (locale === 'en') {
+            userMessage = `Please listen to my prayer:\n\n${prayerText}`;
+            if (recipientName && recipientName.trim()) {
+                userMessage = `Please provide Scripture for "${recipientName}".\n\nPrayer content:\n${prayerText}`;
+            }
+        } else {
+            userMessage = `저의 기도를 들어주세요:\n\n${prayerText}`;
+            if (recipientName && recipientName.trim()) {
+                userMessage = `"${recipientName}"에게 전하는 말씀을 부탁드립니다.\n\n기도 내용:\n${prayerText}`;
+            }
         }
 
         // OpenAI API 호출
@@ -95,7 +105,7 @@ export async function POST(request: NextRequest) {
         console.error('Generate response error:', error);
         return NextResponse.json(
             {
-                error: 'AI 응답 생성 중 오류가 발생했습니다.',
+                error: '응답 생성 중 오류가 발생했습니다.',
                 details: error instanceof Error ? error.message : 'Unknown error',
             },
             {status: 500}

@@ -13,9 +13,10 @@ interface VoiceRecorderProps {
     onTranscriptionComplete: (text: string) => void;
     onClose?: () => void;
     isNavigating?: boolean;
+    locale?: 'ko' | 'en';
 }
 
-export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = false}: VoiceRecorderProps) {
+export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = false, locale = 'ko'}: VoiceRecorderProps) {
     const {isRecording, setRecording, setError} = usePrayerStore();
     const [recordingTime, setRecordingTime] = useState(0);
     const [submissionStarted, setSubmissionStarted] = useState(false); // <-- new
@@ -72,11 +73,17 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                 const isHttps = window.location.protocol === 'https:';
 
                 if (!isLocalhost && !isHttps) {
-                    alert('🔒 보안 오류\n\n음성 녹음은 보안상의 이유로 HTTPS 또는 localhost에서만 사용할 수 있습니다.\n\n해결 방법:\n1. localhost:3000 으로 접속하거나\n2. HTTPS를 사용해주세요.\n\n대신 "글로 기도하기"를 사용해주세요.');
-                    setError('음성 녹음은 HTTPS 또는 localhost에서만 사용 가능합니다.');
+                    const msg = locale === 'ko'
+                        ? '🔒 보안 오류\n\n음성 녹음은 보안상의 이유로 HTTPS 또는 localhost에서만 사용할 수 있습니다.\n\n해결 방법:\n1. localhost:3000 으로 접속하거나\n2. HTTPS를 사용해주세요.\n\n대신 "글로 기도하기"를 사용해주세요.'
+                        : '🔒 Security Error\n\nVoice recording is only available on HTTPS or localhost for security reasons.\n\nSolutions:\n1. Access via localhost:3000 or\n2. Use HTTPS\n\nPlease use "Text Prayer" instead.';
+                    alert(msg);
+                    setError(locale === 'ko' ? '음성 녹음은 HTTPS 또는 localhost에서만 사용 가능합니다.' : 'Voice recording is only available on HTTPS or localhost.');
                 } else {
-                    alert('이 브라우저는 음성 녹음을 지원하지 않습니다.\n\nChrome, Safari, Firefox 등 최신 브라우저를 사용해주세요.');
-                    setError('브라우저가 음성 녹음을 지원하지 않습니다.');
+                    const msg = locale === 'ko'
+                        ? '이 브라우저는 음성 녹음을 지원하지 않습니다.\n\nChrome, Safari, Firefox 등 최신 브라우저를 사용해주세요.'
+                        : 'This browser does not support voice recording.\n\nPlease use a modern browser like Chrome, Safari, or Firefox.';
+                    alert(msg);
+                    setError(locale === 'ko' ? '브라우저가 음성 녹음을 지원하지 않습니다.' : 'Browser does not support voice recording.');
                 }
                 if (onClose) onClose();
                 return;

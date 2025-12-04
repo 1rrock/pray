@@ -28,6 +28,7 @@ export interface SpeechToTextResponse {
 export interface GenerateResponseRequest {
   prayerText: string;
   recipientName?: string;
+  locale?: 'ko' | 'en';
 }
 
 export interface GenerateResponseResponse {

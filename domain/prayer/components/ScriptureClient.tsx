@@ -1,6 +1,6 @@
 'use client';
 
-import {useRouter, useSearchParams} from 'next/navigation';
+import {useRouter, useSearchParams, usePathname} from 'next/navigation';
 import {motion} from 'framer-motion';
 import {ResponseDisplay} from '@/domain/prayer/components/ResponseDisplay';
 import {usePrayerStore} from '@/domain/prayer/store/prayerStore';
@@ -9,6 +9,8 @@ import type {AIResponse} from '@/domain/prayer/api/type';
 
 export default function ScriptureClient() {
     const router = useRouter();
+    const pathname = usePathname();
+    const locale = pathname.startsWith('/en') ? 'en' : 'ko';
     const searchParams = useSearchParams();
     const {response, reset} = usePrayerStore();
     const [hasCrisis, setHasCrisis] = useState(false);
@@ -48,7 +50,7 @@ export default function ScriptureClient() {
         }
 
         if (!response) {
-            router.push('/');
+            router.push(`/${locale}`);
             return;
         }
 
@@ -58,11 +60,11 @@ export default function ScriptureClient() {
         }, 0);
 
         return () => clearTimeout(timer);
-    }, [response, router, searchParams]);
+    }, [response, router, searchParams, locale]);
 
     const handleNewPrayer = () => {
         reset();
-        router.push('/');
+        router.push(`/${locale}`);
     };
 
     const displayResponse = sharedResponse || response;
@@ -87,6 +89,7 @@ export default function ScriptureClient() {
                     response={displayResponse}
                     hasCrisis={hasCrisis}
                     onNewPrayer={handleNewPrayer}
+                    locale={locale}
                 />
             </motion.div>
         </div>

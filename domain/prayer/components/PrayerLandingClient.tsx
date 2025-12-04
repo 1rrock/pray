@@ -2,8 +2,9 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { PrayerInput } from './PrayerInput';
+import { type Locale } from '@/i18n/config';
 
-export default function PrayerLandingClient() {
+export default function PrayerLandingClient({ lang }: { lang: Locale }) {
     return (
         <AnimatePresence mode="wait">
             <motion.div
@@ -14,7 +15,7 @@ export default function PrayerLandingClient() {
                 transition={{ duration: 0.2 }}
                 className="space-y-6"
             >
-                <PrayerInput />
+                <PrayerInput lang={lang} />
             </motion.div>
         </AnimatePresence>
     );

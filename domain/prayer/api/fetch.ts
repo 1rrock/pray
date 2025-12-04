@@ -43,12 +43,14 @@ export async function speechToText(audioBlob: Blob): Promise<string> {
  */
 export async function generateResponse(
   prayerText: string,
-  recipientName?: string
+  recipientName?: string,
+  locale: 'ko' | 'en' = 'ko'
 ): Promise<GenerateResponseResponse> {
   try {
     const requestBody: GenerateResponseRequest = {
       prayerText,
-      recipientName
+      recipientName,
+      locale
     };
 
     const response = await fetch(API_ROUTES.GENERATE_RESPONSE, {

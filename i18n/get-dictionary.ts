@@ -1,10 +1,21 @@
 import 'server-only';
 import type { Locale } from './config';
-type DictionaryLoader = () => Promise<any>;
-const dictionaries: Record<Locale, DictionaryLoader> = {
-  ko: () => import('./dictionaries/ko.json').then((module) => module.default),
-  en: () => import('./dictionaries/en.json').then((module) => module.default),
+import ko from './dictionaries/ko.json';
+import en from './dictionaries/en.json';
+
+type Dictionary = {
+  common: Record<string, string>;
+  home: Record<string, string>;
+  prayer: Record<string, string>;
+  support: Record<string, string>;
+  footer: Record<string, string>;
 };
+
+const dictionaries: Record<Locale, Dictionary> = {
+  ko: ko as Dictionary,
+  en: en as Dictionary,
+};
+
 export const getDictionary = async (locale: Locale) => {
-  return dictionaries[locale]();
+  return dictionaries[locale];
 };

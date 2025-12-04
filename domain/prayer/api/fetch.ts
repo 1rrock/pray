@@ -1,9 +1,5 @@
-import { API_ROUTES, ERROR_MESSAGES } from './constant';
-import type {
-  SpeechToTextResponse,
-  GenerateResponseRequest,
-  GenerateResponseResponse,
-} from './type';
+import {API_ROUTES, ERROR_MESSAGES} from './constant';
+import type {GenerateResponseRequest, GenerateResponseResponse, SpeechToTextResponse,} from './type';
 
 /**
  * 음성을 텍스트로 변환
@@ -70,8 +66,7 @@ export async function generateResponse(
       throw new Error(ERROR_MESSAGES.AI_ERROR);
     }
 
-    const data: GenerateResponseResponse = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
     console.error('Generate response error:', error);
     if (error instanceof Error) {

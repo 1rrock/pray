@@ -5,7 +5,21 @@ import { Redis } from 'ioredis';
  * 프로덕션 환경에 적합하며, 메모리 제한 없이 사용 가능
  */
 
-const redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
+let redis: Redis | null = null;
+
+function getRedis(): Redis {
+  if (!redis) {
+    redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379', {
+      maxRetriesPerRequest: 3,
+      lazyConnect: true,
+    });
+
+    redis.on('error', (err) => {
+      console.error('Redis connection error:', err.message);
+    });
+  }
+  return redis;
+}
 
 interface SharedPrayer {
   id: string;
@@ -34,12 +48,12 @@ export async function savePrayer(data: Omit<SharedPrayer, 'id' | 'createdAt'>): 
     createdAt: new Date().toISOString(),
   };
 
-  await redis.set(`prayer:${id}`, JSON.stringify(prayer), 'EX', 24 * 60 * 60); // 24시간 TTL
+  await getRedis().set(`prayer:${id}`, JSON.stringify(prayer), 'EX', 24 * 60 * 60); // 24시간 TTL
   return id;
 }
 
 // 기도 불러오기
 export async function getPrayer(id: string): Promise<SharedPrayer | null> {
-  const data = await redis.get(`prayer:${id}`);
+  const data = await getRedis().get(`prayer:${id}`);
   return data ? JSON.parse(data) : null;
 }

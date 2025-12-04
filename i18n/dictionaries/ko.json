@@ -1,0 +1,39 @@
+{
+  "common": {
+    "title": "Selah - 기도와 말씀으로 응답하는 서비스",
+    "description": "Selah는 당신의 기도를 분석해 성경 구절로 응답하는 AI 기도 서비스입니다. 성경 말씀을 통한 영적 인도와 위로를 받을 수 있습니다.",
+    "logo_alt": "Selah 로고",
+    "skip_to_content": "메인 콘텐츠로 건너뛰기"
+  },
+  "home": {
+    "title": "Selah",
+    "subtitle_line1": "당신의 기도에",
+    "subtitle_line2": "성경 말씀으로 응답합니다",
+    "feature1_title": "성경 말씀 응답",
+    "feature1_desc": "AI가 기도를 분석하여 적합한 성경 구절과 해석 제공",
+    "feature2_title": "텍스트 & 음성",
+    "feature2_desc": "텍스트 입력 또는 음성 녹음으로 편리하게 기도",
+    "feature3_title": "개인정보 보호",
+    "feature3_desc": "기도 내용은 안전하게 보호되며 저장되지 않습니다"
+  },
+  "prayer": {
+    "text_input": "텍스트로 기도하기",
+    "voice_input": "음성으로 기도하기",
+    "scripture_search": "성경 구절로 찾기",
+    "placeholder": "기도 제목을 입력하세요...",
+    "submit": "기도하기",
+    "recording": "녹음 중...",
+    "stop_recording": "녹음 중지",
+    "start_recording": "녹음 시작"
+  },
+  "support": {
+    "buy_coffee": "후원하기"
+  },
+  "footer": {
+    "about": "서비스 소개",
+    "privacy": "개인정보처리방침",
+    "contact": "문의하기",
+    "copyright": "© 2025 Selah. 모든 권리 보유."
+  }
+}
+

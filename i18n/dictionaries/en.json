@@ -1,0 +1,39 @@
+{
+  "common": {
+    "title": "Selah - Prayer Response Service with Scripture",
+    "description": "Selah is an AI prayer service that analyzes your prayers and responds with Bible verses. Receive spiritual guidance and comfort through the Word of God.",
+    "logo_alt": "Selah Logo",
+    "skip_to_content": "Skip to main content"
+  },
+  "home": {
+    "title": "Selah",
+    "subtitle_line1": "Your prayers",
+    "subtitle_line2": "answered with Scripture",
+    "feature1_title": "Scripture Response",
+    "feature1_desc": "AI analyzes your prayer and provides relevant Bible verses and interpretation",
+    "feature2_title": "Text & Voice",
+    "feature2_desc": "Pray conveniently with text input or voice recording",
+    "feature3_title": "Privacy Protected",
+    "feature3_desc": "Your prayers are securely protected and not stored"
+  },
+  "prayer": {
+    "text_input": "Pray with Text",
+    "voice_input": "Pray with Voice",
+    "scripture_search": "Search by Scripture",
+    "placeholder": "Enter your prayer...",
+    "submit": "Pray",
+    "recording": "Recording...",
+    "stop_recording": "Stop Recording",
+    "start_recording": "Start Recording"
+  },
+  "support": {
+    "buy_coffee": "Support"
+  },
+  "footer": {
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "contact": "Contact",
+    "copyright": "© 2025 Selah. All rights reserved."
+  }
+}
+

@@ -94,6 +94,7 @@ export default async function Home({
                         <cite className="block text-sm text-amber-700 dark:text-amber-400 font-semibold mt-2 not-italic">
                             {lang === 'ko' ? '— 마태복음 7:7' : '— Matthew 7:7'}
                         </cite>
+                        <div className="absolute bottom-4 -right-2 text-6xl text-amber-200 dark:text-amber-900 font-serif leading-none">&rdquo;</div>
                     </blockquote>
                 </div>
 

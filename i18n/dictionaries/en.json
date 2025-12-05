@@ -1,12 +1,12 @@
 {
   "common": {
-    "title": "Selah - Prayer Response Service with Scripture",
-    "description": "Selah is an AI prayer service that analyzes your prayers and responds with Bible verses. Receive spiritual guidance and comfort through the Word of God.",
-    "logo_alt": "Selah Logo",
+    "title": "Amen - Prayer Response Service with Scripture",
+    "description": "Amen is an AI prayer service that analyzes your prayers and responds with Bible verses. Receive spiritual guidance and comfort through the Word of God.",
+    "logo_alt": "Amen Logo",
     "skip_to_content": "Skip to main content"
   },
   "home": {
-    "title": "Selah",
+    "title": "Amen AI",
     "subtitle_line1": "Your prayers",
     "subtitle_line2": "answered with Scripture",
     "feature1_title": "Scripture Response",
@@ -33,7 +33,7 @@
     "about": "About",
     "privacy": "Privacy Policy",
     "contact": "Contact",
-    "copyright": "© 2025 Selah. All rights reserved."
+    "copyright": "© 2025 Amen. All rights reserved."
   }
 }
 

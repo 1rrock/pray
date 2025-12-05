@@ -13,12 +13,12 @@ export default function AboutPage() {
       <main className="w-full max-w-3xl">
         <header className="text-center mb-8">
           <h1 className="text-4xl font-bold text-amber-900 dark:text-amber-100 mb-4">
-            {isKo ? 'Selah 소개' : 'About Selah'}
+            {isKo ? '소개' : 'About Amen'}
           </h1>
           <p className="text-lg text-amber-700 dark:text-amber-300">
             {isKo
-              ? 'Selah는 기도 내용을 바탕으로 성경 말씀으로 응답하는 AI 기반 서비스입니다.'
-              : 'Selah is an AI-powered service that responds to prayers with Scripture verses.'}
+              ? 'Amen AI는 기도 내용을 바탕으로 성경 말씀으로 응답하는 AI 기반 서비스입니다.'
+              : 'Amen AI is an AI-powered service that responds to prayers with Scripture verses.'}
           </p>
         </header>
 
@@ -29,13 +29,13 @@ export default function AboutPage() {
             </h2>
             <p className="text-base leading-relaxed">
               {isKo
-                ? 'Selah AI의 목표는 사용자가 기도하고 영적 인도를 받는 경험을 최신 AI 기술로 보조하는 것입니다. 인공지능을 통해 성경 구절과 신앙적인 통찰을 제공하며, 사용자의 영적 성장과 위로를 돕습니다.'
-                : 'Selah aims to support your prayer experience with modern AI technology, providing Scripture verses and spiritual insights to guide your faith journey.'}
+                ? 'Amen AI의 목표는 사용자가 기도하고 영적 인도를 받는 경험을 최신 AI 기술로 보조하는 것입니다. 인공지능을 통해 성경 구절과 신앙적인 통찰을 제공하며, 사용자의 영적 성장과 위로를 돕습니다.'
+                : 'Amen AI aims to support your prayer experience with modern AI technology, providing Scripture verses and spiritual insights to guide your faith journey.'}
             </p>
             <p className="text-base leading-relaxed">
               {isKo
-                ? '우리는 기술이 영적 삶을 풍요롭게 할 수 있다고 믿습니다. Selah AI는 전통적인 기도 생활과 현대 기술을 접목하여, 언제 어디서나 하나님의 말씀을 통한 영적 안내를 받을 수 있도록 돕습니다.'
-                : 'We believe technology can enrich your spiritual life. Selah combines traditional prayer with modern AI to help you find Scripture-based guidance anytime, anywhere.'}
+                ? '우리는 기술이 영적 삶을 풍요롭게 할 수 있다고 믿습니다. Amen AI는 전통적인 기도 생활과 현대 기술을 접목하여, 언제 어디서나 하나님의 말씀을 통한 영적 안내를 받을 수 있도록 돕습니다.'
+                : 'We believe technology can enrich your spiritual life. Amen AI combines traditional prayer with modern AI to help you find Scripture-based guidance anytime, anywhere.'}
             </p>
           </section>
 
@@ -71,8 +71,8 @@ export default function AboutPage() {
             </h2>
             <p className="text-base leading-relaxed">
               {isKo
-                ? '본 서비스는 AI 기술을 활용한 자동화된 도구로서 성경 구절과 관련된 영적 안내를 제공합니다. 그러나 Selah AI는 전문적인 목회 상담이나 심리 상담을 대체하지 않습니다.'
-                : 'Selah is an automated AI tool that provides spiritual guidance through Scripture. However, it does not replace professional pastoral or psychological counseling.'}
+                ? '본 서비스는 AI 기술을 활용한 자동화된 도구로서 성경 구절과 관련된 영적 안내를 제공합니다. 그러나 Amen AI는 전문적인 목회 상담이나 심리 상담을 대체하지 않습니다.'
+                : 'Amen AI is an automated AI tool that provides spiritual guidance through Scripture. However, it does not replace professional pastoral or psychological counseling.'}
             </p>
             <p className="text-base leading-relaxed">
               {isKo
@@ -131,8 +131,8 @@ export default function AboutPage() {
             </h2>
             <p className="text-base leading-relaxed">
               {isKo
-                ? 'Selah는 최신 AI 언어 모델과 자연어 처리 기술을 사용하여 기도 내용을 분석하고 적합한 성경 구절을 선택합니다. 음성 기도의 경우 고급 음성 인식 기술로 한국어 음성을 정확하게 텍스트로 변환합니다.'
-                : 'Selah uses advanced AI language models and natural language processing to analyze prayers and select relevant Scripture verses. Voice prayers are processed with high-accuracy speech recognition technology.'}
+                ? 'Amen AI는 최신 AI 언어 모델과 자연어 처리 기술을 사용하여 기도 내용을 분석하고 적합한 성경 구절을 선택합니다. 음성 기도의 경우 고급 음성 인식 기술로 한국어 음성을 정확하게 텍스트로 변환합니다.'
+                : 'Amen AI uses advanced AI language models and natural language processing to analyze prayers and select relevant Scripture verses. Voice prayers are processed with high-accuracy speech recognition technology.'}
             </p>
           </section>
 
@@ -142,7 +142,7 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-base">
               <p>
-                <strong>{isKo ? '개발팀:' : 'Developer:'}</strong> Selah Team
+                <strong>{isKo ? '개발팀:' : 'Developer:'}</strong> 1rrock
               </p>
               <p>
                 <strong>{isKo ? '이메일 문의:' : 'Email:'}</strong>{' '}

@@ -1,13 +1,13 @@
 {
-  "name": "selah",
+  "name": "Amen",
   "version": "1.0.0",
-  "description": "Selah - 기도와 말씀으로 응답하는 서비스",
-  "author": "Selah",
-  "homepage": "https://selahai.vercel.app",
+  "description": "Amen - 기도와 말씀으로 응답하는 서비스",
+  "author": "Amen",
+  "homepage": "https://a-men.vercel.app",
   "keywords": [
     "기도",
     "셀라",
-    "selah",
+    "Amen",
     "성경",
     "성경말씀",
     "기독교",

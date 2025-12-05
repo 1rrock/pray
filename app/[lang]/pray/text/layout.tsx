@@ -10,19 +10,19 @@ export async function generateMetadata({
     const {lang} = await params;
     const locale = (lang === 'en' ? 'en' : 'ko') as Locale;
     const dict = await getDictionary(locale);
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://selahai.vercel.app';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://a-men.vercel.app';
 
     return {
         title: locale === 'ko'
-            ? "텍스트 기도 - Selah | 성경 말씀 응답"
-            : "Text Prayer - Selah | Scripture Response",
+            ? "텍스트 기도 - Amen | 성경 말씀 응답"
+            : "Text Prayer - Amen | Scripture Response",
         description: locale === 'ko'
-            ? "Selah 텍스트 기도 서비스. 글로 기도하면 성경 말씀으로 응답을 받을 수 있습니다."
-            : "Selah text prayer service. Pray with text and receive Scripture responses.",
+            ? "Amen 텍스트 기도 서비스. 글로 기도하면 성경 말씀으로 응답을 받을 수 있습니다."
+            : "Amen text prayer service. Pray with text and receive Scripture responses.",
         openGraph: {
             title: locale === 'ko'
-                ? "텍스트 기도 - Selah"
-                : "Text Prayer - Selah",
+                ? "텍스트 기도 - Amen"
+                : "Text Prayer - Amen",
             description: locale === 'ko'
                 ? "글로 기도하고 성경 말씀을 받으세요"
                 : "Pray with text and receive Scripture",
@@ -33,8 +33,8 @@ export async function generateMetadata({
         twitter: {
             card: "summary_large_image",
             title: locale === 'ko'
-                ? "텍스트 기도 - Selah"
-                : "Text Prayer - Selah",
+                ? "텍스트 기도 - Amen"
+                : "Text Prayer - Amen",
             description: locale === 'ko'
                 ? "글로 기도하고 성경 말씀을 받으세요"
                 : "Pray with text and receive Scripture",

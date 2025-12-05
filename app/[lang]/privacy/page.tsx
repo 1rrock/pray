@@ -33,14 +33,14 @@ export default function PrivacyPage() {
 
                     <div className="prose dark:prose-invert max-w-none text-amber-800 dark:text-amber-200">
                         <div className="rounded-lg bg-amber-50 dark:bg-amber-900/20 p-6 border-l-4 border-amber-300 mb-6">
-                            <strong>Selah AI</strong>
+                            <strong>Amen AI</strong>
                             {isKo
                                 ? '는 사용자의 기도와 신앙 생활을 소중히 여기며, 개인정보 보호를 최우선으로 생각합니다. 본 개인정보처리방침은 관련 법령을 준수합니다.'
                                 : ' values your spiritual life and prioritizes protecting your personal information. This Privacy Policy complies with applicable laws.'}
                         </div>
 
                         <h2>{isKo ? '1. 개인정보의 수집 및 이용 목적' : '1. Collection and Use of Personal Information'}</h2>
-                        <p>{isKo ? 'Selah AI는 다음의 목적을 위해 개인정보를 처리합니다:' : 'We process your information for:'}</p>
+                        <p>{isKo ? 'Amen AI는 다음의 목적을 위해 개인정보를 처리합니다:' : 'We process your information for:'}</p>
                         <ul>
                             <li><strong>{isKo ? '서비스 제공:' : 'Service Provision:'}</strong> {isKo ? '기도 요청에 대한 AI 응답 생성 및 제공' : 'Generating and providing AI responses to prayer requests'}</li>
                             <li><strong>{isKo ? '서비스 개선:' : 'Service Improvement:'}</strong> {isKo ? 'AI 모델 개선 및 서비스 품질 향상' : 'Improving AI models and service quality'}</li>

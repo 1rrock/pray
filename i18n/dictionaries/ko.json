@@ -1,12 +1,12 @@
 {
   "common": {
-    "title": "Selah - 기도와 말씀으로 응답하는 서비스",
-    "description": "Selah는 당신의 기도를 분석해 성경 구절로 응답하는 AI 기도 서비스입니다. 성경 말씀을 통한 영적 인도와 위로를 받을 수 있습니다.",
-    "logo_alt": "Selah 로고",
+    "title": "Amen - 기도와 말씀으로 응답하는 서비스",
+    "description": "Amen는 당신의 기도를 분석해 성경 구절로 응답하는 AI 기도 서비스입니다. 성경 말씀을 통한 영적 인도와 위로를 받을 수 있습니다.",
+    "logo_alt": "Amen 로고",
     "skip_to_content": "메인 콘텐츠로 건너뛰기"
   },
   "home": {
-    "title": "Selah",
+    "title": "Amen AI",
     "subtitle_line1": "당신의 기도에",
     "subtitle_line2": "성경 말씀으로 응답합니다",
     "feature1_title": "성경 말씀 응답",
@@ -33,7 +33,7 @@
     "about": "서비스 소개",
     "privacy": "개인정보처리방침",
     "contact": "문의하기",
-    "copyright": "© 2025 Selah. 모든 권리 보유."
+    "copyright": "© 2025 Amen. 모든 권리 보유."
   }
 }
 

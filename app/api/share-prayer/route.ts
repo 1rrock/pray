@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     });
 
     // 짧은 URL 반환
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://selahai.vercel.app';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://a-men.vercel.app';
     const shortUrl = `${baseUrl}/s/${id}`;
 
     return NextResponse.json({

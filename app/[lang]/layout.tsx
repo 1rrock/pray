@@ -43,15 +43,15 @@ export async function generateMetadata({
     const locale = (lang === 'en' ? 'en' : 'ko') as Locale;
     const dict = await getDictionary(locale);
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://selahai.vercel.app';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://a-men.vercel.app';
 
     return {
         title: dict.common.title,
         description: dict.common.description,
-        keywords: ['기도', '셀라', 'selah', '성경', '성경말씀', '말씀', 'AI', '인공지능', '기독교', '성경구절', '영적상담', '하나님', '예수님', '성령', '신앙', '믿음', '온라인기도', '묵상', 'prayer', 'bible', 'scripture', 'christian', 'faith', 'God', 'Jesus'],
-        authors: [{name: 'Selah'}],
-        creator: 'Selah',
-        publisher: 'Selah',
+        keywords: ['기도', '셀라', "아멘", 'Amen', '성경', '성경말씀', '말씀', 'AI', '인공지능', '기독교', '성경구절', '영적상담', '하나님', '예수님', '성령', '신앙', '믿음', '온라인기도', '묵상', 'prayer', 'bible', 'scripture', 'christian', 'faith', 'God', 'Jesus'],
+        authors: [{name: 'Amen'}],
+        creator: 'Amen',
+        publisher: 'Amen',
         metadataBase: new URL(baseUrl),
         alternates: {
             canonical: `${baseUrl}/${lang}`,
@@ -82,12 +82,12 @@ export async function generateMetadata({
                     url: `${baseUrl}/og-image.png`,
                     width: 1200,
                     height: 630,
-                    alt: 'Selah',
+                    alt: 'Amen',
                 }
             ],
             type: "website",
             locale: locale === 'ko' ? 'ko_KR' : 'en_US',
-            siteName: "Selah",
+            siteName: "Amen",
         },
         twitter: {
             card: "summary_large_image",

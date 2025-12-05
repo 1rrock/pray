@@ -16,14 +16,14 @@ export default async function Home({
 
     return (
         <div className="dark:bg-gray-900 min-h-screen flex items-center flex-col justify-center py-12 px-4">
-            <main id="main-content" className="w-full max-w-4xl" role="main" aria-label={`Selah ${dict.home.title}`}>
+            <main id="main-content" className="w-full max-w-4xl" role="main" aria-label={`Amen ${dict.home.title}`}>
                 {/* Hero Section */}
                 <header className="text-center space-y-6 mb-12">
                     <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900 dark:to-amber-800 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
                         <Image src={logo} alt={dict.common.logo_alt} className="w-full h-full" />
                     </div>
                     <div className="space-y-3">
-                        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white tracking-tight">
+                        <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 dark:from-amber-300 dark:via-rose-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
                             {dict.home.title}
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">

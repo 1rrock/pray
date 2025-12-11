@@ -1,12 +1,8 @@
 import type {Metadata} from "next";
 import {Geist, Geist_Mono, Noto_Serif_KR, Nanum_Myeongjo} from "next/font/google";
 import "./globals.css";
-import {ReactQueryProvider} from "@/shared/providers/ReactQueryProvider";
-import {Toaster} from "sonner";
 import JsonLd from "./JsonLd";
-import BuyMeCoffeeButton from "@/shared/components/BuyMeCoffeeButton";
-import { type Locale, locales, defaultLocale } from "@/i18n/config";
-import { getDictionary } from "@/i18n/get-dictionary";
+import { defaultLocale } from "@/i18n/config";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -33,9 +29,6 @@ const nanumMyeongjo = Nanum_Myeongjo({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-    const locale: Locale = defaultLocale;
-    const dict = await getDictionary(locale);
-
     const metadataContent = {
         ko: {
             title: "Amen - 기도와 말씀으로 응답하는 서비스",
@@ -61,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
         }
     };
 
-    const content = metadataContent[locale];
+    const content = metadataContent[defaultLocale];
 
     return {
         title: content.title,
@@ -124,26 +117,9 @@ export default function RootLayout(
             <JsonLd/>
         </head>
         <body
-            className={`${geistSans.variable} ${geistMono.variable} ${notoSerifKR.variable} ${nanumMyeongjo.variable} antialiased bg-gradient-to-br from-amber-100 via-orange-50 to-amber-50`}
+            className={`${geistSans.variable} ${geistMono.variable} ${notoSerifKR.variable} ${nanumMyeongjo.variable}`}
         >
-        {/* Skip to main content link for accessibility */}
-        <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-amber-600 focus:text-white focus:rounded-md focus:shadow-lg"
-        >
-            메인 콘텐츠로 건너뛰기
-        </a>
-        {/* Anchor target for skip link - ensures the link resolves in layout */}
-        <div id="main-content"/>
-        <ReactQueryProvider>
-            {children}
-        </ReactQueryProvider>
-        <Toaster
-            position="top-center"
-            richColors
-            closeButton
-        />
-        <BuyMeCoffeeButton />
+        {children}
         </body>
         </html>
     );

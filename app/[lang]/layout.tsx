@@ -1,34 +1,12 @@
 import type {Metadata} from "next";
-import {Geist, Geist_Mono, Noto_Serif_KR, Nanum_Myeongjo} from "next/font/google";
-import "../globals.css";
 import {ReactQueryProvider} from "@/shared/providers/ReactQueryProvider";
 import {Toaster} from "sonner";
 import BuyMeCoffeeButton from "@/shared/components/BuyMeCoffeeButton";
 import LanguageSwitcher from "@/shared/components/LanguageSwitcher";
+import CoupangAd from "@/shared/components/CoupangAd";
+import CoupangAdMobile from "@/shared/components/CoupangAdMobile";
 import { type Locale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
-
-const notoSerifKR = Noto_Serif_KR({
-    variable: "--font-noto-serif",
-    subsets: ["latin"],
-    weight: ["400", "600", "700"],
-});
-
-const nanumMyeongjo = Nanum_Myeongjo({
-    variable: "--font-nanum-myeongjo",
-    subsets: ["latin"],
-    weight: ["400", "700", "800"],
-});
 
 export async function generateStaticParams() {
     return locales.map((locale) => ({ lang: locale }));
@@ -110,29 +88,44 @@ export default async function LangLayout({
     const dict = await getDictionary(locale);
 
     return (
-        <html lang={locale}>
-        <body
-            className={`${geistSans.variable} ${geistMono.variable} ${notoSerifKR.variable} ${nanumMyeongjo.variable} antialiased bg-gradient-to-br from-amber-100 via-orange-50 to-amber-50`}
-        >
-        <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-amber-600 focus:text-white focus:rounded-md focus:shadow-lg"
-        >
-            {dict.common.skip_to_content}
-        </a>
-        <div id="main-content"/>
-        <LanguageSwitcher currentLocale={locale} />
-        <ReactQueryProvider>
-            {children}
-        </ReactQueryProvider>
-        <Toaster
-            position="top-center"
-            richColors
-            closeButton
-        />
-        <BuyMeCoffeeButton />
-        </body>
-        </html>
+        <div className="antialiased bg-gradient-to-br from-amber-100 via-orange-50 to-amber-50 min-h-screen">
+            <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-amber-600 focus:text-white focus:rounded-md focus:shadow-lg"
+            >
+                {dict.common.skip_to_content}
+            </a>
+            <LanguageSwitcher currentLocale={locale}/>
+
+            {/* 데스크톱 사이드 광고 */}
+            <CoupangAd position="left" type="christian" />
+            <CoupangAd position="right" />
+
+            {/* 메인 컨텐츠 영역 */}
+            <div className="relative">
+                <ReactQueryProvider>
+                    <div className="max-w-7xl mx-auto px-2 xl:px-8">
+                        {/* 모바일 상단 광고 */}
+                        <CoupangAdMobile type="christian" />
+
+                        {/* 실제 컨텐츠 */}
+                        <div id="main-content" className="py-4">
+                            {children}
+                        </div>
+
+                        {/* 모바일 하단 광고 */}
+                        <CoupangAdMobile />
+                    </div>
+                </ReactQueryProvider>
+            </div>
+
+            <Toaster
+                position="top-center"
+                richColors
+                closeButton
+            />
+            <BuyMeCoffeeButton/>
+        </div>
     );
 }
 

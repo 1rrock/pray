@@ -3,8 +3,6 @@ import {ReactQueryProvider} from "@/shared/providers/ReactQueryProvider";
 import {Toaster} from "sonner";
 import BuyMeCoffeeButton from "@/shared/components/BuyMeCoffeeButton";
 import LanguageSwitcher from "@/shared/components/LanguageSwitcher";
-import CoupangAd from "@/shared/components/CoupangAd";
-import CoupangAdMobile from "@/shared/components/CoupangAdMobile";
 import { type Locale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 
@@ -97,24 +95,14 @@ export default async function LangLayout({
             </a>
             <LanguageSwitcher currentLocale={locale}/>
 
-            {/* 데스크톱 사이드 광고 */}
-            <CoupangAd position="left" type="christian" />
-            <CoupangAd position="right" />
-
             {/* 메인 컨텐츠 영역 */}
             <div className="relative">
                 <ReactQueryProvider>
                     <div className="max-w-7xl mx-auto px-2 xl:px-8">
-                        {/* 모바일 상단 광고 */}
-                        <CoupangAdMobile type="christian" />
-
                         {/* 실제 컨텐츠 */}
                         <div id="main-content" className="py-4">
                             {children}
                         </div>
-
-                        {/* 모바일 하단 광고 */}
-                        <CoupangAdMobile />
                     </div>
                 </ReactQueryProvider>
             </div>

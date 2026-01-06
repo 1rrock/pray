@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { type Locale } from '@/i18n/config';
 import { InContentAd } from '@/shared/components/InContentAd';
-import { ResponsiveBannerAd } from '@/shared/components/ResponsiveBannerAd';
 
 export default function AboutPage() {
   const pathname = usePathname();
@@ -41,11 +40,7 @@ export default function AboutPage() {
             </p>
           </section>
 
-          <InContentAd 
-            adUnit="DAN-KjikwPCf2qoxvvyj"
-            width={300}
-            height={250}
-          />
+          <InContentAd />
 
           <section className="bg-amber-100 dark:bg-amber-900/30 p-6 rounded-lg">
             <h2 className="text-2xl font-bold text-amber-900 dark:text-amber-100 mt-0">
@@ -72,10 +67,6 @@ export default function AboutPage() {
               </li>
             </ul>
           </section>
-
-          <ResponsiveBannerAd 
-            adUnit="DAN-KjikwPCf2qoxvvyj"
-          />
 
           <section>
             <h2 className="text-2xl font-bold text-amber-900 dark:text-amber-100">
@@ -148,11 +139,7 @@ export default function AboutPage() {
             </p>
           </section>
 
-          <InContentAd 
-            adUnit="DAN-KjikwPCf2qoxvvyj"
-            width={300}
-            height={250}
-          />
+          <InContentAd />
 
           <section className="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-lg">
             <h2 className="text-2xl font-bold text-amber-900 dark:text-amber-100 mt-0">
@@ -173,12 +160,6 @@ export default function AboutPage() {
               </p>
             </div>
           </section>
-
-          <InContentAd 
-            adUnit="DAN-KjikwPCf2qoxvvyj"
-            width={300}
-            height={250}
-          />
 
           <div className="text-center pt-4">
             <Link

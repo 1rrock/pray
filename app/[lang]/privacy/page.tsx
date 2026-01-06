@@ -74,17 +74,9 @@ export default function PrivacyPage() {
                             <p><strong>{isKo ? '응답 시간:' : 'Response Time:'}</strong> {isKo ? '영업일 기준 3일 이내' : 'Within 3 business days'}</p>
                         </div>
 
-                        <InContentAd 
-                            adUnit="DAN-KjikwPCf2qoxvvyj"
-                            width={300}
-                            height={250}
-                        />
+                        <InContentAd />
 
-                        <InContentAd 
-                            adUnit="DAN-KjikwPCf2qoxvvyj"
-                            width={300}
-                            height={250}
-                        />
+                        <InContentAd />
 
                         <div className="mt-8 text-center">
                             <div className="italic text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/10 p-6 rounded-lg mb-6">

@@ -3,56 +3,56 @@
 import { useEffect, useRef } from 'react';
 
 interface InContentAdProps {
-  adUnit: string;
-  width?: number;
-  height?: number;
   className?: string;
 }
 
-export function InContentAd({ 
-  adUnit, 
-  width = 300, 
-  height = 250,
-  className = '' 
-}: InContentAdProps) {
-  const adContainerRef = useRef<HTMLDivElement>(null);
+declare global {
+  interface Window {
+    adfit?: {
+      display: (id: string) => void;
+      destroy: (id: string) => void;
+    };
+  }
+}
+
+export function InContentAd({ className = '' }: InContentAdProps) {
+  const adRef = useRef<HTMLModElement>(null);
+  const adId = useRef(`kakao-ad-${Math.random().toString(36).slice(2, 11)}`);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.kakaoAdFit) {
-      try {
-        if (adContainerRef.current) {
-          window.kakaoAdFit.destroyAd(adContainerRef.current);
+    const timer = setTimeout(() => {
+      if (window.adfit && adRef.current) {
+        try {
+          window.adfit.display(adId.current);
+        } catch (e) {
+          console.warn('AdFit display error:', e);
         }
-        
-        if (adContainerRef.current) {
-          window.kakaoAdFit.createAd({
-            adUnit: adUnit,
-            container: adContainerRef.current,
-            width: width,
-            height: height,
-          });
-        }
-      } catch (error) {
-        console.warn('Kakao AdFit error:', error);
       }
-    }
-  }, [adUnit, width, height]);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      if (window.adfit) {
+        try {
+          window.adfit.destroy(adId.current);
+        } catch (e) {
+          console.warn('AdFit destroy error:', e);
+        }
+      }
+    };
+  }, []);
 
   return (
     <div className={`flex justify-center my-6 ${className}`}>
-      <div 
-        ref={adContainerRef}
-        className="kakao-adfit"
-        style={{ 
-          width: `${width}px`, 
-          height: `${height}px`,
-          borderRadius: '8px',
-          overflow: 'hidden',
-          backgroundColor: '#f9fafb',
-          border: '1px solid #e5e7eb'
-        }}
-      >
-      </div>
+      <ins
+        ref={adRef}
+        id={adId.current}
+        className="kakao_ad_area"
+        style={{ display: 'none' }}
+        data-ad-unit="DAN-KjikwPCf2qoxvvyj"
+        data-ad-width="300"
+        data-ad-height="250"
+      />
     </div>
   );
 }

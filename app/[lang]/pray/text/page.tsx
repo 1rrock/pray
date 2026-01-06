@@ -6,7 +6,6 @@ import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
 import Link from "next/link";
 import { InContentAd } from '@/shared/components/InContentAd';
-import { ResponsiveBannerAd } from '@/shared/components/ResponsiveBannerAd';
 
 export default async function TextPrayerPage({
     params,
@@ -68,20 +67,12 @@ export default async function TextPrayerPage({
                     </div>
                 </section>
 
-                <InContentAd 
-                    adUnit="DAN-KjikwPCf2qoxvvyj"
-                    width={300}
-                    height={250}
-                />
+                <InContentAd />
 
                 {/* Client interactive form */}
                 <div className="flex justify-center w-full">
                     <TextPrayerClient />
                 </div>
-
-                <ResponsiveBannerAd 
-                    adUnit="DAN-KjikwPCf2qoxvvyj"
-                />
 
                 {/* Simple info card at bottom - same style as voice page */}
                 <div className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-2xl p-6 border border-amber-100 dark:border-amber-900/30 space-y-4">
@@ -109,11 +100,7 @@ export default async function TextPrayerPage({
                     </blockquote>
                 </div>
 
-                <InContentAd 
-                    adUnit="DAN-KjikwPCf2qoxvvyj"
-                    width={300}
-                    height={250}
-                />
+                <InContentAd />
             </div>
         </div>
     );

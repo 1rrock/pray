@@ -247,11 +247,7 @@ export function ResponseDisplay({
                         </blockquote>
                     </div>
 
-                    <InContentAd 
-                        adUnit="DAN-KjikwPCf2qoxvvyj"
-                        width={300}
-                        height={250}
-                    />
+                    <InContentAd />
 
                     <div className="flex items-center justify-center gap-4">
                         <div className="h-0.5 bg-gradient-to-r from-transparent via-amber-300 to-transparent dark:via-amber-700 flex-1"/>
@@ -297,11 +293,7 @@ export function ResponseDisplay({
                 </CardContent>
 
                 <CardFooter className="flex-col gap-4 pb-10 pt-6 bg-gradient-to-b from-transparent to-amber-50/50 dark:to-amber-950/50">
-                    <InContentAd 
-                        adUnit="DAN-KjikwPCf2qoxvvyj"
-                        width={300}
-                        height={250}
-                    />
+                    <InContentAd />
 
                     <div className="grid grid-cols-2 gap-4 w-full">
                         <Button

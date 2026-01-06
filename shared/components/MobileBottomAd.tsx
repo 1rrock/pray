@@ -3,48 +3,59 @@
 import { useEffect, useRef } from 'react';
 
 interface MobileBottomAdProps {
-  adUnit: string;
   className?: string;
 }
 
-export function MobileBottomAd({ adUnit, className = '' }: MobileBottomAdProps) {
-  const adContainerRef = useRef<HTMLDivElement>(null);
+declare global {
+  interface Window {
+    adfit?: {
+      display: (id: string) => void;
+      destroy: (id: string) => void;
+    };
+  }
+}
+
+export function MobileBottomAd({ className = '' }: MobileBottomAdProps) {
+  const adRef = useRef<HTMLModElement>(null);
+  const adId = useRef(`kakao-ad-bottom-${Math.random().toString(36).slice(2, 11)}`);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.kakaoAdFit) {
-      try {
-        if (adContainerRef.current) {
-          window.kakaoAdFit.destroyAd(adContainerRef.current);
+    const timer = setTimeout(() => {
+      if (window.adfit && adRef.current) {
+        try {
+          window.adfit.display(adId.current);
+        } catch (e) {
+          console.warn('AdFit display error:', e);
         }
-        
-        if (adContainerRef.current) {
-          window.kakaoAdFit.createAd({
-            adUnit: adUnit,
-            container: adContainerRef.current,
-            width: 320,
-            height: 50,
-          });
-        }
-      } catch (error) {
-        console.warn('Kakao AdFit error:', error);
       }
-    }
-  }, [adUnit]);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      if (window.adfit) {
+        try {
+          window.adfit.destroy(adId.current);
+        } catch (e) {
+          console.warn('AdFit destroy error:', e);
+        }
+      }
+    };
+  }, []);
 
   return (
     <div 
-      ref={adContainerRef}
-      className={`kakao-adfit lg:hidden fixed bottom-0 left-0 right-0 z-40 ${className}`}
-      style={{ 
-        width: '100%',
-        height: '50px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        borderTop: '1px solid #e5e7eb'
-      }}
+      className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 flex justify-center bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 ${className}`}
+      style={{ height: '50px' }}
     >
+      <ins
+        ref={adRef}
+        id={adId.current}
+        className="kakao_ad_area"
+        style={{ display: 'none' }}
+        data-ad-unit="DAN-ghG2lS88KMsctrFo"
+        data-ad-width="320"
+        data-ad-height="50"
+      />
     </div>
   );
 }

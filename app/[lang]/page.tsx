@@ -1,7 +1,5 @@
 import PrayerLandingClient from '@/domain/prayer/components/PrayerLandingClient';
-import {KakaoAdFit} from '@/shared/components/KakaoAdFit';
 import {InContentAd} from '@/shared/components/InContentAd';
-import {ResponsiveBannerAd} from '@/shared/components/ResponsiveBannerAd';
 import Image from "next/image";
 import logo from '../logo.png';
 import {Book, Shield, Sparkles, ChevronDown} from 'lucide-react';
@@ -42,17 +40,6 @@ export default async function Home({
                 {/* CTA Section */}
                 <div className="mb-16">
                     <PrayerLandingClient lang={lang}/>
-                </div>
-
-                <div className="mb-12 flex justify-center">
-                    <div className="w-full max-w-[300px]">
-                        <KakaoAdFit 
-                            adUnit="DAN-KjikwPCf2qoxvvyj" 
-                            width={300} 
-                            height={250}
-                            className="rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
-                        />
-                    </div>
                 </div>
 
                 {/* Features section */}
@@ -102,12 +89,7 @@ export default async function Home({
                     </div>
                 </section>
 
-                <InContentAd 
-                    adUnit="DAN-KjikwPCf2qoxvvyj"
-                    width={300}
-                    height={250}
-                    className="max-w-3xl mx-auto"
-                />
+                <InContentAd className="max-w-3xl mx-auto" />
 
                 {/* How it works section */}
                 <details className="mb-8 max-w-3xl mx-auto group">
@@ -172,11 +154,6 @@ export default async function Home({
                     </div>
                 </details>
             </main>
-
-            <ResponsiveBannerAd 
-                adUnit="DAN-KjikwPCf2qoxvvyj"
-                className="max-w-4xl mx-auto"
-            />
 
             {/* Footer */}
             <footer className="mt-12 pt-8 border-t border-amber-200 dark:border-amber-900/30 max-w-4xl mx-auto w-full">

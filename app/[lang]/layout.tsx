@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import {ReactQueryProvider} from "@/shared/providers/ReactQueryProvider";
 import {Toaster} from "sonner";
-import BuyMeCoffeeButton from "@/shared/components/BuyMeCoffeeButton";
+
 import LanguageSwitcher from "@/shared/components/LanguageSwitcher";
 import {KakaoAdFit} from "@/shared/components/KakaoAdFit";
 import {MobileBottomAd} from "@/shared/components/MobileBottomAd";
@@ -100,33 +100,17 @@ export default async function LangLayout({
             {/* 메인 컨텐츠 영역 */}
             <div className="relative pb-16 lg:pb-0">
                 <ReactQueryProvider>
-                    <div className="max-w-7xl mx-auto px-2 xl:px-8">
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8">
                         <div className="flex flex-col lg:flex-row gap-8">
-                            {/* 실제 컨텐츠 */}
-                            <div id="main-content" className="flex-1 py-4">
+                            {/* 메인 컨텐츠 */}
+                            <main id="main-content" className="flex-1 py-4">
                                 {children}
-                            </div>
+                            </main>
                             
-                            <aside className="hidden lg:block w-[300px] flex-shrink-0 sticky top-4 h-fit">
-                                <div className="space-y-6">
-                                    <KakaoAdFit 
-                                        adUnit="DAN-KjikwPCf2qoxvvyj" 
-                                        width={300} 
-                                        height={250}
-                                        className="rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
-                                    />
-                                    
-                                    <div className="bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-5 hover:shadow-lg transition-shadow border border-amber-100 dark:border-amber-900/30">
-                                        <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                                            {locale === 'ko' ? '기도 앱 지원' : 'Support Prayer App'}
-                                        </h3>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                                            {locale === 'ko' 
-                                                ? '광고는 이 앱을 무료로 유지하는 데 도움이 됩니다.' 
-                                                : 'Ads help keep this app free.'}
-                                        </p>
-                                        <BuyMeCoffeeButton />
-                                    </div>
+                            {/* 데스크탑 사이드바 광고 */}
+                            <aside className="hidden lg:block w-[300px] flex-shrink-0 py-4">
+                                <div className="sticky top-4">
+                                    <KakaoAdFit size="300x250" />
                                 </div>
                             </aside>
                         </div>
@@ -135,14 +119,13 @@ export default async function LangLayout({
             </div>
 
             {/* 모바일 하단 고정 광고 */}
-            <MobileBottomAd adUnit="DAN-KjikwPCf2qoxvvyj" />
+            <MobileBottomAd />
 
             <Toaster
                 position="top-center"
                 richColors
                 closeButton
             />
-            <BuyMeCoffeeButton/>
         </div>
     );
 }

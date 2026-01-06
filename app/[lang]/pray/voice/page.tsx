@@ -5,7 +5,6 @@ import logo from "@/app/logo.png";
 import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/get-dictionary';
 import { InContentAd } from '@/shared/components/InContentAd';
-import { ResponsiveBannerAd } from '@/shared/components/ResponsiveBannerAd';
 
 export default async function VoicePrayerPage({
     params,
@@ -68,20 +67,12 @@ export default async function VoicePrayerPage({
                     </div>
                 </section>
 
-                <InContentAd 
-                    adUnit="DAN-KjikwPCf2qoxvvyj"
-                    width={300}
-                    height={250}
-                />
+                <InContentAd />
 
                 {/* Client interactive recorder */}
                 <div className="flex justify-center w-full">
                     <VoicePrayerClient />
                 </div>
-
-                <ResponsiveBannerAd 
-                    adUnit="DAN-KjikwPCf2qoxvvyj"
-                />
 
                 {/* Simple info card at bottom */}
                 <div
@@ -116,11 +107,7 @@ export default async function VoicePrayerPage({
                     </blockquote>
                 </div>
 
-                <InContentAd 
-                    adUnit="DAN-KjikwPCf2qoxvvyj"
-                    width={300}
-                    height={250}
-                />
+                <InContentAd />
             </main>
         </div>
     );

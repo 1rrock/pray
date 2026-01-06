@@ -96,13 +96,8 @@ export function AdInterstitial({ onComplete, duration = 5 }: AdInterstitialProps
                     </motion.div>
                 </div>
 
-                {/* 광고 슬롯 */}
                 <div className="flex justify-center">
-                    <InContentAd 
-                        adUnit="DAN-KjikwPCf2qoxvvyj"
-                        width={300}
-                        height={250}
-                    />
+                    <InContentAd />
                 </div>
 
                 {/* 카운트다운 */}

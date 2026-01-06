@@ -78,11 +78,7 @@ export default function SharedPrayerPage({ params }: { params: Promise<{ id: str
             </p>
           </div>
 
-          <InContentAd 
-            adUnit="DAN-KjikwPCf2qoxvvyj"
-            width={300}
-            height={250}
-          />
+          <InContentAd />
 
           <button
             onClick={() => router.push(`/${locale}`)}
@@ -141,11 +137,7 @@ export default function SharedPrayerPage({ params }: { params: Promise<{ id: str
         </div>
       </motion.section>
 
-      <InContentAd 
-        adUnit="DAN-KjikwPCf2qoxvvyj"
-        width={300}
-        height={250}
-      />
+      <InContentAd />
     </div>
   );
 }

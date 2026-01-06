@@ -7,7 +7,6 @@ type Dictionary = {
   common: Record<string, string>;
   home: Record<string, string>;
   prayer: Record<string, string>;
-  support: Record<string, string>;
   footer: Record<string, string>;
 };
 

@@ -1,9 +1,9 @@
 "use client";
 import logo from "@/app/logo.png";
 import Image from "next/image";
-import {ArrowLeft} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import React from "react";
-import {useRouter, usePathname} from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { type Locale } from '@/i18n/config';
 import { InContentAd } from '@/shared/components/InContentAd';
 
@@ -15,12 +15,12 @@ export default function PrivacyPage() {
     const isKo = locale === 'ko';
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 dark:bg-gradient-to-br dark:from-amber-950 dark:via-yellow-950 dark:to-amber-900 py-12 px-4">
+        <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 dark:bg-gradient-to-br dark:from-amber-950 dark:via-yellow-950 dark:to-amber-900 py-12 px-2">
             <div className="mx-auto max-w-4xl bg-white dark:bg-amber-950/90 rounded-2xl shadow-2xl overflow-hidden">
                 <div className="p-10 md:p-14">
                     <header className="text-center border-b pb-8 mb-8">
                         <div className="inline-flex items-center justify-center w-20 h-20 bg-white dark:bg-gray-800 rounded-full shadow-lg overflow-hidden">
-                            <Image src={logo} alt="logo"/>
+                            <Image src={logo} alt="logo" />
                         </div>
                         <h1 className="text-3xl font-extrabold text-amber-900 dark:text-amber-100">
                             {isKo ? '개인정보처리방침' : 'Privacy Policy'}
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
                                 onClick={() => router.push(locale === 'ko' ? '/ko' : '/en')}
                                 className="text-sm text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-200 py-2 flex items-center gap-2 font-medium transition-colors"
                             >
-                                <ArrowLeft className="w-4 h-4"/>
+                                <ArrowLeft className="w-4 h-4" />
                                 {isKo ? '처음으로' : 'Back Home'}
                             </button>
                         </div>

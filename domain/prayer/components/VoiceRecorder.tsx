@@ -1,13 +1,14 @@
 'use client';
 
-import React, {useState, useRef, useCallback, useEffect} from 'react';
-import {Mic, Send, Sparkles, ArrowLeft} from 'lucide-react';
-import {motion} from 'framer-motion';
-import {Button} from '@/shared/components/ui/button';
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/shared/components/ui/card';
-import {usePrayerStore} from '../store/prayerStore';
-import {useSpeechToTextMutation} from '../api/query';
-import {ERROR_MESSAGES, LIMITS} from '../api/constant';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { Mic, Send, Sparkles, ArrowLeft } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Button } from '@/shared/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/shared/components/ui/card';
+import { usePrayerStore } from '../store/prayerStore';
+import { useSpeechToTextMutation } from '../api/query';
+import { ERROR_MESSAGES, LIMITS } from '../api/constant';
+import { KakaoAdFit } from '@/shared/components/KakaoAdFit';
 
 interface VoiceRecorderProps {
     onTranscriptionComplete: (text: string) => void;
@@ -16,8 +17,8 @@ interface VoiceRecorderProps {
     locale?: 'ko' | 'en';
 }
 
-export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = false, locale = 'ko'}: VoiceRecorderProps) {
-    const {isRecording, setRecording, setError} = usePrayerStore();
+export function VoiceRecorder({ onTranscriptionComplete, onClose, isNavigating = false, locale = 'ko' }: VoiceRecorderProps) {
+    const { isRecording, setRecording, setError } = usePrayerStore();
     const [recordingTime, setRecordingTime] = useState(0);
     const [submissionStarted, setSubmissionStarted] = useState(false); // <-- new
     const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -89,7 +90,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                 return;
             }
 
-            const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             const mediaRecorder = new MediaRecorder(stream);
             mediaRecorderRef.current = mediaRecorder;
             audioChunksRef.current = [];
@@ -170,7 +171,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                         className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-300 via-amber-300 to-yellow-400 dark:from-yellow-600 dark:via-amber-600 dark:to-yellow-700 flex items-center justify-center border-2 border-amber-400 dark:border-amber-500"
                         role="img"
                         aria-label="반짝이는 별 아이콘">
-                        <Sparkles className="w-8 h-8 text-amber-900 dark:text-amber-100" aria-hidden="true"/>
+                        <Sparkles className="w-8 h-8 text-amber-900 dark:text-amber-100" aria-hidden="true" />
                     </div>
                 </div>
                 <CardTitle className="text-2xl text-amber-900 dark:text-amber-100">
@@ -185,12 +186,12 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                 {/* 마이크 아이콘 */}
                 <div className="flex justify-center" role="status" aria-live="polite" aria-label={isRecording ? "녹음 중" : "녹음 대기"}>
                     <motion.div
-                        animate={isRecording ? {scale: [1, 1.1, 1]} : {}}
-                        transition={{repeat: Infinity, duration: 1.5}}
+                        animate={isRecording ? { scale: [1, 1.1, 1] } : {}}
+                        transition={{ repeat: Infinity, duration: 1.5 }}
                         className="w-40 h-40 rounded-full bg-gradient-to-br from-amber-200 to-yellow-300 dark:from-amber-800/40 dark:to-yellow-800/40 flex items-center justify-center border-4 border-amber-300 dark:border-amber-700 shadow-lg"
                         role="img"
                         aria-label="마이크 아이콘">
-                        <Mic className="w-20 h-20 text-amber-900 dark:text-amber-200" aria-hidden="true"/>
+                        <Mic className="w-20 h-20 text-amber-900 dark:text-amber-200" aria-hidden="true" />
                     </motion.div>
                 </div>
 
@@ -199,8 +200,8 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                     {(isProcessing || isNavigating || submissionStarted) ? (
                         <div className="space-y-2">
                             <motion.div
-                                animate={{rotate: 360}}
-                                transition={{duration: 1, repeat: Infinity, ease: "linear"}}
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                                 className="w-8 h-8 border-3 border-amber-700 dark:border-amber-300 border-t-transparent rounded-full mx-auto"
                             />
                             <p className="text-amber-800 dark:text-amber-200 font-medium text-lg">
@@ -238,6 +239,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
             </CardContent>
 
             <CardFooter className="flex-col gap-3">
+                <KakaoAdFit size="320x50" />
                 {/* Start recording button when idle */}
                 {!isRecording && !isProcessing && !isNavigating && !submissionStarted && (
                     <Button
@@ -247,7 +249,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                         type="button"
                         aria-label="녹음 시작"
                     >
-                        <Mic className="mr-2 h-5 w-5" aria-hidden="true"/>
+                        <Mic className="mr-2 h-5 w-5" aria-hidden="true" />
                         녹음 시작
                     </Button>
                 )}
@@ -261,7 +263,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                         type="button"
                         aria-label="녹음 완료하고 기도 올리기"
                     >
-                        <Send className="mr-2 h-5 w-5" aria-hidden="true"/>
+                        <Send className="mr-2 h-5 w-5" aria-hidden="true" />
                         말씀 응답 받기
                     </Button>
                 )}
@@ -272,7 +274,7 @@ export function VoiceRecorder({onTranscriptionComplete, onClose, isNavigating = 
                     className="text-sm text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-200 py-2 flex items-center gap-2 font-medium transition-colors"
                     aria-label="음성 녹음 취소하고 처음으로 돌아가기"
                 >
-                    <ArrowLeft className="w-4 h-4" aria-hidden="true"/>
+                    <ArrowLeft className="w-4 h-4" aria-hidden="true" />
                     처음으로
                 </button>
             </CardFooter>

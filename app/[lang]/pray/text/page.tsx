@@ -17,7 +17,7 @@ export default async function TextPrayerPage({
     const dict = await getDictionary(locale);
 
     return (
-        <div className="min-h-screen py-8 px-4">
+        <div className="min-h-screen py-8 px-2">
             <div className="w-full max-w-3xl mx-auto space-y-8">
                 {/* Simple logo header - matching main page */}
                 <div className="flex justify-center">
@@ -58,8 +58,6 @@ export default async function TextPrayerPage({
                         </cite>
                     </blockquote>
                 </div>
-
-                <InContentAd />
             </div>
         </div>
     );

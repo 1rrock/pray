@@ -59,11 +59,10 @@ export default function LanguageSwitcher({ currentLocale }: { currentLocale: Loc
               <button
                 key={locale}
                 onClick={() => switchLocale(locale)}
-                className={`w-full text-left px-4 py-3 text-sm hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors ${
-                  locale === currentLocale
+                className={`w-full text-left px-4 py-3 text-sm hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors ${locale === currentLocale
                     ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-900 dark:text-amber-100 font-semibold'
                     : 'text-gray-700 dark:text-gray-300'
-                }`}
+                  }`}
               >
                 {localeNames[locale]}
               </button>

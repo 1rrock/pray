@@ -1,8 +1,8 @@
 'use client';
 
-import {useRouter} from 'next/navigation';
-import {Mic, Edit3} from 'lucide-react';
-import {Button} from '@/shared/components/ui/button';
+import { useRouter } from 'next/navigation';
+import { Mic, Edit3 } from 'lucide-react';
+import { Button } from '@/shared/components/ui/button';
 import { type Locale } from '@/i18n/config';
 
 const texts = {
@@ -23,7 +23,7 @@ export function PrayerInput({ lang }: { lang: Locale }) {
     const t = texts[lang];
 
     return (
-        <div className="max-w-2xl mx-auto px-4">
+        <div className="max-w-2xl mx-auto px-2">
             {/* 입력 방법 버튼 */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* 음성 기도 버튼 */}
@@ -35,7 +35,7 @@ export function PrayerInput({ lang }: { lang: Locale }) {
                 >
                     <div className="flex flex-col items-center gap-2.5">
                         <div className="w-11 h-11 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                            <Mic className="h-5 w-5"/>
+                            <Mic className="h-5 w-5" />
                         </div>
                         <span className="text-base leading-tight">{t.voice}</span>
                     </div>
@@ -51,7 +51,7 @@ export function PrayerInput({ lang }: { lang: Locale }) {
                 >
                     <div className="flex flex-col items-center gap-2.5">
                         <div className="w-11 h-11 bg-amber-100 dark:bg-amber-900 rounded-full flex items-center justify-center group-hover:bg-amber-200 dark:group-hover:bg-amber-800 transition-colors">
-                            <Edit3 className="h-5 w-5 text-amber-700 dark:text-amber-300"/>
+                            <Edit3 className="h-5 w-5 text-amber-700 dark:text-amber-300" />
                         </div>
                         <span className="text-base leading-tight">{t.text}</span>
                     </div>

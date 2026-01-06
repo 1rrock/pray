@@ -16,7 +16,7 @@ export default async function VoicePrayerPage({
     const dict = await getDictionary(locale);
 
     return (
-        <div className="min-h-screen py-8 px-4">
+        <div className="min-h-screen py-8 px-2">
             <main className="w-full max-w-3xl mx-auto space-y-8">
                 {/* Simple logo header - matching main page */}
                 <div className="flex justify-center">
@@ -65,8 +65,6 @@ export default async function VoicePrayerPage({
                         </cite>
                     </blockquote>
                 </div>
-
-                <InContentAd />
             </main>
         </div>
     );

@@ -1,29 +1,31 @@
 import PrayerLandingClient from '@/domain/prayer/components/PrayerLandingClient';
-import {InContentAd} from '@/shared/components/InContentAd';
+import { InContentAd } from '@/shared/components/InContentAd';
 import Image from "next/image";
 import logo from '../logo.png';
-import {Book, Shield, Sparkles, ChevronDown} from 'lucide-react';
-import {type Locale} from '@/i18n/config';
-import {getDictionary} from '@/i18n/get-dictionary';
+import { Book, Shield, Sparkles, ChevronDown } from 'lucide-react';
+import { type Locale } from '@/i18n/config';
+import { getDictionary } from '@/i18n/get-dictionary';
 import Link from "next/link";
+import { KakaoAdFit } from '@/shared/components/KakaoAdFit';
 
 export default async function Home({
-                                       params,
-                                   }: {
+    params,
+}: {
     params: Promise<{ lang: Locale }>;
 }) {
-    const {lang} = await params;
+    const { lang } = await params;
     const dict = await getDictionary(lang);
 
     return (
-        <div className="dark:bg-gray-900 min-h-screen flex items-center flex-col justify-center py-12 px-4">
+        <div className="dark:bg-gray-900 min-h-screen flex items-center flex-col justify-center py-12 px-2">
             <main id="main-content" className="w-full max-w-4xl" role="main" aria-label={`Amen ${dict.home.title}`}>
                 {/* Hero Section */}
                 <header className="text-center space-y-6 mb-12">
                     <div
                         className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900 dark:to-amber-800 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
-                        <Image src={logo} alt={dict.common.logo_alt} className="w-full h-full"/>
+                        <Image src={logo} alt={dict.common.logo_alt} className="w-full h-full" />
                     </div>
+
                     <div className="space-y-3">
                         <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 dark:from-amber-300 dark:via-rose-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
                             {dict.home.title}
@@ -38,18 +40,20 @@ export default async function Home({
                 </header>
 
                 {/* CTA Section */}
-                <div className="mb-16">
-                    <PrayerLandingClient lang={lang}/>
+                <div className="mb-4">
+                    <PrayerLandingClient lang={lang} />
                 </div>
 
+                <InContentAd className="max-w-3xl mx-auto" />
+
                 {/* Features section */}
-                <section className="mb-12 max-w-3xl mx-auto">
+                <section className="mb-4 max-w-3xl mx-auto">
                     <div className="grid md:grid-cols-3 gap-4">
                         <article
                             className="flex flex-col items-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-5 hover:shadow-lg transition-shadow border border-amber-100 dark:border-amber-900/30">
                             <div
                                 className="w-10 h-10 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900 dark:to-amber-800 rounded-xl flex items-center justify-center mb-3">
-                                <Book className="w-5 h-5 text-amber-700 dark:text-amber-300"/>
+                                <Book className="w-5 h-5 text-amber-700 dark:text-amber-300" />
                             </div>
                             <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-1.5">
                                 {dict.home.feature1_title}
@@ -63,7 +67,7 @@ export default async function Home({
                             className="flex flex-col items-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-5 hover:shadow-lg transition-shadow border border-amber-100 dark:border-amber-900/30">
                             <div
                                 className="w-10 h-10 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900 dark:to-amber-800 rounded-xl flex items-center justify-center mb-3">
-                                <Sparkles className="w-5 h-5 text-amber-700 dark:text-amber-300"/>
+                                <Sparkles className="w-5 h-5 text-amber-700 dark:text-amber-300" />
                             </div>
                             <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-1.5">
                                 {dict.home.feature2_title}
@@ -77,7 +81,7 @@ export default async function Home({
                             className="flex flex-col items-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-5 hover:shadow-lg transition-shadow border border-amber-100 dark:border-amber-900/30">
                             <div
                                 className="w-10 h-10 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900 dark:to-amber-800 rounded-xl flex items-center justify-center mb-3">
-                                <Shield className="w-5 h-5 text-amber-700 dark:text-amber-300"/>
+                                <Shield className="w-5 h-5 text-amber-700 dark:text-amber-300" />
                             </div>
                             <h2 className="text-base font-semibold text-gray-900 dark:text-white mb-1.5">
                                 {dict.home.feature3_title}
@@ -88,11 +92,10 @@ export default async function Home({
                         </article>
                     </div>
                 </section>
-
-                <InContentAd className="max-w-3xl mx-auto" />
+                <KakaoAdFit size="320x50" />
 
                 {/* How it works section */}
-                <details className="mb-8 max-w-3xl mx-auto group">
+                <details className="mt-4 mb-0 max-w-3xl mx-auto group">
                     <summary className="cursor-pointer list-none">
                         <div
                             className="flex items-center justify-between bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-5 hover:shadow-lg transition-all border border-amber-100 dark:border-amber-900/30">
@@ -100,7 +103,7 @@ export default async function Home({
                                 {lang === 'ko' ? '어떻게 사용하나요?' : 'How does it work?'}
                             </h2>
                             <ChevronDown
-                                className="w-5 h-5 text-amber-600 dark:text-amber-400 transition-transform group-open:rotate-180"/>
+                                className="w-5 h-5 text-amber-600 dark:text-amber-400 transition-transform group-open:rotate-180" />
                         </div>
                     </summary>
                     <div

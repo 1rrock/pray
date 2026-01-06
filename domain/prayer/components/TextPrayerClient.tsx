@@ -1,15 +1,16 @@
 'use client';
 
-import React, {useState} from 'react';
-import {useRouter, usePathname} from 'next/navigation';
-import {motion} from 'framer-motion';
-import {ArrowLeft, Send, Sparkles} from 'lucide-react';
-import {Button} from '@/shared/components/ui/button';
-import {Textarea} from '@/shared/components/ui/textarea';
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/shared/components/ui/card';
-import {usePrayer} from '@/domain/prayer/hooks/usePrayer';
-import {LIMITS} from '@/domain/prayer/api/constant';
-import {usePrayerStore} from '@/domain/prayer/store/prayerStore';
+import React, { useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Send, Sparkles } from 'lucide-react';
+import { Button } from '@/shared/components/ui/button';
+import { Textarea } from '@/shared/components/ui/textarea';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/shared/components/ui/card';
+import { usePrayer } from '@/domain/prayer/hooks/usePrayer';
+import { LIMITS } from '@/domain/prayer/api/constant';
+import { usePrayerStore } from '@/domain/prayer/store/prayerStore';
+import { KakaoAdFit } from '@/shared/components/KakaoAdFit';
 
 export default function TextPrayerClient() {
     const router = useRouter();
@@ -17,8 +18,8 @@ export default function TextPrayerClient() {
     const locale = pathname.startsWith('/en') ? 'en' : 'ko';
     const [prayerText, setPrayerText] = useState('');
     const [isNavigating, setIsNavigating] = useState(false);
-    const {submitPrayer, isLoading} = usePrayer();
-    const {recipientName, setRecipientName} = usePrayerStore();
+    const { submitPrayer, isLoading } = usePrayer();
+    const { recipientName, setRecipientName } = usePrayerStore();
 
     const texts = {
         ko: {
@@ -85,16 +86,16 @@ export default function TextPrayerClient() {
         <>
             {(isLoading || isNavigating) ? (
                 <motion.div
-                    initial={{opacity: 0, scale: 0.9}}
-                    animate={{opacity: 1, scale: 1}}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     className="flex flex-col justify-center space-y-6"
                 >
                     <div className="text-center space-y-8 max-w-md">
                         <div className="flex justify-center">
                             <div className="relative w-24 h-24">
                                 <motion.div
-                                    animate={{rotate: 360}}
-                                    transition={{duration: 2, repeat: Infinity, ease: "linear"}}
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                                     className="absolute inset-0 rounded-full border-4 border-amber-200 dark:border-amber-900 border-t-amber-600 dark:border-t-amber-400"
                                 />
                             </div>
@@ -111,8 +112,8 @@ export default function TextPrayerClient() {
                 </motion.div>
             ) : (
                 <motion.div
-                    initial={{opacity: 0, y: 20}}
-                    animate={{opacity: 1, y: 0}}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
                     className="w-full max-w-2xl"
                 >
                     <form onSubmit={handleSubmit}>
@@ -123,7 +124,7 @@ export default function TextPrayerClient() {
                                         className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-300 via-amber-300 to-yellow-400 dark:from-yellow-600 dark:via-amber-600 dark:to-yellow-700 flex items-center justify-center border-2 border-amber-400 dark:border-amber-500"
                                         role="img"
                                         aria-label={locale === 'ko' ? '반짝이는 별 아이콘' : 'Sparkling star icon'}>
-                                        <Sparkles className="w-8 h-8 text-amber-900 dark:text-amber-100" aria-hidden="true"/>
+                                        <Sparkles className="w-8 h-8 text-amber-900 dark:text-amber-100" aria-hidden="true" />
                                     </div>
                                 </div>
                                 <CardTitle className="text-2xl text-amber-900 dark:text-amber-100">
@@ -147,7 +148,7 @@ export default function TextPrayerClient() {
                                         value={recipientName}
                                         onChange={handleNameChange}
                                         placeholder={t.namePlaceholder}
-                                        className="w-full px-4 py-3 border-2 border-amber-300 dark:border-amber-700 focus:border-amber-500 dark:focus:border-amber-500 bg-white/80 dark:bg-amber-950/80 text-amber-900 dark:text-amber-100 placeholder:text-amber-500/60 dark:placeholder:text-amber-500/60 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                                        className="w-full px-2 py-3 border-2 border-amber-300 dark:border-amber-700 focus:border-amber-500 dark:focus:border-amber-500 bg-white/80 dark:bg-amber-950/80 text-amber-900 dark:text-amber-100 placeholder:text-amber-500/60 dark:placeholder:text-amber-500/60 rounded-xl text-base focus:outline-none focus:ring-2 focus:ring-amber-500/20"
                                     />
                                     <p className="text-xs text-amber-600 dark:text-amber-400">
                                         {t.nameHint.replace('{name}', recipientName || '000')}
@@ -171,13 +172,14 @@ export default function TextPrayerClient() {
                             </CardContent>
 
                             <CardFooter className="flex-col gap-3">
+                                <KakaoAdFit size="320x50" />
                                 <Button
                                     type="submit"
                                     size="lg"
                                     className="w-full h-14 bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-600 hover:via-amber-600 hover:to-yellow-700 text-amber-900 font-semibold shadow-lg text-base"
                                     disabled={!prayerText.trim()}
                                 >
-                                    <Send className="mr-2 h-5 w-5"/>
+                                    <Send className="mr-2 h-5 w-5" />
                                     {t.submit}
                                 </Button>
 
@@ -186,7 +188,7 @@ export default function TextPrayerClient() {
                                     onClick={() => router.push(`/${locale}`)}
                                     className="text-sm text-amber-700 dark:text-amber-400 hover:text-amber-900 dark:hover:text-amber-200 py-2 flex items-center gap-2 font-medium transition-colors"
                                 >
-                                    <ArrowLeft className="w-4 h-4"/>
+                                    <ArrowLeft className="w-4 h-4" />
                                     {t.cancel}
                                 </button>
                             </CardFooter>

@@ -37,9 +37,9 @@ function generateAdId() {
 }
 
 function isAdfitReady(): boolean {
-  return typeof window.adfit === 'object' && 
-         window.adfit !== null && 
-         typeof window.adfit.display === 'function';
+  return typeof window.adfit === 'object' &&
+    window.adfit !== null &&
+    typeof window.adfit.display === 'function';
 }
 
 export function KakaoAdFit({ size = '300x250', className = '' }: KakaoAdFitProps) {
@@ -56,12 +56,12 @@ export function KakaoAdFit({ size = '300x250', className = '' }: KakaoAdFitProps
 
   useEffect(() => {
     if (!adId) return;
-    
+
     displayedRef.current = false;
-    
+
     const displayAd = () => {
       if (displayedRef.current || !adRef.current) return;
-      
+
       if (isAdfitReady()) {
         try {
           window.adfit!.display(adId);
@@ -97,7 +97,7 @@ export function KakaoAdFit({ size = '300x250', className = '' }: KakaoAdFitProps
       if (displayedRef.current && window.adfit?.destroy) {
         try {
           window.adfit.destroy(adId);
-        } catch (e) {}
+        } catch (e) { }
       }
     };
   }, [adId]);

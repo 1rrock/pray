@@ -1,9 +1,9 @@
-import type {Metadata} from "next";
-import {ReactQueryProvider} from "@/shared/providers/ReactQueryProvider";
-import {Toaster} from "sonner";
+import type { Metadata } from "next";
+import { ReactQueryProvider } from "@/shared/providers/ReactQueryProvider";
+import { Toaster } from "sonner";
 
 import LanguageSwitcher from "@/shared/components/LanguageSwitcher";
-import {LeftSidebarAdContainer, RightSidebarAdContainer, MobileBottomAdContainer} from "@/shared/components/AdContainer";
+import { LeftSidebarAdContainer, RightSidebarAdContainer, MobileBottomAdContainer } from "@/shared/components/AdContainer";
 import { type Locale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import BuyMeCoffeeButton from "@/shared/components/BuyMeCoffeButton";
@@ -27,7 +27,7 @@ export async function generateMetadata({
         title: dict.common.title,
         description: dict.common.description,
         keywords: ['기도', '셀라', "아멘", 'Amen', '성경', '성경말씀', '말씀', 'AI', '인공지능', '기독교', '성경구절', '영적상담', '하나님', '예수님', '성령', '신앙', '믿음', '온라인기도', '묵상', 'prayer', 'bible', 'scripture', 'christian', 'faith', 'God', 'Jesus'],
-        authors: [{name: 'Amen'}],
+        authors: [{ name: 'Amen' }],
         creator: 'Amen',
         publisher: 'Amen',
         metadataBase: new URL(baseUrl),
@@ -95,16 +95,16 @@ export default async function LangLayout({
             >
                 {dict.common.skip_to_content}
             </a>
-            <LanguageSwitcher currentLocale={locale}/>
+            <LanguageSwitcher currentLocale={locale} />
 
             {/* 메인 컨텐츠 영역 */}
             <div className="relative pb-16 lg:pb-0">
                 <ReactQueryProvider>
-                    <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                    <div className="max-w-7xl mx-auto px-2 lg:px-8">
                         <div className="flex flex-col lg:flex-row lg:justify-center gap-4 lg:gap-6">
                             {/* 좌측 사이드바 광고 (데스크탑 전용) */}
                             <aside className="hidden xl:block w-[160px] flex-shrink-0 py-4">
-                                <div className="sticky top-4">
+                                <div className="sticky top-1/2 -translate-y-1/2">
                                     <LeftSidebarAdContainer />
                                 </div>
                             </aside>
@@ -113,10 +113,10 @@ export default async function LangLayout({
                             <main id="main-content" className="flex-1 max-w-3xl py-4">
                                 {children}
                             </main>
-                            
+
                             {/* 우측 사이드바 광고 (데스크탑 전용) */}
                             <aside className="hidden xl:block w-[160px] flex-shrink-0 py-4">
-                                <div className="sticky top-4">
+                                <div className="sticky top-1/2 -translate-y-1/2">
                                     <RightSidebarAdContainer />
                                 </div>
                             </aside>
@@ -125,10 +125,7 @@ export default async function LangLayout({
                 </ReactQueryProvider>
             </div>
 
-            {/* 모바일 하단 고정 광고 */}
-            <MobileBottomAdContainer />
-
-            <BuyMeCoffeeButton/>
+            <BuyMeCoffeeButton />
 
             <Toaster
                 position="top-center"

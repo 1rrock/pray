@@ -3,6 +3,18 @@
 import { useEffect, useRef, useId, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
+type SidebarPosition = 'left' | 'right';
+
+interface SidebarAdProps {
+  position: SidebarPosition;
+  className?: string;
+}
+
+const AD_UNITS = {
+  left: 'DAN-e84TRQy2YthaXlvB',
+  right: 'DAN-tOtSQS8P6ZiPYHbu',
+} as const;
+
 declare global {
   interface Window {
     adfit?: {
@@ -12,12 +24,8 @@ declare global {
   }
 }
 
-interface InContentAdProps {
-  className?: string;
-}
-
-function generateAdId() {
-  return `kakao-incontent-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+function generateAdId(position: SidebarPosition) {
+  return `kakao-sidebar-${position}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
 function isAdfitReady(): boolean {
@@ -26,16 +34,17 @@ function isAdfitReady(): boolean {
          typeof window.adfit.display === 'function';
 }
 
-export function InContentAd({ className = '' }: InContentAdProps) {
+export function SidebarAd({ position, className = '' }: SidebarAdProps) {
   const pathname = usePathname();
   const reactId = useId();
   const [adId, setAdId] = useState<string | null>(null);
   const adRef = useRef<HTMLModElement>(null);
   const displayedRef = useRef(false);
+  const adUnit = AD_UNITS[position];
 
   useEffect(() => {
-    setAdId(generateAdId());
-  }, [pathname]);
+    setAdId(generateAdId(position));
+  }, [pathname, position]);
 
   useEffect(() => {
     if (!adId) return;
@@ -50,7 +59,7 @@ export function InContentAd({ className = '' }: InContentAdProps) {
           window.adfit!.display(adId);
           displayedRef.current = true;
         } catch (e) {
-          console.warn('AdFit display error:', e);
+          console.warn('AdFit sidebar display error:', e);
         }
       }
     };
@@ -88,15 +97,15 @@ export function InContentAd({ className = '' }: InContentAdProps) {
   if (!adId) return null;
 
   return (
-    <div className={`flex justify-center my-6 ${className}`} key={`${pathname}-${reactId}`}>
+    <div className={`flex justify-center ${className}`} key={`${pathname}-${reactId}-sidebar-${position}`}>
       <ins
         ref={adRef}
         id={adId}
         className="kakao_ad_area"
         style={{ display: 'none' }}
-        data-ad-unit="DAN-KjikwPCf2qoxvvyj"
-        data-ad-width="300"
-        data-ad-height="250"
+        data-ad-unit={adUnit}
+        data-ad-width="160"
+        data-ad-height="600"
       />
     </div>
   );

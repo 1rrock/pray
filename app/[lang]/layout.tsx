@@ -3,10 +3,10 @@ import {ReactQueryProvider} from "@/shared/providers/ReactQueryProvider";
 import {Toaster} from "sonner";
 
 import LanguageSwitcher from "@/shared/components/LanguageSwitcher";
-import {KakaoAdFit} from "@/shared/components/KakaoAdFit";
-import {MobileBottomAd} from "@/shared/components/MobileBottomAd";
+import {LeftSidebarAdContainer, RightSidebarAdContainer, MobileBottomAdContainer} from "@/shared/components/AdContainer";
 import { type Locale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
+import BuyMeCoffeeButton from "@/shared/components/BuyMeCoffeButton";
 
 export async function generateStaticParams() {
     return locales.map((locale) => ({ lang: locale }));
@@ -101,16 +101,23 @@ export default async function LangLayout({
             <div className="relative pb-16 lg:pb-0">
                 <ReactQueryProvider>
                     <div className="max-w-7xl mx-auto px-4 lg:px-8">
-                        <div className="flex flex-col lg:flex-row gap-8">
+                        <div className="flex flex-col lg:flex-row lg:justify-center gap-4 lg:gap-6">
+                            {/* 좌측 사이드바 광고 (데스크탑 전용) */}
+                            <aside className="hidden xl:block w-[160px] flex-shrink-0 py-4">
+                                <div className="sticky top-4">
+                                    <LeftSidebarAdContainer />
+                                </div>
+                            </aside>
+
                             {/* 메인 컨텐츠 */}
-                            <main id="main-content" className="flex-1 py-4">
+                            <main id="main-content" className="flex-1 max-w-3xl py-4">
                                 {children}
                             </main>
                             
-                            {/* 데스크탑 사이드바 광고 */}
-                            <aside className="hidden lg:block w-[300px] flex-shrink-0 py-4">
+                            {/* 우측 사이드바 광고 (데스크탑 전용) */}
+                            <aside className="hidden xl:block w-[160px] flex-shrink-0 py-4">
                                 <div className="sticky top-4">
-                                    <KakaoAdFit size="300x250" />
+                                    <RightSidebarAdContainer />
                                 </div>
                             </aside>
                         </div>
@@ -119,7 +126,9 @@ export default async function LangLayout({
             </div>
 
             {/* 모바일 하단 고정 광고 */}
-            <MobileBottomAd />
+            <MobileBottomAdContainer />
+
+            <BuyMeCoffeeButton/>
 
             <Toaster
                 position="top-center"

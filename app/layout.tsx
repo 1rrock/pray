@@ -3,6 +3,7 @@ import {Geist, Geist_Mono, Noto_Serif_KR, Nanum_Myeongjo} from "next/font/google
 import "./globals.css";
 import JsonLd from "./JsonLd";
 import { defaultLocale } from "@/i18n/config";
+import { AdFitScript } from "@/shared/components/AdFitScript";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -115,16 +116,12 @@ export default function RootLayout(
         <html lang={defaultLocale}>
         <head>
             <JsonLd/>
-            <script 
-                type="text/javascript" 
-                src="//t1.daumcdn.net/kas/static/ba.min.js" 
-                async
-            />
         </head>
         <body
             className={`${geistSans.variable} ${geistMono.variable} ${notoSerifKR.variable} ${nanumMyeongjo.variable}`}
         >
         {children}
+        <AdFitScript />
         </body>
         </html>
     );

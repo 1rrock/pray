@@ -1,18 +1,18 @@
 'use client';
 
-import {useRouter, useSearchParams, usePathname} from 'next/navigation';
-import {motion} from 'framer-motion';
-import {ResponseDisplay} from '@/domain/prayer/components/ResponseDisplay';
-import {usePrayerStore} from '@/domain/prayer/store/prayerStore';
-import {useEffect, useState} from 'react';
-import type {AIResponse} from '@/domain/prayer/api/type';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { ResponseDisplay } from '@/domain/prayer/components/ResponseDisplay';
+import { usePrayerStore } from '@/domain/prayer/store/prayerStore';
+import { useEffect, useState } from 'react';
+import type { AIResponse } from '@/domain/prayer/api/type';
 
 export default function ScriptureClient() {
     const router = useRouter();
     const pathname = usePathname();
     const locale = pathname.startsWith('/en') ? 'en' : 'ko';
     const searchParams = useSearchParams();
-    const {response, reset} = usePrayerStore();
+    const { response, reset } = usePrayerStore();
     const [hasCrisis, setHasCrisis] = useState(false);
     const [sharedResponse, setSharedResponse] = useState<AIResponse | null>(null);
 
@@ -75,10 +75,10 @@ export default function ScriptureClient() {
 
     return (
         <div
-            className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 dark:bg-gradient-to-br dark:from-amber-950 dark:via-yellow-950 dark:to-amber-900 flex items-center justify-center py-8">
+            className="flex items-center justify-center py-8">
             <motion.div
-                initial={{opacity: 0, y: 30, scale: 0.95}}
-                animate={{opacity: 1, y: 0, scale: 1}}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
                     duration: 0.6,
                     ease: [0.16, 1, 0.3, 1],

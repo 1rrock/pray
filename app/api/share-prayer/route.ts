@@ -48,12 +48,16 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Save prayer error:', error);
     
-    const errorMessage = error instanceof Error ? error.message : '저장 중 오류가 발생했습니다.';
+    const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류';
+    const errorStack = error instanceof Error ? error.stack : undefined;
     
     return NextResponse.json(
       { 
         error: '저장 중 오류가 발생했습니다.',
-        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+        message: errorMessage,
+        stack: errorStack,
+        redisUrl: process.env.REDIS_URL ? 'SET' : 'NOT_SET',
+        timestamp: new Date().toISOString()
       },
       { status: 500 }
     );

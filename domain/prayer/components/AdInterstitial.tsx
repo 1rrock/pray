@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { InContentAd } from '@/shared/components/InContentAd';
 
 interface AdInterstitialProps {
     onComplete: () => void;
@@ -26,7 +27,7 @@ const VERSES = [
     }
 ];
 
-export function AdInterstitial({ onComplete, duration = 3 }: AdInterstitialProps) {
+export function AdInterstitial({ onComplete, duration = 5 }: AdInterstitialProps) {
     const [timeLeft, setTimeLeft] = useState(duration);
     const [verseIndex, setVerseIndex] = useState(0);
 
@@ -56,9 +57,9 @@ export function AdInterstitial({ onComplete, duration = 3 }: AdInterstitialProps
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 dark:from-amber-950 dark:via-yellow-950 dark:to-amber-900 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 dark:from-amber-950 dark:via-yellow-950 dark:to-amber-900 z-50 flex items-center justify-center p-4 overflow-y-auto"
         >
-            <div className="text-center space-y-8 max-w-lg">
+            <div className="text-center space-y-8 max-w-lg py-8">
                 {/* 로딩 스피너 */}
                 <div className="flex justify-center">
                     <div className="relative w-24 h-24">
@@ -93,6 +94,15 @@ export function AdInterstitial({ onComplete, duration = 3 }: AdInterstitialProps
                             — {VERSES[verseIndex].ref}
                         </p>
                     </motion.div>
+                </div>
+
+                {/* 광고 슬롯 */}
+                <div className="flex justify-center">
+                    <InContentAd 
+                        adUnit="DAN-KjikwPCf2qoxvvyj"
+                        width={300}
+                        height={250}
+                    />
                 </div>
 
                 {/* 카운트다운 */}

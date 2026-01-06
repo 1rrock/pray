@@ -115,6 +115,11 @@ export default function RootLayout(
         <html lang={defaultLocale}>
         <head>
             <JsonLd/>
+            <script 
+                type="text/javascript" 
+                src="//t1.daumcdn.net/kas/static/ba.min.js" 
+                async
+            />
         </head>
         <body
             className={`${geistSans.variable} ${geistMono.variable} ${notoSerifKR.variable} ${nanumMyeongjo.variable}`}

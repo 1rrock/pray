@@ -1,4 +1,7 @@
 import PrayerLandingClient from '@/domain/prayer/components/PrayerLandingClient';
+import {KakaoAdFit} from '@/shared/components/KakaoAdFit';
+import {InContentAd} from '@/shared/components/InContentAd';
+import {ResponsiveBannerAd} from '@/shared/components/ResponsiveBannerAd';
 import Image from "next/image";
 import logo from '../logo.png';
 import {Book, Shield, Sparkles, ChevronDown} from 'lucide-react';
@@ -39,6 +42,17 @@ export default async function Home({
                 {/* CTA Section */}
                 <div className="mb-16">
                     <PrayerLandingClient lang={lang}/>
+                </div>
+
+                <div className="mb-12 flex justify-center">
+                    <div className="w-full max-w-[300px]">
+                        <KakaoAdFit 
+                            adUnit="DAN-KjikwPCf2qoxvvyj" 
+                            width={300} 
+                            height={250}
+                            className="rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
+                        />
+                    </div>
                 </div>
 
                 {/* Features section */}
@@ -88,25 +102,12 @@ export default async function Home({
                     </div>
                 </section>
 
-                {/* Scripture quote */}
-                <div className="mb-12 text-center max-w-2xl mx-auto">
-                    <blockquote className="relative">
-                        <div
-                            className="absolute -top-2 -left-2 text-6xl text-amber-200 dark:text-amber-900 font-serif leading-none">&ldquo;</div>
-                        <p className="text-base md:text-lg text-amber-800 dark:text-amber-300 font-serif italic px-8 py-4 leading-relaxed">
-                            {lang === 'ko'
-                                ? '구하라, 그리하면 너희에게 주실 것이요, 찾으라, 그리하면 찾아낼 것이요, 문을 두드리라, 그리하면 너희에게 열릴 것이니'
-                                : 'Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.'
-                            }
-                        </p>
-                        <cite
-                            className="block text-sm text-amber-700 dark:text-amber-400 font-semibold mt-2 not-italic">
-                            {lang === 'ko' ? '— 마태복음 7:7' : '— Matthew 7:7'}
-                        </cite>
-                        <div
-                            className="absolute bottom-4 -right-2 text-6xl text-amber-200 dark:text-amber-900 font-serif leading-none">&rdquo;</div>
-                    </blockquote>
-                </div>
+                <InContentAd 
+                    adUnit="DAN-KjikwPCf2qoxvvyj"
+                    width={300}
+                    height={250}
+                    className="max-w-3xl mx-auto"
+                />
 
                 {/* How it works section */}
                 <details className="mb-8 max-w-3xl mx-auto group">
@@ -171,6 +172,11 @@ export default async function Home({
                     </div>
                 </details>
             </main>
+
+            <ResponsiveBannerAd 
+                adUnit="DAN-KjikwPCf2qoxvvyj"
+                className="max-w-4xl mx-auto"
+            />
 
             {/* Footer */}
             <footer className="mt-12 pt-8 border-t border-amber-200 dark:border-amber-900/30 max-w-4xl mx-auto w-full">

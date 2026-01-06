@@ -4,6 +4,7 @@ import { use, useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { type Locale } from '@/i18n/config';
+import { InContentAd } from '@/shared/components/InContentAd';
 
 export default function SharedPrayerPage({ params }: { params: Promise<{ id: string; lang: string }> }) {
   const router = useRouter();
@@ -77,9 +78,15 @@ export default function SharedPrayerPage({ params }: { params: Promise<{ id: str
             </p>
           </div>
 
+          <InContentAd 
+            adUnit="DAN-KjikwPCf2qoxvvyj"
+            width={300}
+            height={250}
+          />
+
           <button
             onClick={() => router.push(`/${locale}`)}
-            className="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors"
+            className="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors mt-6"
           >
             {locale === 'ko' ? '홈으로 돌아가기' : 'Go Home'}
           </button>
@@ -133,6 +140,12 @@ export default function SharedPrayerPage({ params }: { params: Promise<{ id: str
           </p>
         </div>
       </motion.section>
+
+      <InContentAd 
+        adUnit="DAN-KjikwPCf2qoxvvyj"
+        width={300}
+        height={250}
+      />
     </div>
   );
 }

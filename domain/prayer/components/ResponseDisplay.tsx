@@ -9,6 +9,7 @@ import { CRISIS_RESOURCES } from '../api/constant';
 import { useRouter, usePathname } from "next/navigation";
 import { usePrayerStore } from '../store/prayerStore';
 import { toast } from 'sonner';
+import { InContentAd } from '@/shared/components/InContentAd';
 
 interface ResponseDisplayProps {
     response: AIResponse;
@@ -164,7 +165,6 @@ export function ResponseDisplay({
 
     return (
         <div className="w-full max-w-4xl mx-auto space-y-6 px-4" id="prayer-response-card">
-            {/* 위기 감지 카드 */}
             {hasCrisis && (
                 <Card className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-800 shadow-lg">
                     <CardHeader>
@@ -193,26 +193,21 @@ export function ResponseDisplay({
                 </Card>
             )}
 
-            {/* 메인 응답 카드 */}
             <Card className="border-2 border-amber-300 dark:border-amber-700 bg-gradient-to-b from-white via-amber-50/30 to-amber-100/50 dark:from-amber-950 dark:via-amber-900/50 dark:to-amber-900 shadow-2xl overflow-hidden">
-                {/* 헤더 */}
                 <CardHeader
                     className="relative bg-gradient-to-br from-yellow-400 via-amber-400 to-yellow-500 dark:from-yellow-600 dark:via-amber-600 dark:to-yellow-700 text-center space-y-4 pb-10 pt-8">
-                    {/* 배경 장식 */}
                     <div className="absolute inset-0 opacity-10">
                         <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full -translate-x-20 -translate-y-20"/>
                         <div className="absolute bottom-0 right-0 w-40 h-40 bg-white rounded-full translate-x-20 translate-y-20"/>
                     </div>
 
                     <div className="relative">
-                        {/* 아이콘 */}
                         <div className="flex justify-center mb-4">
                             <div className="w-20 h-20 rounded-full bg-white/95 dark:bg-amber-950/95 flex items-center justify-center shadow-2xl border-4 border-amber-200 dark:border-amber-800">
                                 <Church className="w-10 h-10 text-amber-500 dark:text-amber-100" strokeWidth={2.5}/>
                             </div>
                         </div>
 
-                        {/* 타이틀 */}
                         <CardTitle className="text-3xl font-bold text-amber-900 dark:text-amber-950 mb-3">
                             {t.responseTitle(recipientName)}
                         </CardTitle>
@@ -225,9 +220,7 @@ export function ResponseDisplay({
                 </CardHeader>
 
                 <CardContent className="space-y-8 pt-6 pb-8">
-                    {/* 성경 구절 섹션 */}
                     <div className="space-y-6">
-                        {/* 성경 위치 */}
                         <div className="relative">
                             <div className="absolute inset-0 bg-gradient-to-r from-amber-200 via-yellow-200 to-amber-200 dark:from-amber-800/40 dark:via-yellow-800/40 dark:to-amber-800/40 rounded-2xl blur-sm"/>
                             <div className="relative bg-gradient-to-br from-amber-100 to-yellow-100 dark:from-amber-900/60 dark:to-yellow-900/60 rounded-2xl p-6 text-center border-2 border-amber-300 dark:border-amber-700 shadow-lg">
@@ -241,7 +234,6 @@ export function ResponseDisplay({
                             </div>
                         </div>
 
-                        {/* 성경 본문 */}
                         <blockquote className="relative bg-white/80 dark:bg-amber-950/40 rounded-2xl p-8 border-2 border-amber-200 dark:border-amber-800 shadow-md">
                             <div className="absolute -top-4 left-8 w-12 h-12 bg-gradient-to-br from-yellow-300 to-amber-400 dark:from-yellow-600 dark:to-amber-700 rounded-full flex items-center justify-center border-2 border-white dark:border-amber-900 shadow-lg">
                                 <span className="text-2xl text-amber-900 dark:text-amber-100 font-serif">&ldquo;</span>
@@ -255,7 +247,12 @@ export function ResponseDisplay({
                         </blockquote>
                     </div>
 
-                    {/* 구분선 */}
+                    <InContentAd 
+                        adUnit="DAN-KjikwPCf2qoxvvyj"
+                        width={300}
+                        height={250}
+                    />
+
                     <div className="flex items-center justify-center gap-4">
                         <div className="h-0.5 bg-gradient-to-r from-transparent via-amber-300 to-transparent dark:via-amber-700 flex-1"/>
                         <div className="flex gap-2">
@@ -282,7 +279,6 @@ export function ResponseDisplay({
                         </CardContent>
                     </Card>
 
-                    {/* 나의 기도 */}
                     {currentPrayer && (
                         <Card className="border-l-4 border-amber-400 dark:border-amber-600 bg-amber-50/50 dark:bg-amber-900/20">
                             <CardHeader className="pb-3">
@@ -301,7 +297,12 @@ export function ResponseDisplay({
                 </CardContent>
 
                 <CardFooter className="flex-col gap-4 pb-10 pt-6 bg-gradient-to-b from-transparent to-amber-50/50 dark:to-amber-950/50">
-                    {/* 액션 버튼 */}
+                    <InContentAd 
+                        adUnit="DAN-KjikwPCf2qoxvvyj"
+                        width={300}
+                        height={250}
+                    />
+
                     <div className="grid grid-cols-2 gap-4 w-full">
                         <Button
                             variant="outline"
@@ -321,7 +322,6 @@ export function ResponseDisplay({
                         </Button>
                     </div>
 
-                    {/* 처음으로 버튼 */}
                     <Button
                         onClick={() => navigator.push(`/${detectedLocale}`)}
                         size="lg"
@@ -335,4 +335,3 @@ export function ResponseDisplay({
         </div>
     );
 }
-

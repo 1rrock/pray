@@ -1,4 +1,37 @@
-import { kv } from '@vercel/kv';
+import { Redis } from 'ioredis';
+
+let redis: Redis | null = null;
+
+function getRedis(): Redis {
+  if (!redis) {
+    const redisUrl = process.env.REDIS_URL;
+    if (!redisUrl) {
+      throw new Error('REDIS_URL environment variable is not set');
+    }
+
+    redis = new Redis(redisUrl, {
+      maxRetriesPerRequest: 3,
+      lazyConnect: true,
+      enableOfflineQueue: false,
+      connectTimeout: 10000,
+      retryStrategy(times) {
+        if (times > 3) {
+          return null;
+        }
+        return Math.min(times * 200, 2000);
+      },
+    });
+
+    redis.on('error', (err) => {
+      console.error('Redis connection error:', err.message);
+    });
+
+    redis.on('connect', () => {
+      console.log('Redis connected successfully');
+    });
+  }
+  return redis;
+}
 
 interface SharedPrayer {
   id: string;
@@ -18,10 +51,6 @@ export function generateUUID(): string {
 }
 
 export async function savePrayer(data: Omit<SharedPrayer, 'id' | 'createdAt'>): Promise<string> {
-  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
-    throw new Error('Vercel KV is not configured. Please set up KV database in Vercel dashboard.');
-  }
-
   const id = generateUUID();
   const prayer: SharedPrayer = {
     ...data,
@@ -29,25 +58,31 @@ export async function savePrayer(data: Omit<SharedPrayer, 'id' | 'createdAt'>): 
     createdAt: new Date().toISOString(),
   };
 
+  const client = getRedis();
+  
   try {
-    await kv.set(`prayer:${id}`, JSON.stringify(prayer), { ex: 24 * 60 * 60 });
+    if (client.status !== 'ready') {
+      await client.connect();
+    }
+    await client.set(`prayer:${id}`, JSON.stringify(prayer), 'EX', 24 * 60 * 60);
     return id;
   } catch (error) {
-    console.error('KV set error:', error);
-    throw new Error('Failed to save prayer to database');
+    console.error('Redis save error:', error);
+    throw new Error('Failed to save prayer to Redis');
   }
 }
 
 export async function getPrayer(id: string): Promise<SharedPrayer | null> {
-  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
-    throw new Error('Vercel KV is not configured. Please set up KV database in Vercel dashboard.');
-  }
-
+  const client = getRedis();
+  
   try {
-    const data = await kv.get<string>(`prayer:${id}`);
+    if (client.status !== 'ready') {
+      await client.connect();
+    }
+    const data = await client.get(`prayer:${id}`);
     return data ? JSON.parse(data) : null;
   } catch (error) {
-    console.error('KV get error:', error);
+    console.error('Redis get error:', error);
     return null;
   }
 }

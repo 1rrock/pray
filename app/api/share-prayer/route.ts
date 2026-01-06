@@ -49,13 +49,10 @@ export async function POST(request: NextRequest) {
     console.error('Save prayer error:', error);
     
     const errorMessage = error instanceof Error ? error.message : '저장 중 오류가 발생했습니다.';
-    const isKVError = errorMessage.includes('Vercel KV');
     
     return NextResponse.json(
       { 
-        error: isKVError 
-          ? 'Vercel KV 데이터베이스가 설정되지 않았습니다. Vercel 대시보드에서 KV를 설정해주세요.' 
-          : '저장 중 오류가 발생했습니다.',
+        error: '저장 중 오류가 발생했습니다.',
         details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
       },
       { status: 500 }

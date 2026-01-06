@@ -11,23 +11,46 @@ function getRedis(): Redis {
 
     redis = new Redis(redisUrl, {
       maxRetriesPerRequest: 3,
-      lazyConnect: true,
-      enableOfflineQueue: false,
+      enableOfflineQueue: true,
       connectTimeout: 10000,
+      commandTimeout: 5000,
       retryStrategy(times: number) {
         if (times > 3) {
+          console.error(`Redis retry limit reached (${times} attempts)`);
           return null;
         }
-        return Math.min(times * 200, 2000);
+        const delay = Math.min(times * 200, 2000);
+        console.log(`Redis retry attempt ${times}, waiting ${delay}ms`);
+        return delay;
+      },
+      reconnectOnError(err: Error) {
+        const targetErrors = ['READONLY', 'ETIMEDOUT', 'ECONNRESET'];
+        if (targetErrors.some(target => err.message.includes(target))) {
+          console.log('Reconnecting on error:', err.message);
+          return true;
+        }
+        return false;
       },
     });
 
     redis.on('error', (err: Error) => {
-      console.error('Redis connection error:', err.message);
+      console.error('Redis error:', err.message);
     });
 
     redis.on('connect', () => {
-      console.log('Redis connected successfully');
+      console.log('Redis connected');
+    });
+
+    redis.on('ready', () => {
+      console.log('Redis ready');
+    });
+
+    redis.on('close', () => {
+      console.log('Redis connection closed');
+    });
+
+    redis.on('reconnecting', (delay: number) => {
+      console.log(`Redis reconnecting in ${delay}ms`);
     });
   }
   return redis;
@@ -61,26 +84,53 @@ export async function savePrayer(data: Omit<SharedPrayer, 'id' | 'createdAt'>): 
   const client = getRedis();
   
   try {
-    console.log('Redis status before connect:', client.status);
+    console.log(`[savePrayer] Starting save for ID: ${id}`);
+    console.log(`[savePrayer] Redis status: ${client.status}`);
     
-    if (client.status !== 'ready') {
-      console.log('Attempting to connect to Redis...');
+    if (client.status === 'end' || client.status === 'close') {
+      console.log('[savePrayer] Redis is closed, reconnecting...');
       await client.connect();
-      console.log('Redis connected, status:', client.status);
     }
     
-    console.log(`Saving prayer with ID: ${id}`);
+    if (client.status !== 'ready') {
+      console.log('[savePrayer] Waiting for Redis to be ready...');
+      await new Promise<void>((resolve, reject) => {
+        const timeout = setTimeout(() => {
+          reject(new Error('Redis connection timeout'));
+        }, 10000);
+
+        if (client.status === 'ready') {
+          clearTimeout(timeout);
+          resolve();
+          return;
+        }
+
+        client.once('ready', () => {
+          clearTimeout(timeout);
+          resolve();
+        });
+
+        client.once('error', (err) => {
+          clearTimeout(timeout);
+          reject(err);
+        });
+      });
+    }
+    
+    console.log(`[savePrayer] Executing SETEX command for key: prayer:${id}`);
     const result = await (client as any).setex(`prayer:${id}`, 24 * 60 * 60, JSON.stringify(prayer));
-    console.log(`Prayer saved successfully: ${id}, result: ${result}`);
+    console.log(`[savePrayer] Success! Result: ${result}, ID: ${id}`);
     
     return id;
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     const errorName = error instanceof Error ? error.name : 'Error';
+    const errorStack = error instanceof Error ? error.stack : 'No stack trace';
     
-    console.error('Redis save error details:', {
+    console.error('[savePrayer] Error details:', {
       name: errorName,
       message: errorMessage,
+      stack: errorStack,
       status: client.status,
       redisUrl: process.env.REDIS_URL ? 'SET' : 'NOT_SET'
     });
@@ -93,20 +143,45 @@ export async function getPrayer(id: string): Promise<SharedPrayer | null> {
   const client = getRedis();
   
   try {
-    console.log('Getting prayer, Redis status:', client.status);
+    console.log(`[getPrayer] Getting prayer ID: ${id}, Redis status: ${client.status}`);
     
-    if (client.status !== 'ready') {
-      console.log('Connecting to Redis for GET operation...');
+    if (client.status === 'end' || client.status === 'close') {
+      console.log('[getPrayer] Redis is closed, reconnecting...');
       await client.connect();
     }
     
+    if (client.status !== 'ready') {
+      console.log('[getPrayer] Waiting for Redis to be ready...');
+      await new Promise<void>((resolve, reject) => {
+        const timeout = setTimeout(() => {
+          reject(new Error('Redis connection timeout'));
+        }, 10000);
+
+        if (client.status === 'ready') {
+          clearTimeout(timeout);
+          resolve();
+          return;
+        }
+
+        client.once('ready', () => {
+          clearTimeout(timeout);
+          resolve();
+        });
+
+        client.once('error', (err) => {
+          clearTimeout(timeout);
+          reject(err);
+        });
+      });
+    }
+    
     const data = await (client as any).get(`prayer:${id}`);
-    console.log(`Prayer retrieved: ${id}, found: ${!!data}`);
+    console.log(`[getPrayer] Retrieved: ${id}, found: ${!!data}`);
     
     return data ? JSON.parse(data) : null;
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Redis get error:', errorMessage);
+    console.error('[getPrayer] Error:', errorMessage);
     return null;
   }
 }

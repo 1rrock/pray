@@ -1,4 +1,4 @@
-import {NextRequest, NextResponse} from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { aiRateLimit } from '@/shared/lib/rateLimit';
 
@@ -15,12 +15,12 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-        const {prayerText, recipientName, locale = 'ko'} = await request.json();
+        const { prayerText, recipientName, locale = 'ko' } = await request.json();
 
         if (!prayerText || typeof prayerText !== 'string') {
             return NextResponse.json(
-                {error: locale === 'ko' ? '기도 텍스트가 필요합니다.' : 'Prayer text is required.'},
-                {status: 400}
+                { error: locale === 'ko' ? '기도 텍스트가 필요합니다.' : 'Prayer text is required.' },
+                { status: 400 }
             );
         }
 
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
                 },
             ],
             temperature: 0.7,
-            response_format: {type: 'json_object'},
+            response_format: { type: 'json_object' },
         });
 
         const responseText = completion.choices[0]?.message?.content;
@@ -108,7 +108,7 @@ export async function POST(request: NextRequest) {
                 error: '응답 생성 중 오류가 발생했습니다.',
                 details: error instanceof Error ? error.message : 'Unknown error',
             },
-            {status: 500}
+            { status: 500 }
         );
     }
 }

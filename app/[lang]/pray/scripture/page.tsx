@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import ScriptureClient from '@/domain/prayer/components/ScriptureClient';
 import Image from "next/image";
 import logo from "@/app/logo.png";
@@ -15,10 +15,10 @@ export default async function ScripturePage({
     const dict = await getDictionary(locale);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 dark:bg-gradient-to-br dark:from-amber-950 dark:via-yellow-950 dark:to-amber-900 flex items-center justify-center py-8">
+        <div className="min-h-screen flex items-center justify-center py-8">
             <main className="w-full max-w-4xl">
                 <header className="flex justify-center">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900 dark:to-amber-800 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
+                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl shadow-xl overflow-hidden border-2 border-amber-200 dark:border-amber-700">
                         <Image src={logo} alt={dict.common.logo_alt} className="w-full h-full" />
                     </div>
                 </header>

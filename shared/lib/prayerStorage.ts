@@ -1,25 +1,4 @@
-import { Redis } from 'ioredis';
-
-/**
- * Redis 기반 저장소
- * 프로덕션 환경에 적합하며, 메모리 제한 없이 사용 가능
- */
-
-let redis: Redis | null = null;
-
-function getRedis(): Redis {
-  if (!redis) {
-    redis = new Redis(process.env.REDIS_URL || 'redis://localhost:6379', {
-      maxRetriesPerRequest: 3,
-      lazyConnect: true,
-    });
-
-    redis.on('error', (err) => {
-      console.error('Redis connection error:', err.message);
-    });
-  }
-  return redis;
-}
+import { kv } from '@vercel/kv';
 
 interface SharedPrayer {
   id: string;
@@ -31,16 +10,18 @@ interface SharedPrayer {
   guidance: string;
   prayer: string;
   recipientName?: string;
-  createdAt: string; // Redis에 Date 대신 string 저장
+  createdAt: string;
 }
 
-// ID 생성 (UUID)
 export function generateUUID(): string {
   return crypto.randomUUID();
 }
 
-// 기도 저장
 export async function savePrayer(data: Omit<SharedPrayer, 'id' | 'createdAt'>): Promise<string> {
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+    throw new Error('Vercel KV is not configured. Please set up KV database in Vercel dashboard.');
+  }
+
   const id = generateUUID();
   const prayer: SharedPrayer = {
     ...data,
@@ -48,12 +29,25 @@ export async function savePrayer(data: Omit<SharedPrayer, 'id' | 'createdAt'>): 
     createdAt: new Date().toISOString(),
   };
 
-  await getRedis().set(`prayer:${id}`, JSON.stringify(prayer), 'EX', 24 * 60 * 60); // 24시간 TTL
-  return id;
+  try {
+    await kv.set(`prayer:${id}`, JSON.stringify(prayer), { ex: 24 * 60 * 60 });
+    return id;
+  } catch (error) {
+    console.error('KV set error:', error);
+    throw new Error('Failed to save prayer to database');
+  }
 }
 
-// 기도 불러오기
 export async function getPrayer(id: string): Promise<SharedPrayer | null> {
-  const data = await getRedis().get(`prayer:${id}`);
-  return data ? JSON.parse(data) : null;
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+    throw new Error('Vercel KV is not configured. Please set up KV database in Vercel dashboard.');
+  }
+
+  try {
+    const data = await kv.get<string>(`prayer:${id}`);
+    return data ? JSON.parse(data) : null;
+  } catch (error) {
+    console.error('KV get error:', error);
+    return null;
+  }
 }

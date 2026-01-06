@@ -130,6 +130,39 @@ pray/
 - API 요청: 1분당 3-5회 (비용 절감)
 - 한국어만 지원 (초기 버전)
 
+## 🚀 Vercel 배포
+
+### 1. Vercel에 배포
+
+```bash
+vercel deploy --prod
+```
+
+또는 GitHub 연동으로 자동 배포
+
+### 2. Vercel KV 데이터베이스 설정 (공유 기능용)
+
+공유 기능을 사용하려면 Vercel KV를 설정해야 합니다:
+
+1. [Vercel 대시보드](https://vercel.com/dashboard) 접속
+2. 프로젝트 선택
+3. **Storage** 탭 클릭
+4. **Create Database** → **KV** 선택
+5. 데이터베이스 이름 입력 후 생성
+6. 자동으로 환경 변수(`KV_REST_API_URL`, `KV_REST_API_TOKEN` 등)가 추가됨
+7. 프로젝트 재배포
+
+**참고**: Vercel KV는 무료 플랜에서 하루 300개 명령까지 지원합니다.
+
+### 3. 환경 변수 설정
+
+Vercel 대시보드 → Settings → Environment Variables에서 다음 변수들을 설정:
+
+- `ANTHROPIC_API_KEY`: Anthropic API 키
+- `OPENAI_SYSTEM_PROMPT`: AI 응답 프롬프트
+- `GOOGLE_APPLICATION_CREDENTIALS` 또는 `GOOGLE_CLOUD_KEY_JSON`: Google Cloud 인증 정보
+- `NEXT_PUBLIC_BASE_URL`: 배포된 URL (예: `https://a-men.vercel.app`)
+
 ## 🚀 향후 계획
 
 - [ ] Google AdSense 실제 통합

@@ -1,6 +1,5 @@
 import type {Metadata} from "next";
 import {type Locale} from '@/i18n/config';
-import {getDictionary} from '@/i18n/get-dictionary';
 
 export async function generateMetadata({
                                            params,
@@ -9,7 +8,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const {lang} = await params;
     const locale = (lang === 'en' ? 'en' : 'ko') as Locale;
-    const dict = await getDictionary(locale);
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://a-men.vercel.app';
 
     return {

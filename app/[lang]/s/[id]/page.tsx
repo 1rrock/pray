@@ -1,17 +1,15 @@
 'use client';
 
 import { use, useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { type Locale } from '@/i18n/config';
 import { InContentAd } from '@/shared/components/InContentAd';
 
 export default function SharedPrayerPage({ params }: { params: Promise<{ id: string; lang: string }> }) {
   const router = useRouter();
-  const pathname = usePathname();
   const resolvedParams = use(params);
   const locale = (resolvedParams.lang === 'en' ? 'en' : 'ko') as Locale;
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -43,7 +41,6 @@ export default function SharedPrayerPage({ params }: { params: Promise<{ id: str
         router.replace(`/${locale}/pray/scripture?${searchParams.toString()}`);
       } catch (err) {
         setError(err instanceof Error ? err.message : locale === 'ko' ? '오류가 발생했습니다.' : 'An error occurred.');
-        setLoading(false);
       }
     };
 

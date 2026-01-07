@@ -3,7 +3,7 @@ import { ReactQueryProvider } from "@/shared/providers/ReactQueryProvider";
 import { Toaster } from "sonner";
 
 import LanguageSwitcher from "@/shared/components/LanguageSwitcher";
-import { LeftSidebarAdContainer, RightSidebarAdContainer, MobileBottomAdContainer } from "@/shared/components/AdContainer";
+import { LeftSidebarAdContainer, RightSidebarAdContainer } from "@/shared/components/AdContainer";
 import { type Locale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import BuyMeCoffeeButton from "@/shared/components/BuyMeCoffeButton";

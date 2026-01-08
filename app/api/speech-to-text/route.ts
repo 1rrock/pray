@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { speechRateLimit } from '@/shared/lib/rateLimit';
 
+// Speech API 응답 타입
+interface SpeechRecognitionAlternative {
+  transcript: string;
+  confidence?: number;
+}
+
+interface SpeechRecognitionResult {
+  alternatives?: SpeechRecognitionAlternative[];
+}
+
+interface SpeechRecognitionResponse {
+  results?: SpeechRecognitionResult[];
+}
+
 export async function POST(request: NextRequest) {
   // Rate limiting 체크 - 1분당 5회로 제한
   const rateLimitResponse = await speechRateLimit(request);
@@ -59,11 +73,11 @@ export async function POST(request: NextRequest) {
       throw new Error(`Speech API error: ${response.statusText}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as SpeechRecognitionResponse;
 
     // 변환된 텍스트 추출
     const transcription = data.results
-      ?.map((result: any) => result.alternatives?.[0]?.transcript)
+      ?.map((result) => result.alternatives?.[0]?.transcript)
       .join('\n');
 
     if (!transcription) {
@@ -88,10 +102,26 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// Google Cloud 서비스 계정 타입
+interface GoogleCloudCredentials {
+  client_email: string;
+  private_key: string;
+  project_id: string;
+}
+
+// JWT Claim 타입
+interface JWTClaim {
+  iss: string;
+  scope: string;
+  aud: string;
+  exp: number;
+  iat: number;
+}
+
 // JWT 토큰 생성 및 액세스 토큰 획득
-async function getAccessToken(credentials: any): Promise<string> {
+async function getAccessToken(credentials: GoogleCloudCredentials): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
-  const claim = {
+  const claim: JWTClaim = {
     iss: credentials.client_email,
     scope: 'https://www.googleapis.com/auth/cloud-platform',
     aud: 'https://oauth2.googleapis.com/token',
@@ -114,12 +144,12 @@ async function getAccessToken(credentials: any): Promise<string> {
     throw new Error(`Failed to get access token: ${tokenResponse.statusText}`);
   }
 
-  const tokenData = await tokenResponse.json();
+  const tokenData = await tokenResponse.json() as { access_token: string };
   return tokenData.access_token;
 }
 
 // JWT 생성 (Web Crypto API 사용 - Cloudflare Workers 호환)
-async function createJWT(claim: any, privateKey: string): Promise<string> {
+async function createJWT(claim: JWTClaim, privateKey: string): Promise<string> {
   const header = { alg: 'RS256', typ: 'JWT' };
   const encodedHeader = base64UrlEncode(JSON.stringify(header));
   const encodedClaim = base64UrlEncode(JSON.stringify(claim));

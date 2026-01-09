@@ -93,6 +93,7 @@ export function ResponseDisplay({
                     guidance: guidance,
                     prayer: currentPrayer?.text || '',
                     recipientName: recipientName || undefined,
+                    lang: detectedLocale,
                 }),
             });
 

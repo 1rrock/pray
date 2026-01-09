@@ -14,6 +14,7 @@ export async function POST(request: NextRequest) {
       guidance,
       prayer,
       recipientName,
+      lang,
     } = body;
 
     // 필수 필드 검증
@@ -38,7 +39,8 @@ export async function POST(request: NextRequest) {
 
     // 짧은 URL 반환
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://a-men.vercel.app';
-    const shortUrl = `${baseUrl}/s/${id}`;
+    const locale = lang === 'en' ? 'en' : 'ko';
+    const shortUrl = `${baseUrl}/${locale}/s/${id}`;
 
     return NextResponse.json({
       id,
